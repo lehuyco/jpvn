@@ -21,38 +21,16 @@ html(lang="vi", xmlns="http://www.w3.org/1999/xhtml", class="no-js")
     meta(property="og:type", content="website")
     != css('app', {'data-turbolinks-track': true })
   body
-    #fb-root      
-    script.
-      window.fbAsyncInit = function() {
-        FB.init({
-          xfbml            : true,
-          version          : 'v7.0'
-        });
-      };
-    script(async, defer, src="https://connect.facebook.net/en_US/sdk.js")
     .wrapper
       include shared/header
       .main-content
         block content
       include shared/footer
-
     != js('app')
-    
-    // Facebook customer chat
-    script.
-      (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-      fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    .fb-customerchat(attribution='setup_tool', page_id='564242103648574', theme_color='#203c64')
-
     // Global site tag (gtag.js) - Google Analytics
     script(async='', src='https://www.googletagmanager.com/gtag/js?id=UA-122649459-8')
     script.
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'UA-122649459-8');
+      gtag('config', 'G-2KM3G26SHL');
