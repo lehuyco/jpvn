@@ -1,0 +1,53 @@
+extends ../layout
+include ../mixins/postcard
+include ../mixins/servicecard
+
+block content
+  #homepage
+    section.masthead.d-flex
+      .masthead-content.align-self-center.w-100
+        .container
+          .row
+            .col-md-8.ms-auto.me-auto
+              h1.text-center We are Best escrow service agency
+              h2.text-center We will do our utmost to assist you in clearing payments with your Japanese clients.
+    section.services
+      .container
+        .section-head.text-center
+          h3 Why We Best in Business Services
+          p Smooth payment success is essential for the growth of your business.
+        .row
+          .col-md-4
+            .card.w-100
+              img.card-img-top(src=assetPath('home/services/contract.jpg') alt='Contract with us')
+              .card-body
+                h5.card-title Contract with us
+                p.card-text You will contract with us to receive funds on behalf of third parties. And we have a bank account in Japan for your customers.
+          .col-md-4
+            .card.w-100
+              img.card-img-top(src=assetPath('home/services/invoice.jpg') alt='...')
+              .card-body
+                h5.card-title Send an invoice
+                p.card-text You should send an invoice to your Japanese customers with our bank account for agency receipt.We will receive funds on your behalf.
+          .col-md-4
+            .card.w-100
+              img.card-img-top(src=assetPath('home/services/transfer.jpg') alt='...')
+              .card-body
+                h5.card-title Transfer to you
+                p.card-text We will collect agency fees from the funds received on your behalf and transfer the rest to you. You can receive funds in your local currency.
+    section.tellus
+      .overlay.text-center
+        .container
+          h3 Try Today!
+          h4 Tell us about your business and services
+          a.btn.btn-danger(href="/contact") Get Started Now!
+    section.clients
+      .container
+        .section-head.text-center
+          h3 Our Clients
+          p The industries of our representative clients
+        .row  
+          each partner in partners
+            .col-md-2
+              a(href=(partner.url ? partner.url : "#"))
+                img.w-100(src=partner.image, alt=partner.title)

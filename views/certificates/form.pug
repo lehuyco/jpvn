@@ -1,0 +1,15 @@
+mixin form(path, method='POST')
+  form(method=method, action=path)
+    .form-group
+      label Tên
+      input.form-control(type='text', name='title', value=(certificate ? certificate.title : ''))
+    .form-group
+      label Số
+      input.form-control(type='text', name='number', value=(certificate ? certificate.number : ''))
+    .form-group
+      label Ngày cấp
+      input.form-control(type='text', name='dateIssued', value=(certificate ? certificate.dateIssued : ''))
+    .form-group
+      label Ngày hết hạn
+      input.form-control(type='text', name='dateExpired', value=(certificate ? certificate.dateExpired : ''))
+    button.btn.btn-primary(type='submit') Xác nhận

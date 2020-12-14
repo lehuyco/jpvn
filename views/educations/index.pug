@@ -1,0 +1,39 @@
+extends ../layout
+include ../me/sidebar
+include ../mixins/flash-messages
+
+block content
+  #me-page
+    .container
+      .row
+        .col-md-9
+          .page-header
+            h4.page-title Trình độ học vấn
+            nav(aria-label='breadcrumb')
+              ol.breadcrumb
+                li.breadcrumb-item
+                  a(href='/me') Hồ sơ
+                li.breadcrumb-item.active(aria-current='page') Trình độ học vấn
+            .page-actions
+              a.btn.btn-primary(href="/educations/new") Thêm học vấn
+          +flash-messages()
+          table.table.table-bordered
+            thead.thead-light
+              tr
+                th Tên khóa học/ Trường
+                th Tốt nghiệp
+                th Tác vụ
+            tbody
+              each education in educations
+                tr
+                  td=education.title
+                  td=education.graduatedAt
+                  td.fit.align-middle
+                    a.btn.btn-primary.btn-sm(href="/educations/" + education._id)
+                      i.fa.fa-pencil
+                      span  Sửa
+                    button.btn.btn-danger.btn-sm.ml-2.btn-delete-item(data-id=education._id, data-scope='educations', data-title=education.title)
+                      i.fa.fa-close
+                      span  Xóa
+        .col-md-3
+          +sidebar()

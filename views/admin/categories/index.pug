@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+  .container
+    .page-header
+      h4.page-title Quản lý chuyên mục
+      nav(aria-label='breadcrumb')
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href='/admin') Dashboard
+          li.breadcrumb-item.active(aria-current='page') Quản lý chuyên mục
+      .page-actions
+        a.btn.btn-primary(href="/admin/categories/new") Thêm chuyên mục
+    table.table.table-bordered
+      thead.thead-light
+        tr
+          th Tên chuyên mục
+          th.fit Ngôn ngữ
+          th.fit Tác vụ
+      tbody
+        each category in categories
+          tr
+            td=category.title
+            td.fit.align-middle.text-center
+              if category.language == 'vi'
+                span.badge.badge-success Tiếng Việt
+              else if category.language == 'en'
+                span.badge.badge-info Tiếng Anh
+            td.fit.align-middle
+              a.btn.btn-primary.btn-sm(href="/admin/categories/" + category._id)
+                i.fa.fa-pencil
+                span  Sửa
+              button.btn.btn-danger.btn-sm.ml-2.delete-item-btn(data-id=category._id, data-scope='categories', data-title=category.title)
+                i.fa.fa-close
+                span  Xóa

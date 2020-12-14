@@ -1,0 +1,67 @@
+extends ../layout
+
+block content
+  #contact-page
+    .page-header
+      .container
+        .page-title
+          h2.mb-3=__("menu.contact")
+    .container      
+      .row
+        .col-sm-12.col-md-6
+          form#contactForm(method='POST', action="/contact")
+            p!=__("contact.message", {hotline: setting && setting.hotline})
+            //- .row
+            //-   .col-sm-12.col-md-12.col-lg-12
+            //-     .form-group
+            //-       input.form-control(type='text', placeholder==__("contact.subject"))
+            #status.mt-3.mb-3
+            .form-group
+              label.form-label
+                =__("contact.name")
+                span.text-danger *
+              input.form-control(name='name', type='text', placeholder=__("contact.name"))
+            .form-group
+              label.form-label
+                =__("contact.address")
+                span.text-danger *
+              input.form-control(name='address', type='text', placeholder=__("contact.address"))
+            .form-group
+              label.form-label
+                =__("contact.email")
+                span.text-danger *
+              input.form-control(name='email', type='email', placeholder=__("contact.email"))
+            .form-group
+              label.form-label
+                =__("contact.phone")
+                span.text-danger *
+              input.form-control(name='phone', type='text', placeholder=__("contact.phone"))
+            .form-group
+              label.form-label
+                =__("contact.request")
+                span.text-danger *
+              textarea.form-control(name='request', placeholder=__("contact.request"))
+            .row
+              .col-sm-12.col-md-12.col-lg-12
+                button.btn.btn-danger.fw-bold(type='submit')=__("contact.requestBtn")
+        .col-sm-12.col-md-6
+          iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.1375253122947!2d105.82240571597161!3d21.027182585999114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab76a078fd69%3A0x452d72af31e56937!2zMTA3IFBo4buRIEdp4bqjbmcgVsO1LCBDaOG7oyBE4burYSwgxJDhu5FuZyDEkGEsIEjDoCBO4buZaSwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1607963085991!5m2!1sen!2s', width='100%', height='450', frameborder='0', style='border:0;', allowfullscreen='')
+      if setting
+        .pt-30.pb-30.mt-30.bg-white
+          .container
+            .heading
+              h2.heading__title=setting.company
+              .divider__line
+            .row
+              .col-md-6
+                p=setting.address
+              .col-md-6
+                p
+                  | Tel: 
+                  a(href="tel:" + setting.hotline)=setting.hotline 
+                  br
+                  | Fax: 
+                  a(href="fax:" + setting.fax)=setting.fax 
+                  br
+                  | Email: 
+                  a(href="mailto:" + setting.email)=setting.email 

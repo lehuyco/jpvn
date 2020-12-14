@@ -1,0 +1,92 @@
+extends ../layout
+
+block content
+  // JOB SINGLE START
+  .container
+    .row
+      .col-lg-8.col-md-7
+        .page-header
+          h4.page-title=job.title
+          nav(aria-label='breadcrumb')
+            ol.breadcrumb
+              li.breadcrumb-item
+                a(href='/career') Việc làm
+              if job.company
+                li.breadcrumb-item
+                  if job.company
+                    a(href='/companies/' + job.company.slug)=job.company.title
+              li.breadcrumb-item.active(aria-current='page') Chi tiết công việc
+          .addthis_inline_share_toolbox.mt-3
+        h6.text-dark.mt-4 Mô tả:
+        .job-detail.job-single.border.rounded.p-4
+          p=job.summary
+        .row
+          .col-lg-12
+            h6.text-dark.mt-4 Nội dung:
+        .row
+          .col-lg-12
+            .job-detail.border.rounded.mt-2.p-4
+              !=job.description
+        .row
+          .col-lg-12
+            h6.text-dark.mt-4 Yêu cầu khác:
+        .row
+          .col-lg-12
+            .job-detail.border.rounded.mt-2.p-4
+              !=job.more
+
+      .col-lg-4.col-md-5.mt-4.mt-sm-0.pt-2.pt-sm-0
+        .company-brand-logo.text-center.mt-4
+          if job.company
+            a(href='/companies/' + job.company.slug)
+              img.img-fluid.mx-auto.d-block.mb-3(src=job.company.image, alt='')
+            h6.text-muted.mb-0
+              a.text-muted(href='/companies/' + job.company.slug)
+                =job.company.title
+          .mt-4.mb-4
+            a.btn.btn-primary.btn-block(href='/career')
+              i.mdi.mdi-send.mr-2
+              | Ứng tuyển
+        .job-detail.rounded.border.job-overview.mt-4.mb-4
+          .single-post-item.mb-4
+            .float-left.mr-3
+              i.mdi.mdi-security.text-muted.mdi-24px
+            .overview-details
+              h6.text-muted.mb-0 Kinh nghiệm:
+              h6.text-black-50.pt-2.mb-0=job.experience
+          .single-post-item.mb-4
+            .float-left.mr-3
+              i.mdi.mdi-currency-usd.text-muted.mdi-24px
+            .overview-details
+              h6.text-muted.mb-0 Mức lương:
+              h6.text-black-50.pt-2.mb-0=job.salary
+          //- .single-post-item.mb-4
+          //-   .float-left.mr-3
+          //-     i.mdi.mdi-apps.text-muted.mdi-24px
+          //-   .overview-details
+          //-     h6.text-muted.mb-0 Nhóm công việc
+          //-     h6.text-black-50.pt-2.mb-0=job.category ? job.category.title : ''
+          //- .single-post-item.mb-4
+          //-   .float-left.mr-3
+          //-     i.mdi.mdi-calendar-today.text-muted.mdi-24px
+          //-   .overview-details
+          //-     h6.text-muted.mb-0 Ngày đăng
+          //-     h6.text-black-50.pt-2.mb-0=job.createdAt.toLocaleDateString('vi-VI', {})
+          //- .single-post-item.mb-4
+          //-   .float-left.mr-3
+          //-     i.mdi.mdi-email.text-muted.mdi-24px
+          //-   .overview-details
+          //-     h6.text-muted.mb-0 Email
+          //-     h6.text-black-50.pt-2.mb-0=job.company ? job.company.email : ''
+          //- .single-post-item.mb-4
+          //-   .float-left.mr-3
+          //-     i.mdi.mdi-phone-classic.text-muted.mdi-24px
+          //-   .overview-details
+          //-     h6.text-muted.mb-0 Điện thoại
+          //-     h6.text-black-50.pt-2.mb-0=job.company ? job.company.phone : ''
+          //- .single-post-item
+          //-   .float-left.mr-3
+          //-     i.mdi.mdi-map-marker.text-muted.mdi-24px
+          //-   .overview-details
+          //-     h6.text-muted.mb-0 Địa chỉ
+          //-     h6.text-black-50.pt-2.mb-0=job.company ? job.company.address : ''

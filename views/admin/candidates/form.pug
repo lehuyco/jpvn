@@ -1,0 +1,35 @@
+mixin form(path, method='POST')
+  form.candidate-form(method=method, action=path, enctype="multipart/form-data")
+    .form-group.row
+      label.col-sm-2 Vị trí ứng tuyển
+      .col-md-10
+        if candidate.position
+          a(href='/admin/jobs/' + candidate.position._id)
+            =candidate.position.title
+    .form-group.row
+      label.col-sm-2 Tên ứng viên
+      .col-md-10
+        =candidate ? candidate.name : ''
+    .form-group.row
+      label.col-sm-2 Địa chỉ
+      .col-md-10
+        =candidate ? candidate.address : ''
+    .form-group.row
+      label.col-sm-2 Email
+      .col-md-10
+        =candidate ? candidate.email : ''
+    .form-group.row
+      label.col-sm-2 Số điện thoại
+      .col-md-10
+        =candidate ? candidate.phone : ''
+    .form-group.row
+      label.col-sm-2 Nguyện vọng
+      .col-md-10
+        =candidate ? candidate.comment : ''
+    .form-group.row
+      label.col-sm-2 CV, bằng cấp đính kèm
+      .col-md-10
+        if candidate.attach 
+        
+    
+    

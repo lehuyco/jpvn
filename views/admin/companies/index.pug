@@ -1,0 +1,43 @@
+extends ../layout
+
+block content
+  .container
+    .page-header
+      h4.page-title Quản lý công ty
+      ol.breadcrumb
+        li.breadcrumb-item
+          a(href='/admin') Dashboard
+        li.breadcrumb-item.active(aria-current='page') Quản lý công ty
+      .page-actions
+        a.btn.btn-primary(href="/admin/companies/new") Thêm công ty
+    table.table.table-bordered
+      thead.thead-light
+        tr
+          th Logo
+          th Tên công ty
+          th.fit.text-center Trạng thái
+          th.text-center Tác vụ
+      tbody
+        each company in companies
+          if company
+            tr
+              td.col-img
+                if (company.image)
+                  img.w-100(src=company.image)
+              td.align-middle
+                strong=company.title
+              td.fit.align-middle.text-center
+                if company.status == 'pending'
+                  span.badge.badge-warning Chờ duyệt
+                else if company.status == 'active'
+                  span.badge.badge-success Đang hoạt động
+                else if company.status == 'archived'
+                  span.badge.badge-secondary Ngừng hoạt động
+              td.fit.align-middle
+                a.btn.btn-primary.btn-sm(href="/admin/companies/" + company._id)
+                  i.fa.fa-pencil
+                  span  Sửa
+                if currentUser.isAdmin
+                  button.btn.btn-danger.btn-sm.ml-2.delete-item-btn(data-id=company._id, data-scope='companies', data-title=company.title)
+                    i.fa.fa-close
+                    span  Xóa

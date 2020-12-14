@@ -1,0 +1,52 @@
+ul.navbar-nav.ml-auto
+  li.nav__item
+    a.nav__item-link(href='/')=__('menu.home')
+    
+  li.nav__item.with-dropdown
+    a.dropdown-toggle.nav__item-link(href='/about')=__('menu.about')
+    i.fa.fa-angle-right(data-toggle='dropdown')
+    if aboutPages
+      ul.dropdown-menu
+        each page in aboutPages
+          li.nav__item
+            a.nav__item-link(href='/' + page.slug)=page.title
+
+  li.nav__item.with-dropdown
+    a.dropdown-toggle.nav__item-link(href='/services')=__('menu.services')
+    i.fa.fa-angle-right(data-toggle='dropdown')
+    if services
+      ul.dropdown-menu
+        each service in services
+          li.nav__item
+            a.nav__item-link(href='/services/' + service.slug)=service.title
+            
+  li.nav__item
+    a.nav__item-link(href='/projects')=__('menu.projects')
+  li.nav__item
+    a.nav__item-link(href='/blog')=__('menu.blog')
+  
+  //- li.nav__item
+  //-   a.nav__item-link(href='/quote')=__('menu.quote')
+
+  li.nav__item
+    a.nav__item-link(href='/career')=__('menu.career')
+
+  //- li.nav__item
+  //-   a.nav__item-link(href='#')=__('menu.tools')
+
+  //- li.nav__item.with-dropdown
+  //-   a.dropdown-toggle.nav__item-link.active(href='#')=__('menu.tools')
+  //-   i.fa.fa-angle-right(data-toggle='dropdown')
+  //-   ul.dropdown-menu
+  //-     li.nav__item
+  //-       a.nav__item-link(href='index.html') Home Main
+  //-     li.nav__item
+  //-       a.nav__item-link(href='home-modern.html') Home Moderm
+
+  li.nav__item
+    a.nav__item-link(href='/contact')=__('menu.contact')
+  //- li.nav__item
+  //-   a.nav-language-link(href='/vi')
+  //-     img(src=assetPath('vi.svg'))
+  //-   a.nav-language-link(href='/en')
+  //-     img(src=assetPath('en.svg'))

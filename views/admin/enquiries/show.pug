@@ -1,0 +1,40 @@
+extends ../layout
+include ../../mixins/flash-messages
+
+block content
+  if enquiry
+    .container
+      .page-header
+        h4.page-title=enquiry.name
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href='/admin') Dashboard
+          li.breadcrumb-item
+            a(href='/admin/enquiries') Quản lý yêu cầu
+      +flash-messages()
+      table.table.table-bordered
+        tr
+          th Tên:
+          td
+            = enquiry.name 
+        tr
+          th Địa chỉ:
+          td
+            = enquiry.address
+        tr
+          th Email:
+          td
+            a(href="mailto:" + enquiry.email)= enquiry.email
+        tr
+          th Số điện thoại:
+          td
+            a(href="tel:" + enquiry.phone)= enquiry.phone
+        tr
+          th Yêu cầu:
+          td
+            = enquiry.request
+        tr
+          th Ngày gửi:
+          td
+            if enquiry.createdAt
+              =enquiry.createdAt.toFormat("HH:mm DD/MM/YYYY")

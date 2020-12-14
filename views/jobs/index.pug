@@ -1,0 +1,81 @@
+extends ../layout
+include ../mixins/pagination
+
+block content
+  #jobs-page.pt-4
+    .container
+      //- .row
+      //-   .col-12
+      //-     form.registration-form
+      //-       if category
+      //-         input(type='hidden', name='category', value=category.slug)
+      //-       .row
+      //-         .col-lg-9.col-md-9
+      //-           .registration-form-box
+      //-             i.fa.fa-briefcase
+      //-             input#exampleInputName1.form-control.rounded.registration-input-box(type='text', name='q', placeholder='Từ khóa công việc')
+      //-         .col-lg-3.col-md-6
+      //-           .registration-form-box
+      //-             button#submit.submitBnt.btn.btn-primary.btn-block(type='submit') Tìm kiếm
+      .row.mt-4
+        //- .col-md-12
+        //-   h5.mb-0.text-dark Vị trí công việc
+        //-   .border-bottom.pb-3
+        //-     .row
+        //-       each jobCategory in jobCategories
+        //-         .col-md-3.mt-3
+        //-           a.text-muted.text-sm.d-block(href="/jobs?category=" + jobCategory.slug)=jobCategory.title
+        .col-md-8
+          h5.mb-3.text-dark="Tìm thấy " + total + " công việc"
+          if category
+            .filter.text-muted
+              span Vị trí công việc: 
+              strong.text-bold.ml-1=category.title
+              a.ml-2(href='/jobs')
+                i.fa.fa-times
+          each job in jobs
+            .row.pt-3.pb-3
+              .col-lg-2
+                .company-logo-img
+                  img.img-fluid.mx-auto.d-block(src=job.company ? job.company.image : '', alt='')
+              .col-lg-7.col-md-9
+                .job-list-desc
+                  h6.mb-2
+                    a.text-dark(href='/jobs/' + job.slug)=job.title
+                  if job.company
+                    a.text-muted.mb-0(href="/companies/" + job.company.slug)
+                      i.mdi.mdi-bank.mr-2
+                      = job.company.title
+                    ul.list-inline.mb-0
+                      li.list-inline-item.mr-3
+                        p.text-muted.mb-0
+                          i.mdi.mdi-map-marker.mr-2
+                          = job.company.address
+            +pagination('/jobs', pages, page)
+        .col-md-4
+          button.btn.btn-primary.w-100(data-toggle="modal" data-target="#jobModal") Chọn vị trí công việc
+          h5.mt-3.mb-3.text-dark Nhà tuyển dụng hàng đầu
+          each company in topCompanies
+            .media.pt-3.pb-3.border-bottom
+              .col-sm-4
+                a(href="/companies/" + company.slug)
+                  img.w-100(src=company.image, alt=company.title)
+              .col-sm-8.media-body
+                h6.mb-2
+                  a.text-dark.mt-0(href="/companies/" + company.slug)=company.title
+
+  #jobModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='jobModalitle', aria-hidden='true')
+    .modal-dialog.modal-dialog-centered.modal-lg(role='document')
+      .modal-content
+        .modal-header
+          h5#jobModalTitle.modal-title Vị trí công việc
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+        .modal-body
+          .row
+            each jobCategory in jobCategories
+              .col-md-4.mt-2.mb-2
+                a.text-muted.text-sm.d-block(href="/jobs?category=" + jobCategory.slug)
+                  span=jobCategory.title
+                  if jobCategory.jobCount
+                    span.text-warning=" ("+ jobCategory.jobCount + ")"

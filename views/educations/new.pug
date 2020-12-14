@@ -1,0 +1,21 @@
+extends ../layout
+include ./form
+include ../me/sidebar
+include ../mixins/flash-messages
+
+block content
+  #me-page
+    .container
+      .row
+        .col-md-9
+          .page-header
+            h4.page-title Thêm học vấn
+            ol.breadcrumb
+              li.breadcrumb-item
+                a(href='/me') Hồ sơ
+              li.breadcrumb-item
+                a(href='/educations') Trình độ học vấn
+          +flash-messages()
+          +form("/educations")
+        .col-md-3
+          +sidebar()

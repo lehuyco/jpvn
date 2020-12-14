@@ -1,0 +1,25 @@
+extends ../layout
+include ../mixins/projectcard
+
+block content
+  #projects-page
+    .container
+      .page-header
+        .page-title
+          if category
+            h2=category.title
+            p=category.summary
+          else
+            h2=__("home.projects")
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href='/')
+              i.la.la-home
+          li.breadcrumb-item
+            a(href='/projects')=__("home.projects")
+    #projectsGrid.projects.projects-grid
+      .container
+        .row
+          each project in projects
+            .col-sm-12.col-md-6.col-lg-4
+              +projectcard(project)

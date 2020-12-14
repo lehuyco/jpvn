@@ -1,0 +1,64 @@
+mixin form(path, method='POST')
+  form.job-form(method=method, action=path, enctype="multipart/form-data")
+    .form-group.row
+      label.col-sm-2(for='titleInput') Tiêu đề
+      .col-md-10
+        input#titleInput.form-control(type='text', name='title', value=(job ? job.title : ''))
+    .form-group.row
+      label.col-sm-2(for='imageTextarea') Ảnh đại diện
+      .col-sm-10
+        if (job && job.image)
+          .row
+            .col-md-2
+              img.w-100(src=job.image)
+            .col-md-10
+              input#imageTextarea.form-control-file(type="file", name="image")
+        else
+          input#imageTextarea.form-control-file(type="file", name="image")
+    .form-group.row
+      label.col-sm-2(for='experienceInput') Kinh nghiệm
+      .col-sm-10
+        input#experienceInput.form-control(type='text', name='experience', value=(job ? job.experience : ''))
+    .form-group.row
+      label.col-sm-2(for='salaryInput') Mức lương
+      .col-sm-10
+        input#salarynput.form-control(type='text', name='salary', value=(job ? job.salary : ''))
+    .form-group.row
+      label.col-sm-2(for='summaryTextarea') Mô tả
+      .col-sm-10
+        textarea#summaryTextarea.form-control(rows='3', name='summary')=(job ? job.summary : '')
+    .form-group.row
+      label.col-sm-2(for='descriptionTextarea') Giới thiệu
+      .col-sm-10
+        textarea#descriptionTextarea.form-control.summernote(rows='3', name='description')=(job ? job.description : '')
+    if (categories)
+      .form-group.row
+        label.col-sm-2(for='categorySelect') Chuyên mục
+        .col-sm-10
+          select#categorySelect.form-control(name="category")
+            for category in categories
+              if (job && category._id.toString() == job.category)
+                option(value=category._id, selected="true")=category.title
+              else
+                option(value=category._id)=category.title
+    if (companies)
+      .form-group.row
+        label.col-sm-2(for='companySelect') Công ty
+        .col-sm-10
+          select#companySelect.form-control(name="company")
+            for company in companies
+              if (job && company._id.toString() == job.company)
+                option(value=company._id, selected="true")=company.title
+              else
+                option(value=company._id)=company.title
+    if currentUser.isAdmin || currentUser.isMod
+      .form-group.row
+        label.col-sm-2(for='statusSelect') Trạng thái
+        .col-sm-4
+          select#statusSelect.form-control(name="status")
+            for item in [{value: 'draft', label: 'Bản nháp'}, {value: 'published', label: 'Xuất bản'}, {value: 'archived', label: 'Lưu trữ'}]
+              if (post && post.status == item.value)
+                option(value=item.value, selected="true")=item.label
+              else
+                option(value=item.value)=item.label
+    button.btn.btn-primary(type='submit') Xác nhận

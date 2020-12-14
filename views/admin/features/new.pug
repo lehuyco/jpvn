@@ -1,0 +1,15 @@
+extends ../layout
+include ./form
+include ../../mixins/flash-messages
+
+block content
+  .container
+    .page-header
+      h4.page-title Thêm đặc điểm
+      ol.breadcrumb
+        li.breadcrumb-item
+          a(href='/admin') Dashboard
+        li.breadcrumb-item
+          a(href=ADMIN_PATH) Quản lý đặc điểm
+    +flash-messages()
+    +form(ADMIN_PATH)

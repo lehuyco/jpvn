@@ -1,0 +1,43 @@
+extends ../layout
+include ../me/sidebar
+include ../mixins/flash-messages
+
+block content
+  #me-page
+    .container
+      .row
+        .col-md-9
+          .page-header
+            h4.page-title Chứng chỉ
+            nav(aria-label='breadcrumb')
+              ol.breadcrumb
+                li.breadcrumb-item
+                  a(href='/me') Hồ sơ
+                li.breadcrumb-item.active(aria-current='page') Chứng chỉ
+            .page-actions
+              a.btn.btn-primary(href="/certificates/new") Thêm chứng chỉ
+          +flash-messages()
+          table.table.table-bordered
+            thead.thead-light
+              tr
+                th Tên
+                th Số
+                th Ngày cấp
+                th Ngày hết hạn
+                th Tác vụ
+            tbody
+              each certificate in certificates
+                tr
+                  td=certificate.title
+                  td=certificate.number
+                  td=certificate.dateIssued
+                  td=certificate.dateExpired
+                  td.fit.align-middle
+                    a.btn.btn-primary.btn-sm(href="/certificates/" + certificate._id)
+                      i.fa.fa-pencil
+                      span  Sửa
+                    button.btn.btn-danger.btn-sm.ml-2.btn-delete-item(data-id=certificate._id, data-scope='certificates', data-title=certificate.title)
+                      i.fa.fa-close
+                      span  Xóa
+        .col-md-3
+          +sidebar()

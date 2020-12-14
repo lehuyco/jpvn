@@ -1,0 +1,51 @@
+mixin form(path, method='POST')
+  form.post-form(method=method, action=path, enctype='multipart/form-data')
+    .form-group.row
+      label.col-sm-2(for='titleInput') Tiêu đề
+      .col-sm-10
+        input#titleInput.form-control(type='text', name='title', value=(post ? post.title : ''))
+    .form-group.row
+      label.col-sm-2(for='imageTextarea') Ảnh đại diện
+      .col-sm-10
+        if (post && post.image)
+          .row
+            .col-md-2
+              img.w-100(src=post.image)
+            .col-md-10
+              input#imageTextarea.form-control-file(type="file", name="image")
+        else
+          input#imageTextarea.form-control-file(type="file", name="image")
+    .form-group.row
+      label.col-sm-2(for='statusSelect') Trạng thái
+      .col-sm-4
+        select#statusSelect.form-control(name="status")
+          for item in [{value: 'draft', label: 'Bản nháp'}, {value: 'published', label: 'Xuất bản'}, {value: 'archived', label: 'Lưu trữ'}]
+            if (post && post.status == item.value)
+              option(value=item.value, selected="true")=item.label
+            else
+              option(value=item.value)=item.label
+    .form-group.row
+      label.col-sm-2(for='summaryTextarea') Mô tả
+      .col-sm-10
+        textarea#summaryTextarea.form-control(rows='3', name='summary')=(post ? post.summary : '')
+    .form-group.row
+      label.col-sm-2(for='contentTextarea') Nội dung
+      .col-sm-10
+        textarea#contentTextarea.form-control.summernote(rows='3', name='content')=(post ? post.content : '')
+    .form-group.row
+      label.col-sm-2 Từ khóa
+      .col-sm-10
+        input.form-control(type='text', name='keywords', value=(post ? post.keywords : ''))
+    if categories
+      .form-group.row
+        label.col-sm-2 Chuyên mục
+        .col-sm-10
+          select.selectpicker.form-control(multiple='', name="categories", data-live-search="true")
+            each category in categories
+              if (post && post.categories.includes(category._id))
+                option(value=category._id, selected="true")=category.title
+              else
+                option(value=category._id)=category.title
+    .row.pt-3
+      .col-sm-10.offset-sm-2
+        button.btn.btn-primary(type='submit') Đăng bài

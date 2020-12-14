@@ -1,0 +1,93 @@
+mixin form(path, method='POST')
+  form.post-form(method=method, action=path, enctype='multipart/form-data')
+    .form-group.row
+      label.col-sm-2 Tiêu đề
+      .col-sm-10
+        input.form-control(type='text', name='title', value=(doc ? doc.title : ''))
+    .form-group.row
+      label.col-sm-2 Slogan
+      .col-sm-10
+        input.form-control(type='text', name='slogan', value=(doc ? doc.slogan : ''))
+    .form-group.row
+      label.col-sm-2 Ảnh chia sẻ
+      .col-sm-10
+        if (doc && doc.image)
+          .row
+            .col-md-2
+              img.w-100(src=doc.image)
+            .col-md-10
+              input.form-control-file(type="file", name="image")
+        else
+          input.form-control-file(type="file", name="image")
+    .form-group.row
+      label.col-sm-2 Tên công ty
+      .col-sm-10
+        input.form-control(type='text', name='company', value=(doc ? doc.company : ''))
+    .form-group.row
+      label.col-sm-2 Tầm nhìn
+      .col-sm-10
+        input.form-control(type='text', name='vision', value=(doc ? doc.vision : ''))
+    .form-group.row
+      label.col-sm-2 Sứ mệnh
+      .col-sm-10
+        input.form-control(type='text', name='mission', value=(doc ? doc.mission : ''))
+    .form-group.row
+      label.col-sm-2 Triết lý
+      .col-sm-10
+        input.form-control(type='text', name='philosophy', value=(doc ? doc.philosophy : ''))
+    .form-group.row
+      label.col-sm-2 Mô tả
+      .col-sm-10
+        textarea.form-control(rows='3', name='description')=(doc ? doc.description : '')
+    .form-group.row
+      label.col-sm-2 Từ khóa
+      .col-sm-10
+        input.form-control(type='text', name='keywords', value=(doc ? doc.keywords : ''))
+    .form-group.row
+      label.col-sm-2 Địa chỉ
+      .col-sm-10
+        input.form-control(type='text', name='address', value=(doc ? doc.address : ''))
+    .form-group.row
+      label.col-sm-2 Hotline
+      .col-sm-10
+        input.form-control(type='text', name='hotline', value=(doc ? doc.hotline : ''))
+    .form-group.row
+      label.col-sm-2 Fax
+      .col-sm-10
+        input.form-control(type='text', name='fax', value=(doc ? doc.fax : ''))
+    .form-group.row
+      label.col-sm-2 Email
+      .col-sm-10
+        input.form-control(type='text', name='email', value=(doc ? doc.email : ''))
+    .form-group.row
+      label.col-sm-2 Facebook
+      .col-sm-10
+        input.form-control(type='text', name='facebook', value=(doc ? doc.facebook : ''))
+    .form-group.row
+      label.col-sm-2 Zalo
+      .col-sm-10
+        input.form-control(type='text', name='zalo', value=(doc ? doc.zalo : ''))
+    .form-group.row
+      label.col-sm-2 Twitter
+      .col-sm-10
+        input.form-control(type='text', name='twitter', value=(doc ? doc.twitter : ''))
+    .form-group.row
+      label.col-sm-2 Youtube
+      .col-sm-10
+        input.form-control(type='text', name='youtube', value=(doc ? doc.youtube : ''))
+    .form-group.row
+      label.col-sm-2 Bản quyền
+      .col-sm-10
+        input.form-control(type='text', name='copyright', value=(doc ? doc.copyright : ''))
+    .form-group.row
+      label.col-sm-2 Ngôn ngữ
+      .col-sm-4
+        select.form-control(name="language")
+          for item in [{value: 'vi', label: 'Tiếng Việt'}, {value: 'en', label: 'Tiếng Anh'}]
+            if (doc && doc.language == item.value)
+              option(value=item.value, selected="true")=item.label
+            else
+              option(value=item.value)=item.label
+    .row.pt-3
+      .col-sm-10.offset-sm-2
+        button.btn.btn-primary(type='submit') Đăng bài

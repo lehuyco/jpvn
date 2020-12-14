@@ -1,0 +1,50 @@
+extends ../layout
+include ../me/sidebar
+include ../mixins/flash-messages
+
+block content
+  #me-page
+    .container
+      .row
+        .col-md-9
+          .page-header
+            h4.page-title Ứng tuyển
+            nav(aria-label='breadcrumb')
+              ol.breadcrumb
+                li.breadcrumb-item
+                  a(href='/me') Hồ sơ
+                li.breadcrumb-item.active(aria-current='page') Ứng tuyển
+            .page-actions
+              a.btn.btn-primary(href="/jobs") Tìm việc
+          +flash-messages()
+          table.table.table-bordered
+            thead.thead-light
+              tr
+                th Logo
+                th Công ty
+                th.fit Tác vụ
+            tbody
+              each application in applications
+                if application.company
+                  tr
+                    td.col-img
+                      if (application.company.image)
+                        img.w-100(src=application.company.image)
+                    td.align-middle
+                      if application.company
+                        p.mb-0
+                          a(href='/companies/' + application.company.slug)
+                            =application.company && application.company.title
+                      if application.job
+                        p.mb-0
+                          a(href='/jobs/' + application.job.slug)
+                            =application.job.title
+                    td.fit.align-middle
+                      a.btn.btn-primary.btn-sm(href="/applications/" + application._id)
+                        i.fa.fa-pencil
+                        span  Chi tiết
+                    //- button.btn.btn-danger.btn-sm.ml-2.btn-delete-item(data-id=application._id, data-scope='applications', data-title=application.title)
+                    //-   i.fa.fa-close
+                    //-   span  Xóa
+        .col-md-3
+          +sidebar()

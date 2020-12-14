@@ -1,0 +1,94 @@
+extends ../layout
+include ../mixins/flash-messages
+
+block content
+  .container
+    .page-header
+      .page-title
+        h2=__("career.title")
+      ol.breadcrumb
+        li.breadcrumb-item
+          a(href='/')
+            i.la.la-home
+        li.breadcrumb-item
+          a(href='/career')=__("career.title")
+    +flash-messages()
+    form.container(method='post', enctype="multipart/form-data")
+      .row
+        p=__("career.subtitle")
+      .form-group
+        label=__('career.looking_for')
+        ul
+          li Sáng tạo và tránh nhiệm
+          li Kỹ năng chuyên nghiệp và Chia sẻ
+          li Khả năng tạo giá trị mới và Làm việc độc lập
+          li Khả năng tạo giá trị mới và Làm việc độc lập
+          li Linh hoạt và sẵn sàng thay đổi
+
+      h5=__('career.available_position')
+      ul
+        each job, index in jobs
+          li
+            a(href='/career/' + job.slug)
+              =index+1
+              |. 
+              =job.title
+      br
+      p Submit your CV or Apply for a postion
+      .form-group.row
+        .col-md-3
+          label 
+            strong 
+            =__('career.position')
+            | *
+        .col-md-9
+          select.form-control(name="position")
+            each job, index in jobs 
+              option(value=job.id)=job.title
+      .form-group.row
+        .col-md-3
+          label 
+            strong 
+              =__('career.name')
+              | *
+        .col-md-9
+          input.form-control(name="name" placeholder=__('career.name') required)
+      .form-group.row
+        .col-md-3
+          label 
+            strong 
+              =__('career.address')
+        .col-md-9
+          input.form-control(name="address" placeholder=__('career.address'))
+      .form-group.row
+        .col-md-3
+          label 
+            strong 
+              =__('career.phone')
+              | *
+        .col-md-9
+          input.form-control(name="phone" placeholder=__('career.phone') required)
+      .form-group.row
+        .col-md-3
+          label 
+            strong=__('career.email')
+        .col-md-9
+          input.form-control(name="email" placeholder=__('career.email') required)
+      .form-group.row
+        .col-md-3
+          label 
+            strong 
+              =__('career.comment')
+        .col-md-9
+          textarea.form-control(name="comment" placeholder=__('career.comment'))
+      .form-group.row
+        .col-md-3
+          label 
+            strong=__('career.attach')
+        .col-md-9
+          input(type="file" name="attach" placeholder=__('career.attach'))
+      .form-group.row
+        .col-md-3
+        .col-md-9
+          button.btn.btn-primary=__('career.submit')
+      

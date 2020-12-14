@@ -1,0 +1,19 @@
+extends ../layout
+include ../mixins/flash-messages
+include ../mixins/jobcard
+
+block content
+  .container
+    .page-header
+      .page-title
+        h2=__("career.title")
+      ol.breadcrumb
+        li.breadcrumb-item
+          a(href='/')
+            i.la.la-home
+        li.breadcrumb-item
+          a(href='/career')=__("career.title")
+    .row.mt-30
+      each job in jobs
+        .col-sm-6.col-md-6.col-lg-4
+          +jobcard(job)

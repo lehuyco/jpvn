@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+  #recruitment.bg-light
+    #secondary-nav.bg-white
+      .container
+        ul.nav
+          li.nav-item
+            a.nav-link.active(href='/recruitment') Tuyển dụng
+          li.nav-item
+            a.nav-link(href='/companies') Quản lý công ty
+          li.nav-item
+            a.nav-link(href='/jobs') Quản lý công việc
+    .container.pt-3
+      .page-header
+        h4.page-title Quản lý tuyển dụng
+      //- .border-top.pb-4
+
+      .border-bottom.pb-4
+      if companyCount == 0
+        .col-lg-12.mt-4.pt-2
+          .component-wrapper.rounded.shadow
+            .p-4
+              .text-center
+                h6 Bạn chưa có công ty nào đang hoạt động. Để trở thành nhà tuyển dụng vui lòng đăng ký công ty của bạn
+                a.btn.btn-primary.mt-3.mr-2(href='/companies') Quản lý công ty

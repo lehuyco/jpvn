@@ -1,0 +1,7 @@
+mixin jobcard(job)
+  .card
+    a(href=job.path)
+      img.card-img-top(src=job.thumb, alt=job.title)
+    .card-body
+      h5.card-title=job.title
+      a.btn.btn-primary(href='#') Go somewhere

@@ -1,0 +1,35 @@
+#header
+  .container
+    .header-top.clearfix
+      .float-start
+        a(href="/")
+          i.lar.la-clock
+          span 10:00 - 17:00
+        a(href="mailto:contact@jpvngroup.com")
+          i.lar.la-envelope
+          span contact@jpvngroup.com
+      .float-end
+        a.nav-language-link(href='/vi')
+          img(src=assetPath('vi.svg'))
+        a.nav-language-link(href='/en')
+          img(src=assetPath('en.svg'))
+  .container
+    nav.navbar.navbar-expand-lg.navbar-light
+      .container-fluid
+        a.navbar-brand(href='#')
+          img(src=assetPath('logo-white.png'))
+        button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        #navbarNav.collapse.navbar-collapse
+          ul.navbar-nav.ms-auto
+            li.nav-item
+              a.nav-link.active(aria-current='page' href='#') Home
+            li.nav-item
+              a.nav-link(href='#') Company
+            li.nav-item
+              a.nav-link(href='/news') News
+            li.nav-item
+              a.nav-link(href='/career') Career
+            li.nav-item
+              a.nav-link(href='/contact') Contact
+      

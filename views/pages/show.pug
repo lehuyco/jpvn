@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      .col-md-8
+        .page-header
+          .page-title
+            h2=page.title
+        !=page.content
+      .col-md-4
+        .sidebar-widget
+          ul.list-group.mt-30
+            each page in aboutPages
+              li.list-group-item
+                a(href='/' + page.slug, title=page.title)=page.title

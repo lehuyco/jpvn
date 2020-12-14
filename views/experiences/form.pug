@@ -1,0 +1,30 @@
+mixin form(path, method='POST')
+  form(method=method, action=path)
+    .form-group
+      label Tên tàu
+      input.form-control(type='text', name='shipname', value=(experience ? experience.shipname : ''))
+    .form-group
+      label Chức danh
+      input.form-control(type='text', name='title', value=(experience ? experience.title : ''))
+    .form-group
+      label Chủ quản
+      input.form-control(type='text', name='manager', value=(experience ? experience.manager : ''))
+    .form-group
+      label Quốc tịch
+      input.form-control(type='text', name='nationality', value=(experience ? experience.nationality : ''))
+    .form-group
+      label GT
+      input.form-control(type='text', name='gt', value=(experience ? experience.gt : ''))
+    .form-group
+      label E/Power
+      input.form-control(type='text', name='power', value=(experience ? experience.power : ''))
+    .form-group
+      label Loại
+      input.form-control(type='text', name='type', value=(experience ? experience.type : ''))
+    .form-group
+      label Ngày lên tàu
+      input.form-control(type='text', name='dateBoarding', value=(experience ? experience.dateBoarding : ''))
+    .form-group
+      label Ngày rời tàu
+      input.form-control(type='text', name='dateLeaved', value=(experience ? experience.dateLeaved : ''))
+    button.btn.btn-primary(type='submit') Xác nhận

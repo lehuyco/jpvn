@@ -1,0 +1,17 @@
+extends ../layout
+include ./form
+include ../../mixins/flash-messages
+
+block content
+  .container
+    .page-header
+      h4.page-title=company.title
+      ol.breadcrumb
+        li.breadcrumb-item
+          a(href='/admin') Dashboard
+        li.breadcrumb-item
+          a(href='/admin/companies') Quản lý công ty
+    +flash-messages()
+    if !currentUser.isAdmin && !currentUser.isMod && company.status == 'pending'
+      .alert.alert-warning Công ty của bạn đã đăng ký lên hệ thống, vui lòng đợi kết quả duyệt hồ sơ. Xin cảm ơn
+    +form("/admin/companies/" +  company._id, 'POST')

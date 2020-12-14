@@ -1,0 +1,24 @@
+mixin form(path, method='POST')
+  form(method=method, action=path)
+    .form-group.row
+      label.col-sm-2 Tiêu đề
+      .col-sm-10
+        input.form-control(type='text', name='title', value=(category ? category.title : ''))
+    .form-group.row
+      label.col-sm-2 Mô tả
+      .col-sm-10
+        textarea.form-control(rows='3', name='summary')=(category ? category.summary : '')
+    .form-group.row
+      label.col-sm-2 Từ khóa
+      .col-sm-10
+        input.form-control(type='text', name='keywords', value=(post ? post.keywords : ''))
+    .form-group.row
+      label.col-sm-2 Ngôn ngữ
+      .col-sm-4
+        select.form-control(name="language")
+          for item in [{value: 'vi', label: 'Tiếng Việt'}, {value: 'en', label: 'Tiếng Anh'}]
+            if (category && category.language == item.value)
+              option(value=item.value, selected="true")=item.label
+            else
+              option(value=item.value)=item.label
+    button.btn.btn-primary(type='submit') Xác nhận

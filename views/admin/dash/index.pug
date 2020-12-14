@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  .container
+    .page-header
+      h4.page-title Tổng hợp
+    .row
+      .col-md-4
+        a.card(href='/admin/posts')
+          .card-body
+            h5.card-title Bài viết
+            p.card-text
+              .text-right
+                h3
+                  span.badge.badge-primary=postCount
+      .col-md-4
+        a.card(href='/admin/services')
+          .card-body
+            h5.card-title Dịch vụ
+            p.card-text
+              .text-right
+                h3
+                  span.badge.badge-success 0
+      .col-md-4
+        a.card(href='/admin/projects')
+          .card-body
+            h5.card-title Dự án
+            p.card-text
+              .text-right
+                h3
+                  span.badge.badge-danger=applicationCount

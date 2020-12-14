@@ -1,0 +1,19 @@
+mixin flash-messages()
+  if flash
+    #flash-messages.mb-2
+      if flash.info
+        each message in flash.info
+          +flash-message(message, 'info')
+      if flash.success
+        each message in flash.success
+          +flash-message(message, 'success')
+      if flash.warning
+        each message in flash.warning
+          +flash-message(message, 'warning')
+      if flash.error
+        each message in flash.error
+          +flash-message(message, 'danger')
+        
+mixin flash-message(message, type)
+  div(class='alert alert-' + type)
+    = message

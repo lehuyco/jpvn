@@ -1,0 +1,35 @@
+extends ../layout
+
+block content 
+  .container
+    .page-header
+      .page-title
+        h2=project.title
+      ol.breadcrumb
+        li.breadcrumb-item
+          a(href='/')
+            i.la.la-home
+        li.breadcrumb-item
+          a(href='/projects')=__("home.projects")
+  #caseStudiesSingle.case-studies-single
+    .container
+      .row
+        .col-sm-12.col-md-12.col-lg-8
+          .case-single-item
+            .row
+              .col-sm-12.col-md-12.col-lg-12
+                img.w-100(src=project.image)
+                .text__block.mb-40.mt-20
+                  !=project.content
+        .col-sm-12.col-md-12.col-lg-4
+          .sidebar-widget.mb-3
+            h4.widget-title.mt-0.mb-0.pb-0=__("projects.others")
+            .divider.mb-3
+            each project in projects
+              .row.mb-2
+                .col-3.pr-0
+                  a.d-inline-block(href=project.path)
+                    img.w-100(src=project.thumb)
+                .col-9
+                  a(href=project.path)
+                    strong=project.title

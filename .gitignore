@@ -1,0 +1,13 @@
+node_modules
+node_modules/*
+public/uploads
+*/.DS_Store
+**/*/.DS_Store
+
+public/assets
+public/assets/*
+
+builtAssets
+builtAssets/*
+
+.DS_Store

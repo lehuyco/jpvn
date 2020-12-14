@@ -1,0 +1,133 @@
+extends ../layout
+
+block content
+  // POST A JOB START
+  section.section
+    .container
+      .row.justify-content-center
+        .col-lg-10
+          .rounded.shadow.bg-white.p-4
+            .custom-form
+              #message3
+              form#contact-form3(method='post', action='php/contact.php', name='contact-form')
+                h4.text-dark.mb-3 Post a New Job :
+                .row
+                  .col-md-12
+                    .form-group.app-label.mt-2
+                      label.text-muted Job Title
+                      input#company-name.form-control.resume(type='text', placeholder='')
+                .row
+                  .col-md-6
+                    .form-group.app-label.mt-2
+                      label.text-muted Job Type
+                      .form-button
+                        select.nice-select.rounded
+                          option(data-display='Job Type') Job Type
+                          option(value='1') Full Time
+                          option(value='2') Part Time
+                  .col-md-6
+                    .form-group.app-label.mt-2
+                      label.text-muted Job Category
+                      .form-button
+                        select.nice-select.rounded
+                          option(data-display='Category') Category
+                          option(value='1') Web Developer
+                          option(value='2') PHP Developer
+                          option(value='3') Web Designer
+                          option(value='4') Graphic Designer
+                .row
+                  .col-md-6
+                    .form-group.app-label.mt-2
+                      label.text-muted City
+                      input#city.form-control.resume(type='text', placeholder='')
+                  .col-md-6
+                    .form-group.app-label.mt-2
+                      label.text-muted Country
+                      .form-button
+                        select.nice-select.rounded
+                          option(data-display='Country') Country
+                          option(value='1') Afghanistan
+                          option(value='2') Bangladesh
+                          option(value='3') Canada
+                          option(value='4') Dominica
+                .row
+                  .col-md-6
+                    .form-group.app-label.mt-2
+                      label.text-muted Minimum Salary
+                      input#minimum-salary.form-control.resume(type='text', placeholder='$8000')
+                  .col-md-6
+                    .form-group.app-label.mt-2
+                      label.text-muted Maximum Salary
+                      input#maximum-salary.form-control.resume(type='text', placeholder='$20000')
+                .row
+                  .col-md-6
+                    .form-group.app-label.mt-2
+                      label.text-muted Education Level
+                      .form-button
+                        select.nice-select.rounded
+                          option(data-display='Level') Level
+                          option(value='1') Level-1
+                          option(value='2') Level-2
+                          option(value='3') Level-3
+                          option(value='4') Level-4
+                  .col-md-6
+                    .form-group.app-label.mt-2
+                      label.text-muted Year of Experience
+                      .form-button
+                        select.nice-select.rounded
+                          option(data-display='Experience') Experience
+                          option(value='1') 1 Year
+                          option(value='2') 2 Year
+                          option(value='3') 3 Year
+                .row
+                  .col-md-12
+                    .form-group.app-label.mt-2
+                      label.text-muted Website
+                      input#url.form-control.resume(type='url', placeholder='')
+                .row
+                  .col-md-6
+                    .form-group.app-label.mt-2
+                      label.text-muted Email Address
+                      input#email-address.form-control.resume(type='text', placeholder='')
+                  .col-md-6
+                    .form-group.app-label.mt-2
+                      label.text-muted Phone Number
+                      input#number.form-control.resume(type='text', placeholder='')
+                .row
+                  .col-md-6
+                    .form-group.app-label.mt-2
+                      label.text-muted Gender
+                      .form-button
+                        select.nice-select.rounded
+                          option(data-display='Gender') Gender
+                          option(value='1') Male
+                          option(value='2') Female
+                  .col-md-6
+                    .form-group.app-label.mt-2
+                      label.text-muted Shift
+                      .form-button
+                        select.nice-select.rounded
+                          option(data-display='Shift') Shift
+                          option(value='1') Morning
+                          option(value='2') Evening
+                .row
+                  .col-md-12
+                    .form-group.app-label.mt-2
+                      label.text-muted Job Description
+                      textarea#description.form-control.resume(rows='6', placeholder='')
+                .row
+                  .col-md-12
+                    ul.list-inline.mb-0
+                      li.list-inline-item
+                        .input-group.mt-2.mb-2
+                          .custom-file
+                            input#inputGroupFile01.custom-file-input(type='file', aria-describedby='inputGroupFileAddon01')
+                            label.custom-file-label.rounded
+                              i.mdi.mdi-cloud-upload.mr-1
+                              |  Upload Files
+                      li.list-inline-item
+                        h6.text-muted.mb-0 Upload Images Or Documents.
+                .row
+                  .col-lg-12.mt-2
+                    a.btn.btn-primary(href='#') Post a Job
+  // POST A JOB END

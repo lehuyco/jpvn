@@ -1,0 +1,49 @@
+extends ../layout
+include ../me/sidebar
+include ../mixins/flash-messages
+
+block content
+  #me-page
+    .container
+      .page-header
+        h4.page-title Kinh nghiệm làm việc
+        nav(aria-label='breadcrumb')
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='/me') Hồ sơ
+            li.breadcrumb-item.active(aria-current='page') Kinh nghiệm làm việc
+        .page-actions
+          a.btn.btn-primary(href="/experiences/new") Thêm kinh nghiệm 
+      +flash-messages()
+      table.table.table-bordered.w-100
+        thead.thead-light
+          tr
+            th Tên tàu
+            th Chức danh
+            th Chủ quản
+            th Quốc tịch
+            th GT
+            th E/Power
+            th Loại
+            th Ngày lên tàu
+            th Ngày rời tàu
+            th Tác vụ
+        tbody
+          each experience in experiences
+            tr
+              td=experience.shipname
+              td=experience.title
+              td=experience.manager
+              td=experience.nationality
+              td=experience.gt
+              td=experience.power
+              td=experience.type
+              td=experience.dateBoarding
+              td=experience.dateLeaved
+              td.fit.align-middle
+                a.btn.btn-primary.btn-sm(href="/experiences/" + experience._id)
+                  i.fa.fa-pencil
+                  span  Sửa
+                button.btn.btn-danger.btn-sm.ml-2.btn-delete-item(data-id=experience._id, data-scope='experiences', data-title=experience.shipname)
+                  i.fa.fa-close
+                  span  Xóa

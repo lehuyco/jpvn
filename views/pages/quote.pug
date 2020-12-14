@@ -1,0 +1,146 @@
+extends ../layout
+include ../mixins/flash-messages
+
+block content
+  .container
+    .page-header
+      .page-title
+        h2=__("home.quote")
+      ol.breadcrumb
+        li.breadcrumb-item
+          a(href='/')
+            i.la.la-home
+        li.breadcrumb-item
+          a(href='/quote')=__("home.quote")
+    form#quoteForm(method="POST", action="/quote")
+      +flash-messages()
+      #status.mt-3.mb-3
+      p=__('quote.subtitle')
+      .form-group.row
+        .col-md-3
+          label 
+            strong
+              =__('quote.company_name')
+              | *
+        .col-md-9
+          input.form-control(name="company_name" placeholder=__('quote.company_name') required)
+      .form-group.row
+        .col-md-3
+          label 
+            strong 
+            =__('quote.address')
+            | *
+        .col-md-9
+          input.form-control(name="address" placeholder=__('quote.address') required)
+      .form-group.row
+        .col-md-3
+          label 
+            strong Email *
+        .col-md-9
+          input.form-control(name="email" placeholder="Email" required)
+      .form-group.row
+        .col-md-3
+          label 
+            strong
+              =__('quote.phone')
+              | *
+        .col-md-9
+          input.form-control(name="phone" placeholder=__('quote.phone') required)
+      .form-group.row
+        .col-md-3
+          label 
+            strong
+              =__('quote.service_request')
+              | *
+        .col-md-9
+          each service, index in serviceTypes
+            input.mr-3(name="service_request" type="checkbox" value=service id="service_request_"+index)
+            span(for="service_request_" + index)=__('quote.service_request.'+service)
+            br
+      h5=__('quote.about_the_goods.title')
+      p=__('quote.about_the_goods.subtitle')
+
+      .form-group.row
+        .col-md-3
+          label 
+            strong 
+              =__('quote.about_the_goods.country_of_origin')
+              | *
+        .col-md-9
+          input.form-control(name="country_of_origin" placeholder=__('quote.about_the_goods.country_of_origin') required)
+
+      .form-group.row
+        .col-md-3
+          label 
+            strong 
+              =__('quote.about_the_goods.pickup_address')
+        .col-md-9
+          input.form-control(name="pickup_address" placeholder=__('quote.about_the_goods.pickup_address'))
+
+      .form-group.row
+        .col-md-3
+          label 
+            strong 
+              =__('quote.about_the_goods.country_of_destination')
+            | *
+        .col-md-9      
+          input.form-control(name="country_of_destination" placeholder=__('quote.about_the_goods.country_of_destination') required)
+
+      .form-group.row
+        .col-md-3
+          label 
+            strong 
+              =__('quote.about_the_goods.delivery_address')
+        .col-md-9
+          input.form-control(name="delivery_address" placeholder=__('quote.about_the_goods.delivery_address'))
+
+      .form-group.row
+        .col-md-3
+          label 
+            strong 
+              =__('quote.about_the_goods.cargo_type')
+        .col-md-9 
+          input.form-control(name="cargo_type" placeholder=__('quote.about_the_goods.cargo_type'))
+      
+      .form-group.row
+        .col-md-3
+          label 
+            strong 
+              =__('quote.about_the_goods.shipping_term')
+        .col-md-9
+          input.form-control(name="shipping_term" placeholder=__('quote.about_the_goods.shipping_term'))
+      
+      .form-group.row
+        .col-md-3
+          label 
+            strong 
+              =__('quote.about_the_goods.cargo_quantity')
+              | *
+        .col-md-9
+          input.form-control(name="cargo_quantity" placeholder=__('quote.about_the_goods.cargo_quantity') required)
+
+      .form-group.row
+        .col-md-3
+          label
+            strong
+              =__('quote.about_the_goods.details_of_weight')
+        .col-md-9
+          textarea.form-control(name="details_of_weight" placeholder=__('quote.about_the_goods.details_of_weight'))
+      //- .form-group.row
+      //-   .col-md-3
+      //-     label 
+      //-       strong
+      //-         =__('quote.about_the_goods.attach_file')
+      //-   .col-md-9
+      //-     input(name="attach_file" type='file')
+      .form-group.row
+        .col-md-3
+          label 
+            strong
+              =__('quote.about_the_goods.specific_comment')
+              | *
+        .col-md-9
+          textarea.form-control(name="specific_comment" placeholder=__('quote.about_the_goods.specific_comment') required)
+      .text-right
+        button.btn.btn-primary.mb-30(type="submit")=__('quote.about_the_goods.submit')
+      

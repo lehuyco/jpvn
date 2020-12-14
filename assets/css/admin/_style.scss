@@ -1,0 +1,133 @@
+body {
+  font-family: "Roboto", Helvetica, Arial, sans-serif !important;
+  // font-size: 14px;
+  background-color: #FFFFFF;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Roboto", Helvetica, Arial, sans-serif !important;
+}
+p, div, a {
+  font-family: "Roboto", Helvetica, Arial, sans-serif !important;
+  // font-size: 14px;
+}
+
+.bg-navy {
+  background-color: #203c64;
+}
+
+.main-navbar {
+  .nav-logo {
+      height: 46px;
+  }
+  .nav-link {
+      font-weight: bold;
+      color: #FFFFFF;
+  }
+}
+
+
+#admin-wrapper {
+  min-height: 500px;
+  padding-bottom: 50px;
+}
+
+#contactpage {
+  padding: 30px 0;
+}
+
+.logo {
+  max-width: 300px;
+}
+
+.intro {
+  padding-top: 110px;
+  .intro-left-content {
+      padding: 40px 0;
+  }
+}
+
+.terms, .policy {
+  padding: 30px 0;
+}
+
+.page-header {
+  padding: 20px 0;
+  .page-title {
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+  }
+  .breadcrumb {
+    background: transparent;
+    padding: 10px 0 0 0;
+    margin: 0;
+  }
+  .page-actions {
+    padding: 10px 0 0 0;
+  }
+}
+
+#blogpage {
+  padding-bottom: 50px;
+  .post {
+      padding-bottom: 10px;
+      p {
+          padding-bottom: 0;
+          margin-bottom: 0;
+      }
+      .post-title {
+          font-size: 20px;
+          color:#3d5368;
+      }
+  }
+  .list-categories {
+      a.list-group-item {
+          font-size: 14px;
+          color:#3d5368;
+      }
+      a.active.list-group-item {
+          background-color: #881719;
+          border-color: #881719;
+          color: #FFFFFF;
+      }
+  }
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  background-color: #881719;
+}
+
+.page-header {
+  padding: 20px 0;
+  .page-title {
+    padding: 0;
+    margin: 0;
+  }
+  .breadcrumb {
+    background: transparent;
+    padding: 10px 0 0 0;
+    margin: 0;
+  }
+  .page-actions {
+    padding: 10px 0 0 0;
+  }
+}
+
+table {
+  td.fit {
+    width: 1%;
+    white-space: nowrap;
+  }
+  .col-img {
+    width: 100px;
+  }
+}
+
+.post-form {
+  padding-bottom: 50px;
+}
+
+a.card, a.card:hover {
+  text-decoration: none !important;
+}

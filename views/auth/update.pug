@@ -1,0 +1,41 @@
+extends ../layout
+
+block content
+  section.section
+    .container
+      .row.justify-content-center
+        .col-md-6
+          .login_page.bg-white.shadow.rounded.p-4
+            .text-center
+              h4.mb-4 Hoàn thành hồ sơ
+            each error in errors
+              .alert.alert-danger(role="alert")
+                span=error
+            form.login-form(action='/auth/update', method='POST')
+              .row
+                .col-md-12
+                  .form-group.position-relative
+                    label
+                      | Họ tên
+                      span.text-danger *
+                    input.form-control(type='text', placeholder='Họ tên', name='name', , required='', value=(currentUser ? currentUser.name : ''))
+                .col-md-12
+                  .form-group.position-relative
+                    label
+                      | Email 
+                      span.text-danger *
+                    if currentUser.email
+                      input.form-control(type='email', placeholder='Email', name='email', required='', disabled='', value=(currentUser ? currentUser.email : ''))
+                    else
+                      input.form-control(type='email', placeholder='Email', name='email', required='')
+                .col-md-12
+                  .form-group.position-relative
+                    label
+                      | Phone
+                    input.form-control(type='phone', placeholder='Số điện thoại', name='phone', value=(currentUser ? currentUser.phone : ''))
+                .col-md-12
+                  p
+                    | Bấm cập nhật là bạn đã đồng ý 
+                    a.text-primary(href='#')  Điều khoản sử dụng
+                .col-md-12
+                  button.btn.btn-primary.w-100 Cập nhật

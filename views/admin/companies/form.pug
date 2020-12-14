@@ -1,0 +1,58 @@
+mixin form(path, method='POST')
+  form.company-form(method=method, action=path, enctype="multipart/form-data")
+    .form-group.row
+      label.col-sm-2(for='titleInput') Tên công ty
+      .col-sm-10
+        input#titleInput.form-control(type='text', name='title', value=(company ? company.title : ''))
+    .form-group.row
+      label.col-sm-2(for='imageTextarea') Ảnh đại diện
+      .col-sm-10
+        if (company && company.image)
+          .row
+            .col-md-2
+              img.w-100(src=company.image)
+            .col-md-10
+              input#imageTextarea.form-control-file(type="file", name="image")
+        else
+          input#imageTextarea.form-control-file(type="file", name="image")
+    .form-group.row
+      label.col-sm-2(for='emailInput') Email
+      .col-sm-10
+        input#emailInput.form-control(type='text', name='email', value=(company ? company.email : ''))
+    .form-group.row
+      label.col-sm-2(for='websiteInput') Website
+      .col-sm-10
+        input#websiteInput.form-control(type='text', name='website', value=(company ? company.website : ''))
+    .form-group.row
+      label.col-sm-2(for='phoneInput') Phone
+      .col-sm-10
+        input#phoneInput.form-control(type='text', name='phone', value=(company ? company.phone : ''))
+    .form-group.row
+      label.col-sm-2(for='addressInput') Address
+      .col-sm-10
+        input#addressInput.form-control(type='text', name='address', value=(company ? company.address : ''))
+    .form-group.row
+      label.col-sm-2(for='overviewTextarea') Giới thiệu
+      .col-sm-10
+        textarea#overviewTextarea.form-control.summernote(rows='3', name='overview')=(company ? company.overview : '')
+    if currentUser.isAdmin || currentUser.isMod
+      hr
+      h4.mb-3 Dành cho admin
+      .form-group.row
+        label.col-sm-2(for='titleInput') Nổi bật
+        .col-sm-10
+          .form-check
+            if company.editorChoice
+              input.form-check-input(type="checkbox", name="editorChoice", checked="true")
+            else
+              input.form-check-input(type="checkbox", name="editorChoice")
+      .form-group.row
+        label.col-sm-2(for='statusSelect') Trạng thái
+        .col-sm-4
+          select#statusSelect.form-control(name="status")
+            for item in [{value: 'pending', label: 'Chờ duyệt'}, {value: 'active', label: 'Đang hoạt động'}, {value: 'deactivated', label: 'Ngừng hoạt động'}]
+              if (company && company.status == item.value)
+                option(value=item.value, selected="true")=item.label
+              else
+                option(value=item.value)=item.label
+    button.btn.btn-primary(type='submit') Xác nhận

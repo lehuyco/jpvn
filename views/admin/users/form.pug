@@ -1,0 +1,35 @@
+mixin form(path, method='POST')
+  form.user-form(method=method, action=path, enctype="multipart/form-data")
+    .form-group.row
+      label.col-sm-2(for='nameInput') Họ Tên
+      .col-sm-10
+        input#nameInput.form-control(type='text', name='name', value=(user ? user.name : ''))
+    .form-group.row
+      label.col-sm-2(for='emailInput') Email
+      .col-sm-10
+        input#emailInput.form-control(type='text', name='email', value=(user ? user.email : ''))
+    //- .form-group.row
+    //-   label.col-sm-2(for='passwordInput') Password
+    //-   .col-sm-10
+    //-     input#passwordInput.form-control(type='password', name='password')
+    .form-group.row
+      label.col-sm-2(for='imageTextarea') Ảnh đại diện
+      .col-sm-10
+        if (user && user.image)
+          .row
+            .col-md-2
+              img.w-100(src=user.image)
+            .col-md-10
+              input#imageTextarea.form-control-file(type="file", name="image")
+        else
+          input#imageTextarea.form-control-file(type="file", name="image")
+    .form-group.row
+      label.col-sm-2(for='roleSelect') Phân quyền
+      .col-sm-4
+        select#roleSelect.form-control(name="role")
+          for role in ["user", "mod", "admin"]
+            if (user && role == user.role)
+              option(value=role, selected="true")=role.charAt(0).toUpperCase() + role.slice(1)
+            else
+              option(value=role)=role.charAt(0).toUpperCase() + role.slice(1)
+    button.btn.btn-primary(type='submit') Xác nhận

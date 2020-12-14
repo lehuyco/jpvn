@@ -1,0 +1,26 @@
+extends ../layout
+include ../mixins/servicecard
+
+block content
+  .container
+    .page-cover.page-cover-services.d-flex
+      //- .bg-overlay
+      .page-cover-content
+        h2=__("home.services")
+    //- .page-header
+    //-   .page-title
+    //-     if category
+    //-       h2=category.title
+    //-       p=category.summary
+    //-     else
+    //-       h2=__("home.services")
+    //-   ol.breadcrumb
+    //-     li.breadcrumb-item
+    //-       a(href='/')
+    //-         i.fa.fa-home
+    //-     li.breadcrumb-item
+    //-       a(href='/services')=__("home.services")
+    .row.mt-30
+      each service in services
+        .col-sm-6.col-md-6.col-lg-4
+          +servicecard(service)

@@ -1,0 +1,48 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light.main-navbar
+  a.navbar-brand(href='/admin')
+    img.nav-logo(src=assetPath('logo.png'))
+  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item
+        a.nav-link(href='/admin/users') Người dùng
+      li.nav-item
+        a.nav-link(href='/admin/services') Dịch vụ
+      li.nav-item
+        a.nav-link(href='/admin/projects') Dự án
+      li.nav-item
+        a.nav-link(href='/admin/jobs') Việc làm
+      li.nav-item
+        a.nav-link(href='/admin/candidates') Ứng viên
+      li.nav-item
+        a.nav-link(href='/admin/quotes') Báo giá
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          | Blog
+        .dropdown-menu(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='/admin/posts') Bài viết
+          a.dropdown-item(href='/admin/categories') Chuyên mục
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          | Cài đặt
+        .dropdown-menu(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='/admin/features') Features
+          a.dropdown-item(href='/admin/partners') Đối tác
+          a.dropdown-item(href='/admin/slides') Slides
+          a.dropdown-item(href='/admin/testimonials') Phản hồi khách hàng
+          a.dropdown-item(href='/admin/widgets') Widgets
+          a.dropdown-item(href='/admin/pages') Trang nội dung
+          a.dropdown-item(href='/admin/settings') Cài đặt chung
+    ul.navbar-nav.ml-auto
+      if (currentUser)
+        li.nav-item.dropdown
+          a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+            =currentUser.name || currentUser.email
+          .dropdown-menu(aria-labelledby='navbarDropdown')
+            a.dropdown-item(href='/me') Hồ sơ
+            .dropdown-divider
+            a.dropdown-item(href='/auth/logout') Đăng xuất
+      else
+        li.nav-item
+          a.nav-link(href='/auth/facebook') Đăng nhập

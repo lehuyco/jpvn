@@ -1,0 +1,18 @@
+mixin form(path, method='POST')
+  form(method=method, action=path)
+    .form-group
+      label Loại
+      input.form-control(type='text', name='type', value=(passport ? passport.type : ''))
+    .form-group
+      label Nơi cấp
+      input.form-control(type='text', name='placeIssued', value=(passport ? passport.placeIssued : ''))
+    .form-group
+      label Số
+      input.form-control(type='text', name='number', value=(passport ? passport.number : ''))
+    .form-group
+      label Ngày cấp
+      input.form-control(type='text', name='dateIssued', value=(passport ? passport.dateIssued : ''))
+    .form-group
+      label Ngày hết hạn
+      input.form-control(type='text', name='dateExpired', value=(passport ? passport.dateExpired : ''))
+    button.btn.btn-primary(type='submit') Xác nhận

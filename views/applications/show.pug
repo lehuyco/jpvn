@@ -1,0 +1,41 @@
+extends ../layout
+include ../me/sidebar
+include ../mixins/flash-messages
+
+block content
+  #me-page
+    .container
+      .row
+        .col-md-9
+          .page-header
+            h4.page-title Ứng tuyển
+            nav(aria-label='breadcrumb')
+              ol.breadcrumb
+                li.breadcrumb-item
+                  a(href='/me') Hồ sơ
+                li.breadcrumb-item
+                  a(href='/applications' ) Ứng tuyển
+          +flash-messages()
+          .row
+            .col-lg-12.mt-4.pt-2
+              .job-list-box.border.rounded
+                .p-3
+                  .row.align-items-center
+                    .col-lg-2
+                      .company-logo-img
+                        img.img-fluid.mx-auto.d-block(src=job.company.image, alt='')
+                    .col-lg-7.col-md-9
+                      .job-list-desc
+                        h6.mb-2
+                          a.text-dark(href='/jobs/' + job.slug)=job.title
+                        if job.company
+                          p.text-muted.mb-0
+                            i.mdi.mdi-bank.mr-2
+                            = job.company.title
+                          ul.list-inline.mb-0
+                            li.list-inline-item.mr-3
+                              p.text-muted.mb-0
+                                i.mdi.mdi-map-marker.mr-2
+                                = job.company.address
+        .col-md-3
+          +sidebar()

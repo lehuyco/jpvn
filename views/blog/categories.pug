@@ -1,0 +1,6 @@
+mixin categories()
+  if categories.length
+    .list-group.list-categories
+      a(href='/blog', class=!category ? 'active' : false).list-group-item Tất cả
+      each cat in categories
+        a(href='/blog/' + cat.slug, class=category && category.id == cat.id ? 'active' : false).list-group-item=cat.title

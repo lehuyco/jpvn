@@ -1,0 +1,14 @@
+extends ../layout
+include ./form
+block content
+  .container
+    .page-header
+      h4.page-title=category.title
+      ol.breadcrumb
+        li.breadcrumb-item
+          a(href='/admin') Dashboard
+        li.breadcrumb-item
+          a(href='/admin/categories') Quản lý chuyên mục
+    if success
+      .alert.alert-success(role="alert")=success
+    +form("/admin/categories/" +  category._id)

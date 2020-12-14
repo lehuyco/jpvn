@@ -1,0 +1,111 @@
+extends ../layout
+include ../mixins/flash-messages
+
+block content
+  #career-page
+    .page-header
+      .container
+        .page-title
+          h2=__("career.title")
+    .container
+      .heading
+        h2.heading__title=__('career.looking_for')
+        .divider__line
+      p=__("career.subtitle")
+      .career-icons
+        .row
+          .col-md-3
+            .career-icon
+              img(src=assetPath('career/creative.png'))
+              p 
+                | Sáng tạo
+                br
+                | và tránh nhiệm
+          .col-md-3
+            .career-icon
+              img(src=assetPath('career/professional.png'))
+              p 
+                | Kỹ năng chuyên nghiệp
+                br
+                | và chia sẻ
+          .col-md-3
+            .career-icon
+              img(src=assetPath('career/value.png'))
+              p 
+                | Khả năng tạo giá trị mới 
+                br
+                | và làm việc độc lập
+          .col-md-3
+            .career-icon
+              img(src=assetPath('career/flexibility.png'))
+              p 
+                | Linh hoạt
+                br
+                | và sẵn sàng thay đổi
+      .heading
+        h2.heading__title=__('career.available_position')
+        .divider__line
+      .career-list
+        each job, index in jobs
+          .career-item
+            .career-summary
+              a(href='/career/' + job.slug)
+                h5=job.title
+              p=job.summary
+            .career-action
+              button.btn.btn-primary.text-white.btn-apply(data-id=job.id, data-title=job.title) Ứng tuyển
+        
+  #applyModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='applyModalTitle', aria-hidden='true')
+    .modal-dialog.modal-dialog-centered(role='document')
+      .modal-content
+        .modal-header
+          h6#applyModalTitle.modal-title
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+        .modal-body
+          //- , enctype="multipart/form-data"
+          form#applyForm(method='POST', action="/career/apply")
+            #status.mt-1.mb-2
+            p Submit your CV or Apply for a postion
+            //- input(type="hidden", name="_csrf", value=csrfToken)
+            input#jobId(name="position", type="hidden")
+            //- .form-group.row
+            //-   .col-md-3
+            //-     label 
+            //-       strong 
+            //-       =__('career.position')
+            //-       | *
+            //-   .col-md-9
+            //-     select.form-control(name="position", required)
+            //-       option(value=) -- Lựa chọn vị trí công việc --
+            //-       each job, index in jobs 
+            //-         option(value=job.id)=job.title
+            .form-group
+              label
+                =__('career.name')
+                | *
+              input.form-control(name="name" placeholder=__('career.name') required)
+            .form-group
+              label=__('career.address')
+              | *
+              input.form-control(name="address" placeholder=__('career.address'))
+            .form-group
+              label
+                =__('career.phone')
+                | *
+              input.form-control(name="phone" placeholder=__('career.phone') required)
+            .form-group
+              label 
+                strong=__('career.email')
+                | *
+              input.form-control(name="email" placeholder=__('career.email') required)
+            .form-group
+              label
+                =__('career.comment')
+              textarea.form-control(name="comment" placeholder=__('career.comment'))
+            .form-group
+              label=__('career.attach')
+              input.form-control-#input-attach(type="file", name="file", placeholder=__('career.attach'), accept="application/pdf")
+              //- small.form-text.text-muted Chỉ cho phép file pdf
+            .text-right
+              button.btn.btn-primary=__('career.submit')

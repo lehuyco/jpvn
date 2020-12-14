@@ -1,0 +1,48 @@
+extends ../layout
+include ../mixins/pagination
+
+block content
+  .container
+    .page-header
+      h4.page-title Ứng tuyển
+      nav(aria-label='breadcrumb')
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href='/jobs') Danh sách công việc
+          li.breadcrumb-item
+            a(href='/jobs/' + job.slug) Chi tiết công việc
+          li.breadcrumb-item.active(aria-current='page') Ứng tuyển
+      .row
+        .col-lg-12.mt-4.pt-2
+          .job-list-box.border.rounded
+            .p-3
+              .row.align-items-center
+                .col-lg-2
+                  .company-logo-img
+                    img.img-fluid.mx-auto.d-block(src=job.company.image, alt='')
+                .col-lg-7.col-md-9
+                  .job-list-desc
+                    h6.mb-2
+                      a.text-dark(href='/jobs/' + job.slug)=job.title
+                    if job.company
+                      p.text-muted.mb-0
+                        i.mdi.mdi-bank.mr-2
+                        = job.company.title
+                      ul.list-inline.mb-0
+                        li.list-inline-item.mr-3
+                          p.text-muted.mb-0
+                            i.mdi.mdi-map-marker.mr-2
+                            = job.company.address
+      .row
+        .col-lg-12.mt-4.pt-2
+          form.form(action='/jobs/apply', method='POST')
+            input(type='hidden', name='jobId', value=job._id)
+            .form-group.row
+              label.col-sm-2 Ứng viên
+              .col-sm-10
+                strong=currentUser.name
+            .form-group.row
+              label.col-sm-2 Thư ứng tuyển
+              .col-sm-10
+                textarea.form-control(rows='3', name='letter')
+            button.btn.btn-primary(type='submit') Gửi ứng tuyển

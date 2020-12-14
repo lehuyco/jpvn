@@ -1,0 +1,45 @@
+extends ../layout
+include ../me/sidebar
+include ../mixins/flash-messages
+
+block content
+  #me-page
+    .container
+      .row
+        .col-md-9
+          .page-header
+            h4.page-title Hộ chiếu
+            nav(aria-label='breadcrumb')
+              ol.breadcrumb
+                li.breadcrumb-item
+                  a(href='/me') Hồ sơ
+                li.breadcrumb-item.active(aria-current='page') Hộ chiếu
+            .page-actions
+              a.btn.btn-primary(href="/passports/new") Thêm hộ chiếu
+          +flash-messages()
+          table.table.table-bordered
+            thead.thead-light
+              tr
+                th Loại
+                th Nơi cấp
+                th Số
+                th Ngày cấp
+                th Ngày hết hạn
+                th Tác vụ
+            tbody
+              each passport in passports
+                tr
+                  td=passport.type
+                  td=passport.placeIssued
+                  td=passport.number
+                  td=passport.dateIssued
+                  td=passport.dateExpired
+                  td.fit.align-middle
+                    a.btn.btn-primary.btn-sm(href="/passports/" + passport._id)
+                      i.fa.fa-pencil
+                      span  Sửa
+                    button.btn.btn-danger.btn-sm.ml-2.btn-delete-item(data-id=passport._id, data-scope='passports', data-title=passport.type)
+                      i.fa.fa-close
+                      span  Xóa
+        .col-md-3
+          +sidebar()

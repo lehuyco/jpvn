@@ -1,0 +1,69 @@
+extends ../layout
+include ../mixins/flash-messages
+include ./sidebar
+
+block content
+  #me-page
+    .container
+      .row
+        .col-md-9
+          .page-header
+            h4.page-title Hồ sơ
+            ol.breadcrumb
+              li.breadcrumb-item
+                a(href='/me') Hồ sơ
+              li.breadcrumb-item.active(aria-current='page') Hồ sơ
+          +flash-messages()
+          if user
+            .user-info
+              h5.mb-3 Thông tin cơ bản
+              .form-group.row
+                label.col-sm-2 Họ tên
+                .col-md-10=user.name
+              .form-group.row
+                label.col-sm-2 Ngày sinh
+                .col-md-10=user.dateBirth && user.dateBirth.toFormat('DD/MM/YYYY')
+              .form-group.row
+                label.col-sm-2 Nơi sinh
+                .col-md-10=user.placeBirth
+              .form-group.row
+                label.col-sm-2 Địa chỉ thường trú
+                .col-md-10=user.address
+              .form-group.row
+                label.col-sm-2 Điện thoại người thân
+                .col-md-10=user.relativePhone 
+              h5.mt-3.mb-3 CMND/CCCD:
+              .form-group.row
+                label.col-sm-2(for='nationalIdInput') Số
+                .col-md-10=user.nationalId 
+              .form-group.row
+                label.col-sm-2(for='dateIssuedInput') Ngày cấp
+                .col-md-10=user.dateIssued && user.dateIssued.toFormat('DD/MM/YYYY')
+              .form-group.row
+                label.col-sm-2(for='placeIssuedInput') Nơi cấp
+                .col-md-10=user.placeIssued
+              h5.mt-3.mb-3 Thông tin khác:
+              .row
+                .col-md-6
+                  .form-group.row
+                    label.col-sm-4(for='heightInput') Chiều cao
+                    .col-md-8=user.height
+                .col-md-6
+                  .form-group.row
+                    label.col-sm-4(for='weightInput') Cân nặng
+                    .col-md-8=user.weight
+                .col-md-6
+                  .form-group.row
+                    label.col-sm-4(for='bloodSelect') Nhóm máu
+                    .col-md-8=user.blood
+                .col-md-6
+                  .form-group.row
+                    label.col-sm-4(for='clothingSizeInput') Cỡ quần áo
+                    .col-md-8=user.clothingSize
+                .col-md-6
+                  .form-group.row
+                    label.col-sm-4(for='shoeSizeInput') Cỡ giày
+                    .col-md-8=user.shoeSize
+          .p-50
+        .col-md-3
+          +sidebar()

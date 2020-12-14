@@ -1,0 +1,10 @@
+mixin sidebar()
+  .blog-sidebar
+    .sidebar-widget
+      .sidebar-widget-content
+        ul.list-group
+          li.list-group-item
+            a(href='/news', title=__('menu.blog'))=__('menu.blog')
+          each category in categories
+            li.list-group-item
+              a(href='/cat/' + category.slug, title=category.title)=category.title

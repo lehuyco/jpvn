@@ -1,0 +1,24 @@
+extends ../layout
+include ../mixins/flash-messages
+
+block content
+  .container
+    .page-header
+      h4.page-title Danh sách công ty
+      nav(aria-label='breadcrumb')
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href='/companies') Công ty
+    .row
+      each company in companies
+        .col-lg-12.mt-4.pt-2
+          .job-list-box.border.rounded
+            .p-3
+              .row.align-items-center
+                .col-lg-2
+                  .company-logo-img
+                    img.img-fluid.mx-auto.d-block(src=company.image, alt='')
+                .col-lg-7.col-md-9
+                  .job-list-desc
+                    h5.mb-2
+                      a.text-dark(href="/companies/" + company.slug)=company.title

@@ -1,0 +1,9 @@
+mixin form(path, method='POST')
+  form(method=method, action=path)
+    .form-group
+      label(for='titleInput') Tên khóa học/ Trường
+      input#titleInput.form-control(type='text', name='title', value=(education ? education.title : ''))
+    .form-group
+      label(for='graduatedAt') Năm tốt nghiệp
+      input#titleInput.form-control(type='text', name='graduatedAt', value=(education ? education.graduatedAt : ''))
+    button.btn.btn-primary(type='submit') Xác nhận

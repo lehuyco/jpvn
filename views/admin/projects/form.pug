@@ -1,0 +1,37 @@
+mixin form(path, method='POST')
+  form.post-form(method=method, action=path, enctype='multipart/form-data')
+    .form-group.row
+      label.col-sm-2(for='titleInput') Tiêu đề
+      .col-sm-10
+        input#titleInput.form-control(type='text', name='title', value=(doc ? doc.title : ''))
+    .form-group.row
+      label.col-sm-2(for='imageTextarea') Ảnh đại diện
+      .col-sm-10
+        if (doc && doc.image)
+          .row
+            .col-md-2
+              img.w-100(src=doc.image)
+            .col-md-10
+              input#imageTextarea.form-control-file(type="file", name="image")
+        else
+          input#imageTextarea.form-control-file(type="file", name="image")
+    .form-group.row
+      label.col-sm-2(for='summaryTextarea') Mô tả
+      .col-sm-10
+        textarea#summaryTextarea.form-control(rows='3', name='summary')=(doc ? doc.summary : '')
+    .form-group.row
+      label.col-sm-2(for='contentTextarea') Nội dung
+      .col-sm-10
+        textarea#contentTextarea.form-control.summernote(rows='3', name='content')=(doc ? doc.content : '')
+    .form-group.row
+      label.col-sm-2 Ngôn ngữ
+      .col-sm-4
+        select.form-control(name="language")
+          for item in [{value: 'vi', label: 'Tiếng Việt'}, {value: 'en', label: 'Tiếng Anh'}]
+            if (category && category.language == item.value)
+              option(value=item.value, selected="true")=item.label
+            else
+              option(value=item.value)=item.label
+    .row.pt-3
+      .col-sm-10.offset-sm-2
+        button.btn.btn-primary(type='submit') Đăng bài

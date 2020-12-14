@@ -1,0 +1,90 @@
+extends ../layout
+include ../mixins/flash-messages
+include ./sidebar
+
+block content
+  #me-page
+    .container
+      .row
+        .col-md-9
+          .page-header
+            h4.page-title Hồ sơ
+            ol.breadcrumb
+              li.breadcrumb-item
+                a(href='/profile') Hồ sơ
+              li.breadcrumb-item.active(aria-current='page') Sửa hồ sơ
+          +flash-messages()
+          form.job-form(method='POST', action='/me', enctype="multipart/form-data")
+            h5.mb-3 Thông tin cơ bản
+            .form-group.row
+              label.col-sm-2(for='nameInput') Họ tên
+              .col-md-10
+                input#nameInput.form-control(type='text', name='name', value=(user ? user.name : ''))
+            .form-group.row
+              label.col-sm-2(for='dateBirthInput') Ngày sinh
+              .col-md-10
+                input#dateBirthInput.form-control(class="datepicker", name='dateBirth', autocomplete="off", value=(user && user.dateBirth ? user.dateBirth.toFormat('DD/MM/YYYY') : ''))
+            
+            .form-group.row
+              label.col-sm-2(for='placeBirthInput') Nơi sinh
+              .col-md-10
+                input#placeBirthInput.form-control(type='text', name='placeBirth', value=(user ? user.placeBirth : ''))
+            .form-group.row
+              label.col-sm-2(for='addressInput') Địa chỉ thường trú
+              .col-md-10
+                input#addressInput.form-control(type='text', name='address', value=(user ? user.address : ''))
+            .form-group.row
+              label.col-sm-2(for='relativePhoneInput') Điện thoại người thân
+              .col-md-10
+                input#relativePhone.form-control(type='text', name='relativePhone', value=(user ? user.relativePhone : ''))
+            h5.mt-3.mb-3 CMND/CCCD:
+            .form-group.row
+              label.col-sm-2(for='nationalIdInput') Số
+              .col-md-10
+                input#nationalIdInput.form-control(type='text', name='nationalId', value=(user ? user.nationalId : ''))
+            .form-group.row
+              label.col-sm-2(for='dateIssuedInput') Ngày cấp
+              .col-md-10
+                input#dateIssuedInput.form-control(class="datepicker", name='dateIssued', autocomplete="off", value=(user && user.dateIssued ? user.dateIssued.toFormat('DD/MM/YYYY') : ''))
+            .form-group.row
+              label.col-sm-2(for='placeIssuedInput') Nơi cấp
+              .col-md-10
+                input#placeIssuedInput.form-control(type='text', name='placeIssued', value=(user ? user.placeIssued : ''))
+            h5.mt-3.mb-3 Thông tin khác:
+            .row
+              .col-md-6
+                .form-group.row
+                  label.col-sm-4(for='heightInput') Chiều cao
+                  .col-md-8
+                    input#heightInput.form-control(type='text', name='height', value=(user ? user.height : ''))
+              .col-md-6
+                .form-group.row
+                  label.col-sm-4(for='weightInput') Cân nặng
+                  .col-md-8
+                    input#weightInput.form-control(type='text', name='weight', value=(user ? user.weight : ''))
+              .col-md-6
+                .form-group.row
+                  label.col-sm-4(for='bloodSelect') Nhóm máu
+                  .col-md-8
+                    select#bloodSelect.form-control(name="status")
+                      for item in ['A', 'B', 'AB', 'O']
+                        if (user && user.blood == item)
+                          option(value=item, selected="true")=item
+                        else
+                          option(value=item)=item
+              .col-md-6
+                .form-group.row
+                  label.col-sm-4(for='clothingSizeInput') Cỡ quần áo
+                  .col-md-8
+                    input#clothingSizeInput.form-control(type='text', name='clothingSize', value=(user ? user.clothingSize : ''))
+              .col-md-6
+                .form-group.row
+                  label.col-sm-4(for='shoeSizeInput') Cỡ giày
+                  .col-md-8
+                    input#shoeSizeInput.form-control(type='text', name='shoeSize', value=(user ? user.shoeSize : ''))
+            .row.mt-3
+              .col-md-12
+                button.btn.btn-primary(type='submit') Đăng bài
+          .p-50
+        .col-md-3
+          +sidebar()

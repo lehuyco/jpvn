@@ -1,0 +1,5 @@
+mixin servicecard(service)
+  .service-item
+    a.service__thumb(href=service.path)
+      img.img-fluid(src=service.thumb, alt=service.title)
+    a.service__title(href=service.path)=service.title

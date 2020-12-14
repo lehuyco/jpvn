@@ -1,0 +1,24 @@
+mixin form(path, method='POST')
+  form.post-form(method=method, action=path, enctype='multipart/form-data')
+    .form-group.row
+      label.col-sm-2 Tiêu đề
+      .col-sm-10
+        input.form-control(type='text', name='title', value=(doc ? doc.title : ''))
+    .form-group.row
+      label.col-sm-2 Đường dẫn
+      .col-sm-10
+        input.form-control(type='text', name='url', value=(doc ? doc.url : ''))
+    .form-group.row
+      label.col-sm-2(for='imageTextarea') Hình ảnh
+      .col-sm-10
+        if (doc && doc.image)
+          .row
+            .col-md-2
+              img.w-100(src=doc.image)
+            .col-md-10
+              input#imageTextarea.form-control-file(type="file", name="image")
+        else
+          input#imageTextarea.form-control-file(type="file", name="image")
+    .row.pt-3
+      .col-sm-10.offset-sm-2
+        button.btn.btn-primary(type='submit') Xác nhận

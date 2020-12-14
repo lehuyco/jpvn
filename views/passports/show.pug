@@ -1,0 +1,21 @@
+extends ../layout
+include ./form
+include ../me/sidebar
+include ../mixins/flash-messages
+
+block content
+  #me-page
+    .container
+      .row
+        .col-md-9
+          .page-header
+            h4.page-title=passport.type
+            ol.breadcrumb
+              li.breadcrumb-item
+                a(href='/me') Hồ sơ
+              li.breadcrumb-item
+                a(href='/passports') Hộ chiếu
+          +flash-messages()
+          +form("/passports/" +  passport._id)
+        .col-md-3
+          +sidebar()

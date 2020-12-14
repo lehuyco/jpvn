@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+  .container
+    .page-header
+      h4.page-title Quản lý người dùng
+      ol.breadcrumb
+        li.breadcrumb-item
+          a(href='/admin') Dashboard
+        li.breadcrumb-item.active(aria-current='page') Quản lý bài viết
+      .page-actions
+        a.btn.btn-primary(href="/admin/users/new") Thêm người dùng
+    table.table.table-bordered
+      thead.thead-light
+        tr
+          th Avatar
+          th Họ tên
+          th Email
+          th Tác vụ
+      tbody
+        each user in users
+          tr
+            td.col-img
+              if (user.image)
+                img.w-100(src=user.image)
+            td.align-middle
+              strong=user.name
+            td.align-middle
+              strong=user.email
+            td.fit.align-middle
+              a.btn.btn-primary.btn-sm(href="/admin/users/" + user._id)
+                i.fa.fa-pencil
+                span  Sửa
+              button.btn.btn-danger.btn-sm.ml-2.delete-item-btn(data-id=user._id, data-scope='users', data-title=user.name)
+                i.fa.fa-close
+                span  Xóa

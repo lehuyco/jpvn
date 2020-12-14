@@ -1,0 +1,28 @@
+mixin pagination(path, pageCount, currentPage)
+  if (pageCount > 1)
+    nav
+      ul.pagination.job-pagination.justify-content-center.mb-0
+        if (currentPage > 1)
+          li.page-item
+            a.page-link(href=path + '?page=1') &laquo;
+        - var i = 1;
+        if (currentPage > 5)
+          - i = +currentPage - 4
+        if (i !== 1)
+          li.page-item.disabled
+            a.page-link(href="#") ...
+        while i <= pageCount
+          if (currentPage == i)
+            li.page-item.active
+              a.page-link(href="#")=i
+          else
+            li.page-item
+              a.page-link(href=path + '?page=' + i)=i
+          - i++
+          if (i == (+currentPage + 4))
+            li.page-item.disabled
+              a.page-link(href="#") ...
+            - break
+        if (currentPage != pageCount)
+          li.page-item
+            a.page-link(href=path + '?page=' + pageCount) &raquo;

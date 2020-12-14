@@ -1,0 +1,9 @@
+mixin projectcard(project)
+  .project-item
+    .project__img
+      a(href=project.path)
+        img(src=project.image, alt=project.title)
+    .project__content
+      h4.project__title
+        a(href=project.path)=project.title
+      //- p.project__desc=project.summary

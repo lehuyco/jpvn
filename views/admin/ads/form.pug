@@ -1,0 +1,50 @@
+mixin form(path, method='POST')
+  form.post-form(method=method, action=path, enctype='multipart/form-data')
+    .form-group.row
+      label.col-sm-2 Tiêu đề
+      .col-sm-10
+        input.form-control(type='text', name='title', value=(doc ? doc.title : ''))
+    .form-group.row
+      label.col-sm-2 Nội dung
+      .col-sm-10
+        input.form-control(type='text', name='content', value=(doc ? doc.content : ''))
+    .form-group.row
+      label.col-sm-2 Đường dẫn
+      .col-sm-10
+        input.form-control(type='text', name='url', value=(doc ? doc.url : ''))
+    .form-group.row
+      label.col-sm-2 Button
+      .col-sm-10
+        input.form-control(type='text', name='btnText', value=(doc ? doc.btnText : ''))
+    .form-group.row
+      label.col-sm-2(for='imageTextarea') Hình ảnh
+      .col-sm-10
+        if (doc && doc.image)
+          .row
+            .col-md-2
+              img.w-100(src=doc.image)
+            .col-md-10
+              input#imageTextarea.form-control-file(type="file", name="image")
+        else
+          input#imageTextarea.form-control-file(type="file", name="image")
+    .form-group.row
+      label.col-sm-2 Loại
+      .col-sm-4
+        select.form-control(name="type")
+          for item in [{value: 'wide', label: 'Wide'}, {value: 'half', label: 'Half'}]
+            if (doc && doc.type == item.value)
+              option(value=item.value, selected="true")=item.label
+            else
+              option(value=item.value)=item.label
+    .form-group.row
+      label.col-sm-2 Vị trí
+      .col-sm-4
+        select.form-control(name="position")
+          for item in [{value: 'home1', label: 'Home 1'}, {value: 'home2', label: 'Home 2'}, {value: 'home3', label: 'Home 3'}]
+            if (doc && doc.position == item.value)
+              option(value=item.value, selected="true")=item.label
+            else
+              option(value=item.value)=item.label
+    .row.pt-3
+      .col-sm-10.offset-sm-2
+        button.btn.btn-primary(type='submit') Xác nhận

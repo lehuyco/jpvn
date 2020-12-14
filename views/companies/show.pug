@@ -1,0 +1,64 @@
+extends ../layout
+include ../mixins/flash-messages
+
+block content
+  // EMPLOYERS DETAILS START
+  if company
+    .container
+      .page-header
+        h4.page-title=company.title
+        nav(aria-label='breadcrumb')
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='/companies') Công ty
+            li.breadcrumb-item.active(aria-current='page') Chi tiết
+        .addthis_inline_share_toolbox.mt-3
+      .row
+        .col-lg-12
+          .text-sm-center
+            if company.image
+              img.img-fluid.mx-md-auto.d-block(src=company.image, alt=company.title, width='200')
+            h4.mt-3
+              a.text-dark(href='#')=company.title
+            ul.list-inline.mb-0
+              li.list-inline-item.mr-3
+                p.text-muted.mb-0
+                  i.mdi.mdi-map-marker.mr-2
+                  =company.address
+              li.list-inline-item
+                p.text-success.mb-0
+                  i.mdi.mdi-bookmark-check.mdi-18px.mr-2
+                  | Verified
+            ul.list-inline.mb-2
+              li.list-inline-item.mr-3
+                p.text-muted
+                  i.mdi.mdi-earth.mr-2
+                  =company.website
+              li.list-inline-item.mr-3
+                p.text-muted
+                  i.mdi.mdi-email.mr-2
+                  =company.email
+              li.list-inline-item
+                p.text-muted
+                  i.mdi.mdi-cellphone-iphone.mr-2
+                  =company.phone
+      .row
+        .col-lg-12.mt-4.pt-2
+          h4 Giới thiệu:
+          .rounded.border.p-4.mt-3
+            != company.overview
+
+      .row
+        each job in jobs
+          if job.company
+            .col-lg-12.mt-4.pt-2
+              .job-list-box.border.rounded
+                .p-3
+                  .row.align-items-center
+                    .col-lg-2
+                      .company-logo-img
+                        img.img-fluid.mx-auto.d-block(src=job.company.image, alt='')
+                    .col-lg-7.col-md-9
+                      .job-list-desc
+                        h5.mb-2
+                          a.text-dark(href='/jobs/' + job.slug)=job.title
