@@ -354,3 +354,21 @@ label {
     }
   }
 }
+
+@media only screen and (max-width: 991px) {
+  #header {
+    position: relative;
+    background: #000000;
+    .navbar {
+      background: #000000;
+      .navbar-toggler {
+        border: none !important;
+        box-shadow: none;
+        color: #FFFFFF;
+        i {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+}
