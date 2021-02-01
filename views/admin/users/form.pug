@@ -8,10 +8,10 @@ mixin form(path, method='POST')
       label.col-sm-2(for='emailInput') Email
       .col-sm-10
         input#emailInput.form-control(type='text', name='email', value=(user ? user.email : ''))
-    //- .form-group.row
-    //-   label.col-sm-2(for='passwordInput') Password
-    //-   .col-sm-10
-    //-     input#passwordInput.form-control(type='password', name='password')
+    .form-group.row
+      label.col-sm-2(for='passwordInput') Password
+      .col-sm-10
+        input#passwordInput.form-control(type='password', name='password')
     .form-group.row
       label.col-sm-2(for='imageTextarea') Ảnh đại diện
       .col-sm-10

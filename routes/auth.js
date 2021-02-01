@@ -37,7 +37,7 @@ router.get('/facebook/callback', passport.authenticate('facebook', { successRedi
 router.get('/google/callback', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
 
 router.get('/init', async (req, res, next) => {
-  let user = new User({ name: "Anh Le", email: "vuonganh91@gmail.com" })
+  let user = new User({ name: "Anh Le", email: "vuonganh91@gmail.com", role: "admin" })
   await user.hashPassword("123456")
   await user.save()
   res.json({})
