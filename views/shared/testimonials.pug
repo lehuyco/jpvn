@@ -1,0 +1,23 @@
+if testimonials
+  section.testimonial-area
+    .container
+      .row
+        .col-sm-12
+          .heading.text-center
+            h2.heading__title=__("home.testimonials")
+            .divider__line.divider__theme.mb-0
+      .row.testimonial-list
+        each testimonial, index in testimonials
+          .col-md-3
+            .single-testimonial
+              .testimonial-author.d-flex.justify-content-between.align-items-end
+                if testimonial.thumb
+                  img(src=testimonial.thumb, alt=testimonial.name)
+                span
+                  i.la.la-quote-right
+              .testimonial-text
+                p=testimonial.content
+              .testimonial-footer.d-flex.justify-content-between
+                .author-details
+                  h5.mb-3=testimonial.name
+                  p=testimonial.company

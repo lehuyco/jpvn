@@ -5,11 +5,11 @@ include ../../mixins/flash-messages
 block content
   .container
     .page-header
-      h4.page-title Thêm sản phẩm
+      h4.page-title Thêm phản hồi
       ol.breadcrumb
         li.breadcrumb-item
           a(href='/admin') Dashboard
         li.breadcrumb-item
-          a(href=ADMIN_PATH) Quản lý sản phẩm
+          a(href=ADMIN_PATH) Quản lý phản hồi
     +flash-messages()
     +form(ADMIN_PATH)

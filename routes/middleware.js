@@ -24,7 +24,7 @@ exports.initLocals = async (req, res, next) => {
     res.locals.keywords = setting.keywords
   }
 
-  res.locals.services = await Service.find({language: locale})
+  // res.locals.services = await Service.find({language: locale})
   res.locals.aboutPages = await Page.find({language: locale, type: 'about'})
   res.locals.termPages = await Page.find({language: locale, type: 'terms'})
   

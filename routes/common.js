@@ -16,8 +16,6 @@ const i18n = require('i18n')
 
 const validateContact = (req, res, next) => {
   let { name, phone, email, address, request } = req.body
-  console.log("========")
-  console.log(req.body)
   if (!name || !email || !phone || !address || !request) {
     return res.status(400).json({message: "Vui lòng điền đầy đủ thông tin"})
   }
@@ -27,8 +25,7 @@ const validateContact = (req, res, next) => {
 /* GET home page. */
 router.get('/', async (req, res, next) => {
   try {
-    console.log("======")
-    console.log(i18n.getLocales())
+    let locale = i18n.getLocale()
     let categories =  await Category.find({language: locale})
     let posts = await Post.find({ categories: { $in: categories.map(c => c._id) } }).sort({createdAt: -1}).limit(3).populate('categories')
     let slides = await Slide.find({language: locale})
@@ -73,10 +70,12 @@ router.get('/terms', function(req, res, next) {
 
 router.get('/about', async (req, res, next) => {
   try {
+    let locale = i18n.getLocale()
     let about = await Widget.findOne({language: locale, position: 'about'})
     let partners = await Partner.find()
     let services = await Service.find({language: locale})
-    res.render('pages/about', { about, partners, services });
+    let testimonials = await Testimonial.find({language: locale})
+    res.render('pages/about', { about, partners, services, testimonials });
   } catch (err) {
     next(err)
   }

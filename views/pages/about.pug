@@ -60,11 +60,13 @@ block content
     .services-section
       .section-header.text-center
         h2=__("about.servicesLabel")
-      .row
-        each service in services
-          .col-md-3.card-container
-            .card
-              img.card-img-top(src=service.thumb)
-              .card-body
-                h3=service.title
-                p=service.summary
+      .container
+        .row
+          each service in services
+            .col-md-3.card-container
+              .card
+                img.card-img-top(src=service.thumb)
+                .card-body
+                  h3=service.title
+                  p=service.summary
+    include ../shared/testimonials
