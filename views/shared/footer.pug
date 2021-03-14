@@ -7,13 +7,11 @@
       .col-md-3
         ul
           li
-            a(href="#") Company
+            a(href="/about")=__("menu.company")
           li
-            a(href="#") History
+            a(href="/news")=__("menu.news")
           li
-            a(href="#") News
-          li
-            a(href="#") Contact
+            a(href="/contact")=__("menu.contact")
       .col-md-3
         ul
           li
@@ -26,5 +24,8 @@
             i.las.la-home
             a(href="mailto:contact@jpvngroup.com")  contact@jpvngroup.com
           li
-            i.las.la-map-marker
-            span  107 Giảng Võ, phường Chợ Dừa, quận Đống Đa, Hà Nội
+            | HN: 
+            = __("contact.addressHN")
+          li
+            | HCM: 
+            = __("contact.addressHCM")

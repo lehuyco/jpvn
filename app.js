@@ -26,10 +26,9 @@ const User = require('./models/User')
 
 i18n.configure({
   locales:['vi', 'en'],
-  directory: __dirname + '/locales',
+  directory: './locales',
   register: global
 });
-i18n.setLocale('vi');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -54,17 +53,20 @@ app.use(assets({
 }));
 
 // var csrfProtection = csrf({ cookie: true })
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cookieSession({
-  name: 'session',
+  name: 'jpvn-session',
   keys: ['d60e308455a642c59a5b8aba848e1dc4', 'db748087f753339a8ca0a9d61609c677'],
   // Cookie Options
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }))
 // app.use(csrf({ cookie: true }));
 app.use(flash());
+
+app.use(i18n.init);
+i18n.setLocale('vi');
 
 app.use(passport.initialize());
 app.use(passport.session());

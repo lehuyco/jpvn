@@ -27,6 +27,8 @@ const validateContact = (req, res, next) => {
 /* GET home page. */
 router.get('/', async (req, res, next) => {
   try {
+    console.log("======")
+    console.log(i18n.getLocales())
     let categories =  await Category.find({language: locale})
     let posts = await Post.find({ categories: { $in: categories.map(c => c._id) } }).sort({createdAt: -1}).limit(3).populate('categories')
     let slides = await Slide.find({language: locale})
@@ -73,7 +75,8 @@ router.get('/about', async (req, res, next) => {
   try {
     let about = await Widget.findOne({language: locale, position: 'about'})
     let partners = await Partner.find()
-    res.render('pages/about', { about, partners });
+    let services = await Service.find({language: locale})
+    res.render('pages/about', { about, partners, services });
   } catch (err) {
     next(err)
   }
@@ -109,7 +112,9 @@ router.get('/recruitment', async (req, res, next) => {
 });
 
 router.get('/vi', function(req, res, next) {
-  i18n.setLocale('vi');
+  let result = i18n.setLocale('vi');
+  i18n.setLocale(req, 'de')
+  console.log(result)
   res.redirect('/')
 });
 

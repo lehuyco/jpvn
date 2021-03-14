@@ -1,5 +1,70 @@
 extends ../layout
 
 block content
-  include shared/about
-  include shared/clients
+  #about-page
+    .page-header
+      .container
+        .page-title
+          h2.mb-3=__("about.title")
+    .about-company
+      .container
+        .row
+          .col-md-4
+            img.w-100(src=assetPath('about/about.png'))
+          .col-md-8
+            .panel-content
+              span.highlight-text=__("about.whoLabel")
+              h2 JPVN Group
+              p!=__("about.introduction")
+      .container 
+        .row 
+          .col-md-6
+            .vision-panel
+              .row 
+                .col-6
+                  img.w-100(src=assetPath('about/vision.jpg'))
+                .col-6
+                  .panel-content
+                      h3=__("about.visionLabel")
+                      p=__("about.vision")
+          .col-md-6
+            .mission-panel
+              .row 
+                .col-6
+                  .panel-content
+                    h3=__("about.missionLabel")
+                    p=__("about.mission")
+                .col-6
+                  img.w-100(src=assetPath('about/mission.jpg'))
+    .core-value-section
+      .container    
+        .section-header.text-center
+          //- span.red-text=__("about.coreValueLabel")
+          h2=__("about.coreValueLabel")
+        .row
+          .col-md-4 
+            .card
+              .card-body
+                h3=__("about.integrity")
+                p=__("about.integrityContent")
+          .col-md-4
+            .card
+              .card-body
+                h3=__("about.wisdom")
+                p=__("about.wisdomContent")
+          .col-md-4
+            .card
+              .card-body
+                h3=__("about.credibility")
+                p=__("about.credibilityContent")
+    .services-section
+      .section-header.text-center
+        h2=__("about.servicesLabel")
+      .row
+        each service in services
+          .col-md-3.card-container
+            .card
+              img.card-img-top(src=service.thumb)
+              .card-body
+                h3=service.title
+                p=service.summary
