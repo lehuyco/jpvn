@@ -27,7 +27,9 @@ const User = require('./models/User')
 i18n.configure({
   locales:['vi', 'en'],
   directory: './locales',
-  register: global
+  register: global,
+  defaultLocale: 'vi',
+  queryParameter: 'lang'
 });
 
 // view engine setup
@@ -66,7 +68,7 @@ app.use(cookieSession({
 app.use(flash());
 
 app.use(i18n.init);
-i18n.setLocale('vi');
+// i18n.setLocale('vi');
 
 app.use(passport.initialize());
 app.use(passport.session());
