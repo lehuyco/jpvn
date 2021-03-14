@@ -230,6 +230,14 @@ label {
   }
 }
 
+.about-company {
+  padding: 100px 0;
+  // background: #FFFFFF;
+  .panel-content {
+    padding: 20px;
+  }
+}
+
 #about-page {
   background: #F8F8F8;
   .page-header {
@@ -256,13 +264,7 @@ label {
     margin-bottom: 10px;
     display: inline-block;
   }
-  .about-company {
-    padding: 100px 0;
-    // background: #FFFFFF;
-    .panel-content {
-      padding: 20px;
-    }
-  }
+
   .vision-panel {
     background: #FFFFFF;
     border-radius: 8px;
