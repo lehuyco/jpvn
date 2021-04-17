@@ -33,6 +33,17 @@ module.exports = {
       env  : {
         NODE_ENV: "production"
       }
+    },
+    evg : {
+      user : 'evg',
+      host : 'evg.lehuy.co',
+      ref  : 'origin/master',
+      repo : 'git@github.com:lehuyco/jpvn.git',
+      path : '/var/www/jpvn',
+      'post-deploy' : 'yarn install && NODE_PATH=. pm2 startOrRestart ecosystem.config.js --env production',
+      env  : {
+        NODE_ENV: "production"
+      }
     }
   }
 };
