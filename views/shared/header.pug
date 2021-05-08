@@ -5,9 +5,9 @@
         a(href="#/")
           i.lar.la-clock
           span 10:00 - 17:00
-        a(href="mailto:contact@jpvngroup.com")
+        a(href="mailto:#{COMPANY_EMAIL}")
           i.lar.la-envelope
-          span contact@jpvngroup.com
+          span=COMPANY_EMAIL
       .float-end
         a.nav-language-link(href='/vi')
           img(src=assetPath('vi.svg'))
@@ -33,7 +33,7 @@
             li.nav-item
               a.nav-link(href='/contact')=__('menu.contact')
             li.nav-item.d-block.d-lg-none
-              a.nav-link(href="mailto:contact@jpvngroup.com") contact@jpvngroup.com
+              a.nav-link(href="mailto:#{COMPANY_EMAIL}")=COMPANY_EMAIL
             li.nav-item.d-block.d-lg-none
               a.nav-language-link(href='/vi')
                 img(src=assetPath('vi.svg'))

@@ -1,10 +1,11 @@
-$font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 $font-size: 1rem;
 * {
   padding: 0;
   margin: 0;
   -webkit-font-smoothing: antialiased;
-  -webkit-text-stroke: 0.0px;
+  -webkit-text-stroke: 0px;
   text-rendering: geometricPrecision;
 }
 
@@ -12,17 +13,27 @@ body {
   color: #333;
   font-family: $font-family !important;
   // background: #f2f3f8;
-  // font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-transform: none;
   font-family: $font-family !important;
   line-height: 1.5;
 }
 
-a, .btn, label, input, li, strong {
+a,
+.btn,
+label,
+input,
+li,
+strong {
   font-family: $font-family !important;
 }
 
@@ -32,12 +43,18 @@ a, .btn, label, input, li, strong {
 
 .btn {
   outline: none;
-  border-radius: 6px;
+  border-radius: 2px;
   border: none;
 }
 
+.btn-lhv {
+  background-color: #0b5f6a;
+  color: #ffffff;
+}
+
 .btn-light {
-  color: #ce1b28;
+  color: #0b5f6a;
+  font-size: 16px;
 }
 
 label {
@@ -53,7 +70,7 @@ label {
 }
 
 .bg-white {
-  background-color: #FFFFFF !important;
+  background-color: #ffffff !important;
 }
 
 #header {
@@ -61,6 +78,7 @@ label {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 9999;
   .header-top {
     a {
       text-decoration: none;
@@ -68,10 +86,10 @@ label {
       margin-right: 20px;
       display: inline-block;
       i {
-        color: #ce1b28;
+        color: #ffffff;
       }
       span {
-        color: #FFFFFF;
+        color: #ffffff;
         padding-left: 10px;
       }
     }
@@ -82,18 +100,18 @@ label {
     }
   }
   .navbar {
-    background-color: rgba(0, 0, 0, 0.40);
+    background-color: rgba(0, 0, 0, 0.4);
     a {
       font-size: 18px;
-      color: #FFFFFF;
-      font-weight: 700;
+      color: #ffffff;
+      // font-weight: 700;
       text-transform: uppercase;
     }
   }
 }
 
 .page-cover {
-  background-image: url(asset_path('contact/office.jpg'));
+  background-image: url(asset_path("contact/office.jpg"));
   background-size: cover;
   background-position: center;
   padding-top: 200px;
@@ -102,7 +120,7 @@ label {
   .page-title {
     h2 {
       font-weight: 700;
-      color: #FFFFFF;
+      color: #ffffff;
       text-transform: uppercase;
     }
   }
@@ -124,7 +142,7 @@ label {
 .section-head {
   margin-bottom: 60px;
   h3 {
-    font-size: 36px;
+    font-size: 32px;
     font-weight: 700;
     text-transform: uppercase;
   }
@@ -139,7 +157,7 @@ label {
     padding: 240px 0;
   }
   .login-form {
-    background: #FFFFFF;
+    background: #ffffff;
     padding: 30px;
   }
 }
@@ -148,19 +166,33 @@ label {
   .masthead {
     height: 100vh;
     width: 100%;
-    background-image: url(asset_path('home/hcm.jpg'));
+    // background-image: url(asset_path("home/hcm.jpg"));
+    background-image: url(asset_path("home/skyline.jpg"));
     background-size: cover;
     background-position: center;
+    position: relative;
+    .masthead-content {
+      z-index: 99;
+    }
     h1 {
-      font-size: 60px;
+      font-size: 52px;
       font-weight: 900;
-      color: #FFFFFF;
+      color: #ffffff;
       text-transform: uppercase;
     }
     h2 {
       font-size: 18px;
       font-weight: bold;
-      color: #FFFFFF;
+      color: #ffffff;
+    }
+    .overlay {
+      background: #000000;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.3;
     }
   }
   .services-section {
@@ -168,31 +200,49 @@ label {
   }
   .services {
     padding: 120px 0;
-    .card {
+    .card,
+    .card:hover {
       box-shadow: 0px 10px 30px 0px rgba(205, 205, 205, 0.33);
-      transition: all .3s;
+      transition: all 0.3s;
       border: inherit;
+      text-decoration: none;
       h5 {
         font-size: 18px;
         font-weight: bold;
         color: #000000;
       }
+      h3 {
+        text-decoration: none;
+      }
       &:hover {
-        box-shadow: 0px 0px 25px rgba(0,0,0,0.15);
+        box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
       }
     }
   }
   .tellus {
-    background-image: url(asset_path('home/hn.jpg'));
+    background-image: url(asset_path("home/hn.jpg"));
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    position: relative;
     .overlay {
-      background: rgba(206, 27, 40, 0.8);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #000000;
+      opacity: 0.3;
+      z-index: 0;
+    }
+    .tellus-content {
+      z-index: 99;
       padding: 120px 0;
+      position: relative;
     }
     h3 {
-      color: #FFFFFF;
+      color: #ffffff;
       font-size: 40px;
       font-weight: 800;
       line-height: 48px;
@@ -203,7 +253,7 @@ label {
     h4 {
       font-size: 18px;
       line-height: 30px;
-      color: #FFFFFF;
+      color: #ffffff;
       margin-bottom: 30px;
     }
   }
@@ -212,19 +262,21 @@ label {
   }
 }
 
-.card {
+.card,
+.card:hover {
   box-shadow: 0px 10px 30px 0px rgba(205, 205, 205, 0.3);
-  transition: all .3s;
+  transition: all 0.3s;
+  text-decoration: none;
   h3 {
-    font-size: 1rem;
-    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
     color: #000000;
   }
 }
 
 .highlight-text {
   position: relative;
-  color: #ce1b28;
+  color: #0b5f6a;
   text-transform: uppercase;
   padding-left: 86px;
   font-weight: bold;
@@ -234,8 +286,9 @@ label {
     width: 15px;
     left: 0;
   }
-  &:after, &:before {
-    background: #ce1b28;
+  &:after,
+  &:before {
+    background: #0b5f6a;
     height: 3px;
     content: "";
     position: absolute;
@@ -256,10 +309,10 @@ label {
 }
 
 #about-page {
-  background: #F8F8F8;
+  background: #f8f8f8;
   padding-bottom: 200px;
   .page-header {
-    background-image: url(asset_path('about/cover.jpg'));
+    background-image: url(asset_path("about/cover.jpg"));
     background-size: cover;
     background-position: center;
     padding-top: 200px;
@@ -267,7 +320,7 @@ label {
     .page-title {
       h2 {
         font-weight: 700;
-        color: #FFFFFF;
+        color: #ffffff;
         text-transform: uppercase;
       }
     }
@@ -277,14 +330,14 @@ label {
     text-transform: uppercase;
   }
   .red-text {
-    color: #ce1b28;
+    color: #0b5f6a;
     font-weight: bold;
     margin-bottom: 10px;
     display: inline-block;
   }
 
   .vision-panel {
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 8px;
     margin-top: 100px;
     // -webkit-box-shadow: 0 0 40px 5px rgba(51, 51, 51,0.1);
@@ -295,7 +348,7 @@ label {
     }
   }
   .mission-panel {
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 8px;
     margin-top: 100px;
     // margin-bottom: 100px;
@@ -316,7 +369,7 @@ label {
   }
   .core-value-section {
     padding: 100px 0;
-    background-image: url(asset_path('about/word.jpeg'));
+    background-image: url(asset_path("about/word.jpeg"));
     background-size: cover;
     h2 {
       margin-bottom: 30px;
@@ -352,7 +405,6 @@ label {
   }
 }
 
-
 .testimonial-area {
   // background-color: #11224d;
   // background-image: url(asset_path('testimonial-bg.jpg'));
@@ -360,7 +412,7 @@ label {
   .section-title {
     margin-bottom: 30px;
     h2 {
-      color: #FFFFFF;
+      color: #ffffff;
       font-size: 2rem;
       font-weight: bold;
     }
@@ -410,7 +462,7 @@ label {
 
 #contact-page {
   .page-header {
-    background-image: url(asset_path('contact/office.jpg'));
+    background-image: url(asset_path("contact/hoguom.jpg"));
     background-size: cover;
     background-position: center;
     padding-top: 200px;
@@ -419,17 +471,17 @@ label {
     .page-title {
       h2 {
         font-weight: 700;
-        color: #FFFFFF;
+        color: #ffffff;
         text-transform: uppercase;
       }
     }
   }
+  padding-bottom: 60px;
 }
-
 
 #career-page {
   .page-header {
-    background-image: url(asset_path('career/head.jpg'));
+    background-image: url(asset_path("career/head.jpg"));
     background-size: cover;
     background-position: center;
     padding-top: 200px;
@@ -438,7 +490,7 @@ label {
     .page-title {
       h2 {
         font-weight: 700;
-        color: #FFFFFF;
+        color: #ffffff;
         text-transform: uppercase;
       }
     }
@@ -517,8 +569,8 @@ label {
       }
       &.active {
         a {
-          color: #203c64;
-        }		
+          color: #0b5f6a;
+        }
       }
     }
   }
@@ -526,7 +578,6 @@ label {
 
 .blog-sidebar {
   .sidebar-widget {
-
   }
   .list-group-item {
     a {
@@ -553,7 +604,7 @@ label {
 
 #footer {
   // margin-top: 120px;
-  background:#000000;
+  background: #0b5f6a;
   padding: 60px 0;
   .logo {
     height: 50px;
@@ -561,10 +612,10 @@ label {
   ul {
     list-style: none;
     li {
-      color: #FFFFFF;
+      color: #ffffff;
       padding-bottom: 10px;
       a {
-        color: #FFFFFF;
+        color: #ffffff;
         text-decoration: none;
       }
     }
@@ -580,7 +631,7 @@ label {
       .navbar-toggler {
         border: none !important;
         box-shadow: none;
-        color: #FFFFFF;
+        color: #ffffff;
         i {
           font-size: 30px;
         }

@@ -5,12 +5,13 @@ include ../mixins/servicecard
 block content
   #homepage
     section.masthead.d-flex
+      .overlay
       .masthead-content.align-self-center.w-100
         .container
           .row
             .col-md-8.ms-auto.me-auto
-              h1.text-center We are Best escrow service agency
-              h2.text-center We will do our utmost to assist you in clearing payments with your Japanese clients.
+              h1.text-center=__("home.h1")
+              h2.text-center=__("home.h2")
     .about-company
       .container
         .row
@@ -19,46 +20,23 @@ block content
           .col-md-8
             .panel-content
               span.highlight-text=__("about.whoLabel")
-              h2 JPVN Group
+              h2=__("home.company")
               p!=__("about.introduction")
     .services-section
-      .section-header.text-center
-        h2=__("about.servicesLabel")
+      .section-head.text-center
+        h3=__("about.servicesLabel")
       .container
         .row
           each service in services
             .col-md-3.card-container
-              .card
+              a.card(data-bs-toggle="modal", data-bs-target="#service-" + service.id)
                 img.card-img-top(src=service.thumb)
                 .card-body
                   h3=service.title
                   p=service.summary
-    //- section.services
-    //-   .container
-    //-     .section-head.text-center
-    //-       h3 Why We Best in Business Services
-    //-       p Smooth payment success is essential for the growth of your business.
-    //-     .row
-    //-       .col-md-4
-    //-         .card.w-100
-    //-           img.card-img-top(src=assetPath('home/services/contract.jpg') alt='Contract with us')
-    //-           .card-body
-    //-             h5.card-title Contract with us
-    //-             p.card-text You will contract with us to receive funds on behalf of third parties. And we have a bank account in Japan for your customers.
-    //-       .col-md-4
-    //-         .card.w-100
-    //-           img.card-img-top(src=assetPath('home/services/invoice.jpg') alt='...')
-    //-           .card-body
-    //-             h5.card-title Send an invoice
-    //-             p.card-text You should send an invoice to your Japanese customers with our bank account for agency receipt.We will receive funds on your behalf.
-    //-       .col-md-4
-    //-         .card.w-100
-    //-           img.card-img-top(src=assetPath('home/services/transfer.jpg') alt='...')
-    //-           .card-body
-    //-             h5.card-title Transfer to you
-    //-             p.card-text We will collect agency fees from the funds received on your behalf and transfer the rest to you. You can receive funds in your local currency.
     section.tellus
-      .overlay.text-center
+      .overlay
+      .tellus-content.text-center
         .container
           h3=__("home.trytoday")
           h4=__("home.tellus")
@@ -73,3 +51,12 @@ block content
             .col-md-2
               a(href=(partner.url ? partner.url : "#"))
                 img.w-100(src=partner.image, alt=partner.title)
+  each service in services
+    .modal.fade(tabindex='-1', aria-labelledby="service-" + service.id + '-label', aria-hidden='true', id="service-" + service.id)
+      .modal-dialog.modal-dialog-centered.modal-lg
+        .modal-content
+          .modal-header
+            h5.fw-bold.modal-title(id="service-" + service.id + '-label')=service.title
+            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+          .modal-body
+            !=service.content
