@@ -6,8 +6,8 @@ module.exports = {
   apps: [
     // First application
     {
-      name: "jpvn",
-      script: "jpvn.js",
+      name: "luathungviet",
+      script: "luathungviet.js",
       env: {
         COMMON_VARIABLE: "true",
       },
