@@ -1,35 +1,35 @@
-const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
-const slugify = require('slugify')
+const mongoose = require("mongoose");
+mongoose.Promise = require("bluebird");
+const slugify = require("slugify");
 const Schema = mongoose.Schema;
-const mongoosePaginate = require('mongoose-paginate');
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 // create a schema
 const schema = new Schema({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   subtitle: {
-    type: String
+    type: String,
   },
   content: {
-    type: String
+    type: String,
   },
   url: {
-    type: String
+    type: String,
   },
   btnText: {
-    type: String
+    type: String,
   },
   image: {
-    type: String
+    type: String,
   },
   language: {
-    type: String
-  }
+    type: String,
+  },
 });
 
 schema.plugin(mongoosePaginate);
 
-module.exports = mongoose.model('Slide', schema);
+module.exports = mongoose.model("Slide", schema);

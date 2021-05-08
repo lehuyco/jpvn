@@ -1,81 +1,83 @@
-const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
-const mongoosePaginate = require('mongoose-paginate');
-const slugify = require('slugify')
-const moment = require('moment')
+const mongoose = require("mongoose");
+mongoose.Promise = require("bluebird");
+const mongoosePaginate = require("mongoose-paginate-v2");
+const slugify = require("slugify");
+const moment = require("moment");
 
 const Schema = mongoose.Schema;
 
 // create a schema
-const schema = new Schema({
+const schema = new Schema(
+  {
     title: {
-      type: String
+      type: String,
     },
     slogan: {
-      type: String
+      type: String,
     },
     company: {
-      type: String
+      type: String,
     },
     vision: {
-      type: String
+      type: String,
     },
     mission: {
-      type: String
+      type: String,
     },
     philosophy: {
-      type: String
+      type: String,
     },
     image: {
-      type: String
+      type: String,
     },
     thumb: {
-      type: String
+      type: String,
     },
     description: {
-      type: String
+      type: String,
     },
     keywords: {
-      type: String
+      type: String,
     },
     address: {
-      type: String
+      type: String,
     },
     hotline: {
-      type: String
+      type: String,
     },
     fax: {
-      type: String
+      type: String,
     },
     email: {
-      type: String
+      type: String,
     },
     facebook: {
-      type: String
+      type: String,
     },
     zalo: {
-      type: String
+      type: String,
     },
     twiter: {
-      type: String
+      type: String,
     },
     youtube: {
-      type: String
+      type: String,
     },
     copyright: {
-      type: String
+      type: String,
     },
     language: {
-      type: String
-    }
-}, {
+      type: String,
+    },
+  },
+  {
     timestamps: {
-        createdAt: 'createdAt',
-        updatedAt: 'updatedAt'
-    
+      createdAt: "createdAt",
+      updatedAt: "updatedAt",
+    },
   }
-});
+);
 
 schema.plugin(mongoosePaginate);
 
-module.exports = mongoose.model('Setting', schema);
+module.exports = mongoose.model("Setting", schema);

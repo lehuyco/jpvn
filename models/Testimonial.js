@@ -1,31 +1,31 @@
-const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
-const mongoosePaginate = require('mongoose-paginate');
+const mongoose = require("mongoose");
+mongoose.Promise = require("bluebird");
+const mongoosePaginate = require("mongoose-paginate-v2");
 const Schema = mongoose.Schema;
 
 // create a schema
 const schema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   content: {
-    type: String
+    type: String,
   },
   image: {
-    type: String
+    type: String,
   },
   thumb: {
-    type: String
+    type: String,
   },
   company: {
-    type: String
+    type: String,
   },
   language: {
-    type: String
-  }
-})
+    type: String,
+  },
+});
 
 schema.plugin(mongoosePaginate);
 
-module.exports = mongoose.model('Testimonial', schema);
+module.exports = mongoose.model("Testimonial", schema);
