@@ -29,7 +29,7 @@ var mongoose = require("mongoose");
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort("3112");
+var port = normalizePort("3114");
 app.set("port", port);
 
 /**
@@ -49,7 +49,7 @@ server.on("listening", onListening);
 /**
  * Database connect
  */
-mongoose.connect("mongodb://localhost:27017/jpvn", {
+mongoose.connect("mongodb://localhost:27017/luathungviet", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
