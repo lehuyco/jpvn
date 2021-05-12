@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "NODE_PATH=. node jpvn",
-    "dev": "NODE_PATH=. nodemon jpvn"
+    "start": "NODE_PATH=. node luathungviet",
+    "dev": "NODE_PATH=. nodemon luathungviet"
   },
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
