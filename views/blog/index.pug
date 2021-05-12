@@ -1,18 +1,28 @@
 extends ../layout
 include ../mixins/pagination
 include ../mixins/postcard
+include ../mixins/toppost
 include ./sidebar
 include ./categories
 
 block content
   #blog
     .container
-      .row
+      .row 
+        .col-md-6 
+          if topPosts[0]
+            +toppost(topPosts[0])
+        .col-md-6
+          .row 
+            for index in [1, 2, 3, 4]
+              if topPosts[index]
+                .col-6 
+                  +toppost(topPosts[index], "small")
+      .row.pt-30
         .col-md-8
           .row
             each post in posts
-              .col-sm-12.col-md-6
-                +postcard(post)
+              +postcard(post)
             +pagination('/blog', total, page)
         .col-md-4
           +sidebar()

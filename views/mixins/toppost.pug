@@ -1,0 +1,7 @@
+mixin toppost(post, klass="")
+    a(class=`toppost ${klass}`, href=post.path)
+        .toppost-img
+            img.w-100(src=post.thumb, alt=post.title)
+        .overlay
+        .toppost-content
+            h6=post.title

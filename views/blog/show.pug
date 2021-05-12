@@ -16,10 +16,10 @@ block content
                 a(href='/')
                   i.la.la-home
               li.breadcrumb-item
-                a(href='/blog')=__("menu.blog")
+                a(href='/news')=__("menu.blog")
               if category
                 li.breadcrumb-item
-                  a(href='/blog/' + category.slug)=category.title
+                  a(href='/news/' + category.slug)=category.title
           .blog-item
             //- .blog__img
             //-   img(src=post.image, alt=post.title)

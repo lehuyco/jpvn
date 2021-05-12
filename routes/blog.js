@@ -31,6 +31,9 @@ router.get('/news', async (req, res, next) => {
         query.categories = { $in: res.locals.categorieIds }
     }
     try {
+        var topPosts = await Post.find({}).sort({ createdAt: -1 }).limit(5)
+        var topIds = topPosts.map((p) => p._id)
+        query._id = { $nin: topIds }
         var data = await Post.paginate(query, {
             sort: { createdAt: -1 },
             populate: 'categories',
@@ -42,9 +45,11 @@ router.get('/news', async (req, res, next) => {
         res.locals.ogUrl = __host + '/blog'
 
         res.render('blog/index', {
+            topPosts,
             posts: data.docs,
             page,
             total: data.totalPages,
+            customClass: 'news-template',
         })
     } catch (err) {
         next(err)
@@ -94,7 +99,11 @@ router.get('/post/:slug', async (req, res, next) => {
         res.locals.ogUrl = __host + '/post/' + post.slug
         res.locals.keywords = post.keywords
 
-        res.render('blog/show', { post, category })
+        res.render('blog/show', {
+            post,
+            category,
+            customClass: 'news-template',
+        })
     } catch (err) {
         next(err)
     }

@@ -1,9 +1,9 @@
 mixin postcard(post)
-  .blog-item
-    .blog__img
+  .row.blog-item
+    .col-3.blog-img
       a(href=post.path)
         img.w-100(src=post.thumb, alt=post.title)
-    .blog__content.pl-0
+    .col-9.blog-content.pl-0
       //- .blog__meta
       //-   .blog__meta-cat
       //-     if post.categories
