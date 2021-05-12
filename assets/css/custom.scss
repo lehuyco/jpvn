@@ -648,6 +648,44 @@ label {
     }
 }
 
+.navbar {
+    .logo-color {
+        display: none;
+    }
+    .logo-white {
+        display: inline-block;
+    }
+}
+
+.news-template {
+    #header {
+        position: relative;
+        background: #ffffff;
+        color: #000000;
+        border-bottom: 1px solid #efefef;
+        .header-top {
+            background: #0b5f6a;
+        }
+        .navbar {
+            background: #ffffff;
+            a,
+            a span,
+            a i {
+                color: #000000;
+            }
+            .logo-color {
+                display: inline-block;
+            }
+            .logo-white {
+                display: none;
+            }
+        }
+    }
+    .main-content {
+        padding-top: 30px;
+    }
+}
+
 #footer {
     // margin-top: 120px;
     background: #0b5f6a;
