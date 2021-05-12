@@ -8,6 +8,9 @@ const schema = new Schema({
         type: String,
         required: true,
     },
+    description: {
+        type: String,
+    },
     image: {
         type: String,
     },
@@ -27,4 +30,4 @@ const schema = new Schema({
 
 schema.plugin(mongoosePaginate)
 
-module.exports = mongoose.model('Widget', schema)
+module.exports = mongoose.model('Member', schema)

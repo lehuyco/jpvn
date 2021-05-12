@@ -154,7 +154,7 @@ label {
 #login-page {
     background: #f8f9fa;
     .page-wrapper {
-        padding: 240px 0;
+        padding: 100px 0 240px 0;
     }
     .login-form {
         background: #ffffff;
@@ -599,6 +599,52 @@ label {
         a {
             font-weight: bold;
         }
+    }
+}
+
+.callnow {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    height: auto;
+    width: auto;
+    display: block;
+    z-index: 2147483647;
+    background: linear-gradient(
+        360deg,
+        #e5ebef 0%,
+        #eef2f5 50.52%,
+        #fefefe 100%
+    );
+    box-shadow: 0 16px 19px rgba(186, 189, 212, 0.2),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 88px;
+    width: auto;
+    height: auto;
+    .call-trap {
+        background: linear-gradient(
+            90deg,
+            rgb(255, 183, 77) 0%,
+            rgb(239, 108, 0) 100%
+        );
+        float: left !important;
+        margin: 4px;
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .call-text {
+        font-size: 17px;
+        font-weight: 800;
+        color: rgb(247, 146, 39);
+        text-transform: uppercase;
+        float: right !important;
+        margin: 4px 16px 0 4px;
+        line-height: 40px;
+        white-space: nowrap;
     }
 }
 

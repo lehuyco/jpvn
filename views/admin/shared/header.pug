@@ -11,12 +11,8 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.main-navbar
         a.nav-link(href='/admin/services') Dịch vụ
       li.nav-item
         a.nav-link(href='/admin/projects') Dự án
-      li.nav-item
-        a.nav-link(href='/admin/jobs') Việc làm
-      li.nav-item
-        a.nav-link(href='/admin/candidates') Ứng viên
-      li.nav-item
-        a.nav-link(href='/admin/quotes') Báo giá
+      //- li.nav-item
+      //-   a.nav-link(href='/admin/quotes') Báo giá
       li.nav-item.dropdown
         a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
           | Blog
@@ -27,6 +23,8 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.main-navbar
         a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
           | Cài đặt
         .dropdown-menu(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='/admin/jobs') Việc làm
+          a.dropdown-item(href='/admin/candidates') Ứng viên
           a.dropdown-item(href='/admin/features') Features
           a.dropdown-item(href='/admin/partners') Đối tác
           a.dropdown-item(href='/admin/slides') Slides

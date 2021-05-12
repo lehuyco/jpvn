@@ -29,6 +29,10 @@ html(lang="vi", xmlns="http://www.w3.org/1999/xhtml", class="no-js")
       .main-content
         block content
       include shared/footer
+    a.callnow(href=`tel:${COMPANY_PHONE}`)
+      .call-trap
+        img(src=assetPath('Call.svg'))
+      .call-text GỌI NGAY
     != js('app')
     // Global site tag (gtag.js) - Google Analytics
     script(async='', src='https://www.googletagmanager.com/gtag/js?id=UA-122649459-8')

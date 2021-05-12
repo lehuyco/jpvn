@@ -19,6 +19,7 @@ global.GOOGLE_CONSUMER_KEY =
 global.GOOGLE_CONSUMER_SECRET = 'u_WKEIB6PRgTtkVfvIwqMt7X'
 
 global.COMPANY_EMAIL = 'lienhe@luathungviet.vn'
+global.COMPANY_PHONE = '+84 945 133 335'
 
 const app = require('./app')
 const http = require('http')

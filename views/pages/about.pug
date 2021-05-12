@@ -60,23 +60,23 @@ block content
                 p=__("about.credibilityContent")
     .services-section
       .section-header.text-center
-        h2=__("about.servicesLabel")
+        h2=__("about.memberLabel")
       .container
         .row
-          each service in services
+          each member in members
             .col-6.col-md-3.card-container
-              a.card(data-bs-toggle="modal", data-bs-target="#service-" + service.id)
-                img.card-img-top(src=service.thumb)
+              .card
+                img.card-img-top(src=member.thumb)
                 .card-body
-                  h3=service.title
-                  p=service.summary
-    include ../shared/testimonials
-  each service in services
-    .modal.fade(tabindex='-1', aria-labelledby="service-" + service.id + '-label', aria-hidden='true', id="service-" + service.id)
-      .modal-dialog.modal-dialog-centered.modal-lg
-        .modal-content
-          .modal-header
-            h5.fw-bold.modal-title(id="service-" + service.id + '-label')=service.title
-            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-          .modal-body
-            !=service.content
+                  h3.fw-bold=member.title
+                  p=member.description
+  //-   include ../shared/testimonials
+  //- each service in services
+  //-   .modal.fade(tabindex='-1', aria-labelledby="service-" + service.id + '-label', aria-hidden='true', id="service-" + service.id)
+  //-     .modal-dialog.modal-dialog-centered.modal-lg
+  //-       .modal-content
+  //-         .modal-header
+  //-           h5.fw-bold.modal-title(id="service-" + service.id + '-label')=service.title
+  //-           button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+  //-         .modal-body
+  //-           !=service.content
