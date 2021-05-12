@@ -12,3 +12,4 @@ mixin postcard(post)
       //-   span.blog__meta-date=post.createdAt.toLocaleDateString('vi-VI', {})
       h6  
         a(href=post.path)=post.title
+      p=post.summary
