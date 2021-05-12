@@ -1,31 +1,35 @@
 #footer
   .container
     .row
-      .col-md-3
-        a(href="/")
+      .col-md-4
+        a.d-inline-block(href="/")
           img.logo(src=assetPath('logo-white.png'))
-      .col-md-3
         ul
-          li
-            a(href="/about")=__("menu.company")
-          li
-            a(href="/news")=__("menu.news")
-          li
-            a(href="/contact")=__("menu.contact")
-      .col-md-3
-        ul
-          li
-            a(href="#") Hô sơ năng lực
-          li
-            a(href="#") Twiter
-      .col-md-3
-        ul
-          li
+          li.pt-30
+            a.fw-bold(href="/Ho_so_nang_luc_Hung_Viet.pdf", target="_blank")
+              i.la.la-cloud-download-alt
+              span=__("footer.companyProfile")
+      .col-md-4
+        .office-info
+          h5.fw-bold Văn phòng Hà Nội
+          p
             i.las.la-home
-            a(href="mailto:#{COMPANY_EMAIL}")=COMPANY_EMAIL
-          li
-            | HN: 
-            = __("contact.addressHN")
-          li
-            | HCM: 
-            = __("contact.addressHCM")
+            span= __("contact.addressHN")
+          p
+            i.las.la-phone
+            a(href="tel:+821099762810")  +821099762810
+          p
+            i.la.la-envelope
+            a(href="tel:lienhe@luathungviet.vn")  lienhe@luathungviet.vn
+      .col-md-4
+        .office-info
+          h5.fw-bold Văn phòng tại Hàn Quốc
+          p
+            i.las.la-home
+            span No 9, Gangnam-ro, Giheung-gu, Yongin-si, Gyeonggi-do, Korea
+          p
+            i.las.la-phone
+            a(href="tel:0945.133.335") 0945.133.335
+          p
+            i.la.la-envelope
+            a(href="tel:lienhe@luathungviet.vn")  lienhe@luathungviet.vn

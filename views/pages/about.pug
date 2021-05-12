@@ -15,7 +15,7 @@ block content
             .panel-content
               span.highlight-text=__("about.whoLabel")
               h2=__("home.company")
-              p!=__("about.introduction")
+              p!=about.content
       .container 
         .row 
           .col-12.col-md-8
@@ -46,17 +46,17 @@ block content
           .col-md-4 
             .card
               .card-body
-                h3=__("about.integrity")
+                h3.fw-bold=__("about.integrity")
                 p=__("about.integrityContent")
           .col-md-4
             .card
               .card-body
-                h3=__("about.wisdom")
+                h3.fw-bold=__("about.wisdom")
                 p=__("about.wisdomContent")
           .col-md-4
             .card
               .card-body
-                h3=__("about.credibility")
+                h3.fw-bold=__("about.credibility")
                 p=__("about.credibilityContent")
     .services-section
       .section-header.text-center
@@ -68,7 +68,7 @@ block content
               .card
                 img.card-img-top(src=member.thumb)
                 .card-body
-                  h3.fw-bold=member.title
+                  h3.fw-bold.text-center=member.title
                   p=member.description
   //-   include ../shared/testimonials
   //- each service in services
