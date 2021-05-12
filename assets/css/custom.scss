@@ -699,7 +699,7 @@ label {
         position: relative;
         border-radius: 10px;
         overflow: hidden;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
         .overlay {
             position: absolute;
             content: '';
@@ -802,8 +802,8 @@ label {
     margin-top: 30px;
 }
 
-.mb-30 {
-    margin-bottom: 30px;
+.mb-310 {
+    margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 991px) {

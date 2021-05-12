@@ -84,7 +84,7 @@ var updatePost = async (req, res, next) => {
                 timestamp
             var targetDir = POST_UPLOAD_PATH + postId + '/'
             await sharp(targetDir + req.file.filename)
-                .resize(400, 200)
+                .resize(300, 200)
                 .toFile(targetDir + 'medium.png')
             post.thumb =
                 '/uploads/posts/' + postId + '/medium.png' + '?at=' + timestamp
