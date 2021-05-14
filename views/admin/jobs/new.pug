@@ -4,12 +4,13 @@ include ../../mixins/flash-messages
 
 block content
   .container
-    .page-header
-      h4.page-title Thêm việc làm
-      ol.breadcrumb
-        li.breadcrumb-item
-          a(href='/admin') Dashboard
-        li.breadcrumb-item
-          a(href='/admin/jobs') Quản lý việc làm
-    +flash-messages()
-    +form("/admin/jobs")
+    .panel
+      .page-header
+        h4.page-title Thêm việc làm
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href='/admin') Dashboard
+          li.breadcrumb-item
+            a(href='/admin/jobs') Quản lý việc làm
+      +flash-messages()
+      +form("/admin/jobs")

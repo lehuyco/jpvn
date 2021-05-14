@@ -2,131 +2,132 @@ extends ../layout
 
 block content
   .container
-    .page-header
-      h4.page-title Ứng viên
-      nav(aria-label='breadcrumb')
-        ol.breadcrumb
-          li.breadcrumb-item
-            a(href='/admin') Dashboard
-          li.breadcrumb-item
-            a(href='/admin') Quản lý ứng viên
+    .panel
+      .page-header
+        h4.page-title Ứng viên
+        nav(aria-label='breadcrumb')
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='/admin') Dashboard
+            li.breadcrumb-item
+              a(href='/admin') Quản lý ứng viên
 
-    if application.user
-      - user = application.user
-      .user-info
-        h5.mb-3 Thông tin cơ bản
-        .form-group.row
-          label.col-sm-2 Họ tên
-          .col-md-10=user.name
-        .form-group.row
-          label.col-sm-2 Ngày sinh
-          .col-md-10=user.dateBirth && user.dateBirth.toFormat('DD/MM/YYYY')
-        .form-group.row
-          label.col-sm-2 Nơi sinh
-          .col-md-10=user.placeBirth
-        .form-group.row
-          label.col-sm-2 Địa chỉ thường trú
-          .col-md-10=user.address
-        .form-group.row
-          label.col-sm-2 Điện thoại người thân
-          .col-md-10=user.relativePhone 
-        h5.mt-3.mb-3 CMND/CCCD:
-        .form-group.row
-          label.col-sm-2(for='nationalIdInput') Số
-          .col-md-10=user.nationalId 
-        .form-group.row
-          label.col-sm-2(for='dateIssuedInput') Ngày cấp
-          .col-md-10=user.dateIssued && user.dateIssued.toFormat('DD/MM/YYYY')
-        .form-group.row
-          label.col-sm-2(for='placeIssuedInput') Nơi cấp
-          .col-md-10=user.placeIssued
-        h5.mt-3.mb-3 Thông tin khác:
-        .row
-          .col-md-6
-            .form-group.row
-              label.col-sm-4(for='heightInput') Chiều cao
-              .col-md-8=user.height
-          .col-md-6
-            .form-group.row
-              label.col-sm-4(for='weightInput') Cân nặng
-              .col-md-8=user.weight
-          .col-md-6
-            .form-group.row
-              label.col-sm-4(for='bloodSelect') Nhóm máu
-              .col-md-8=user.blood
-          .col-md-6
-            .form-group.row
-              label.col-sm-4(for='clothingSizeInput') Cỡ quần áo
-              .col-md-8=user.clothingSize
-          .col-md-6
-            .form-group.row
-              label.col-sm-4(for='shoeSizeInput') Cỡ giày
-              .col-md-8=user.shoeSize
-        h5.mt-3.mb-3 Trình độ học vấn
-        table.table.table-bordered
-          thead.thead-light
-            tr
-              th Tên khóa học/ Trường
-              th Tốt nghiệp
-          tbody
-            each education in educations
+      if application.user
+        - user = application.user
+        .user-info
+          h5.mb-3 Thông tin cơ bản
+          .form-group.row
+            label.col-sm-2 Họ tên
+            .col-md-10=user.name
+          .form-group.row
+            label.col-sm-2 Ngày sinh
+            .col-md-10=user.dateBirth && user.dateBirth.toFormat('DD/MM/YYYY')
+          .form-group.row
+            label.col-sm-2 Nơi sinh
+            .col-md-10=user.placeBirth
+          .form-group.row
+            label.col-sm-2 Địa chỉ thường trú
+            .col-md-10=user.address
+          .form-group.row
+            label.col-sm-2 Điện thoại người thân
+            .col-md-10=user.relativePhone 
+          h5.mt-3.mb-3 CMND/CCCD:
+          .form-group.row
+            label.col-sm-2(for='nationalIdInput') Số
+            .col-md-10=user.nationalId 
+          .form-group.row
+            label.col-sm-2(for='dateIssuedInput') Ngày cấp
+            .col-md-10=user.dateIssued && user.dateIssued.toFormat('DD/MM/YYYY')
+          .form-group.row
+            label.col-sm-2(for='placeIssuedInput') Nơi cấp
+            .col-md-10=user.placeIssued
+          h5.mt-3.mb-3 Thông tin khác:
+          .row
+            .col-md-6
+              .form-group.row
+                label.col-sm-4(for='heightInput') Chiều cao
+                .col-md-8=user.height
+            .col-md-6
+              .form-group.row
+                label.col-sm-4(for='weightInput') Cân nặng
+                .col-md-8=user.weight
+            .col-md-6
+              .form-group.row
+                label.col-sm-4(for='bloodSelect') Nhóm máu
+                .col-md-8=user.blood
+            .col-md-6
+              .form-group.row
+                label.col-sm-4(for='clothingSizeInput') Cỡ quần áo
+                .col-md-8=user.clothingSize
+            .col-md-6
+              .form-group.row
+                label.col-sm-4(for='shoeSizeInput') Cỡ giày
+                .col-md-8=user.shoeSize
+          h5.mt-3.mb-3 Trình độ học vấn
+          table.table.table-bordered
+            thead.thead-light
               tr
-                td=education.title
-                td=education.graduatedAt
-        h5.mt-3.mb-3 Hộ chiếu
-        table.table.table-bordered
-          thead.thead-light
-            tr
-              th Loại
-              th Nơi cấp
-              th Số
-              th Ngày cấp
-              th Ngày hết hạn
-          tbody
-            each passport in passports
+                th Tên khóa học/ Trường
+                th Tốt nghiệp
+            tbody
+              each education in educations
+                tr
+                  td=education.title
+                  td=education.graduatedAt
+          h5.mt-3.mb-3 Hộ chiếu
+          table.table.table-bordered
+            thead.thead-light
               tr
-                td=passport.type
-                td=passport.placeIssued
-                td=passport.number
-                td=passport.dateIssued
-                td=passport.dateExpired
-        h5.mt-3.mb-3 Chứng chỉ
-        table.table.table-bordered
-          thead.thead-light
-            tr
-              th Tên
-              th Số
-              th Ngày cấp
-              th Ngày hết hạn
-          tbody
-            each certificate in certificates
+                th Loại
+                th Nơi cấp
+                th Số
+                th Ngày cấp
+                th Ngày hết hạn
+            tbody
+              each passport in passports
+                tr
+                  td=passport.type
+                  td=passport.placeIssued
+                  td=passport.number
+                  td=passport.dateIssued
+                  td=passport.dateExpired
+          h5.mt-3.mb-3 Chứng chỉ
+          table.table.table-bordered
+            thead.thead-light
               tr
-                td=certificate.title
-                td=certificate.number
-                td=certificate.dateIssued
-                td=certificate.dateExpired
-        h5.mt-3.mb-3 Kinh nghiệm làm việc
-        table.table.table-bordered.w-100
-          thead.thead-light
-            tr
-              th Tên tàu
-              th Chức danh
-              th Chủ quản
-              th Quốc tịch
-              th GT
-              th E/Power
-              th Loại
-              th Ngày lên tàu
-              th Ngày rời tàu
-          tbody
-            each experience in experiences
+                th Tên
+                th Số
+                th Ngày cấp
+                th Ngày hết hạn
+            tbody
+              each certificate in certificates
+                tr
+                  td=certificate.title
+                  td=certificate.number
+                  td=certificate.dateIssued
+                  td=certificate.dateExpired
+          h5.mt-3.mb-3 Kinh nghiệm làm việc
+          table.table.table-bordered.w-100
+            thead.thead-light
               tr
-                td=experience.shipname
-                td=experience.title
-                td=experience.manager
-                td=experience.nationality
-                td=experience.gt
-                td=experience.power
-                td=experience.type
-                td=experience.dateBoarding
-                td=experience.dateLeaved
+                th Tên tàu
+                th Chức danh
+                th Chủ quản
+                th Quốc tịch
+                th GT
+                th E/Power
+                th Loại
+                th Ngày lên tàu
+                th Ngày rời tàu
+            tbody
+              each experience in experiences
+                tr
+                  td=experience.shipname
+                  td=experience.title
+                  td=experience.manager
+                  td=experience.nationality
+                  td=experience.gt
+                  td=experience.power
+                  td=experience.type
+                  td=experience.dateBoarding
+                  td=experience.dateLeaved

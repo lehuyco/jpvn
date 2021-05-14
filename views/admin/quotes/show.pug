@@ -4,67 +4,68 @@ include ../../mixins/flash-messages
 block content
   if quote
     .container
-      .page-header
-        h4.page-title=quote.company_name
-        ol.breadcrumb
-          li.breadcrumb-item
-            a(href='/admin') Dashboard
-          li.breadcrumb-item
-            a(href='/admin/quotes') Quản lý báo giá
-      +flash-messages()
-      table.table.table-bordered
-        tr
-          th Công ty
-          td
-            = quote.company_name 
-        tr
-          th Địa chỉ
-          td
-            = quote.address
-        tr
-          th Email
-          td
-            = quote.email
-        tr
-          th Số điện thoại
-          td
-            = quote.phone
-        tr
-          th Dịch vụ
-          td
-            = quote.service_request
-        tr
-          th Nước xuất khẩu
-          td
-            = quote.country_of_origin
-        tr
-          th Địa chỉ nhận hàng
-          td
-            = quote.pickup_address
-        tr
-          th Nước nhập khẩu
-          td
-            = quote.country_of_destination
-        tr
-          th Địa điểm giao hàng
-          td
-            = quote.delivery_address
-        tr
-          th Loại hàng hoá
-          td
-            = quote.cargo_type
-        tr
-          th Điều kiện vận chuyển
-          td
-            = quote.shipping_term
-        tr
-          th Khối lượng hàng hoá
-          td
-            = quote.cargo_quantity
-        tr
-          th Mô tả hàng hoá chi tiết về khối lượng, trọng lượng từng kiện
-          td
-            = quote.details_of_weight
-        tr
-          th Yêu cầu cụ thể*
-          td= quote.specific_comment
+      .panel
+        .page-header
+          h4.page-title=quote.company_name
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='/admin') Dashboard
+            li.breadcrumb-item
+              a(href='/admin/quotes') Quản lý báo giá
+        +flash-messages()
+        table.table.table-bordered
+          tr
+            th Công ty
+            td
+              = quote.company_name 
+          tr
+            th Địa chỉ
+            td
+              = quote.address
+          tr
+            th Email
+            td
+              = quote.email
+          tr
+            th Số điện thoại
+            td
+              = quote.phone
+          tr
+            th Dịch vụ
+            td
+              = quote.service_request
+          tr
+            th Nước xuất khẩu
+            td
+              = quote.country_of_origin
+          tr
+            th Địa chỉ nhận hàng
+            td
+              = quote.pickup_address
+          tr
+            th Nước nhập khẩu
+            td
+              = quote.country_of_destination
+          tr
+            th Địa điểm giao hàng
+            td
+              = quote.delivery_address
+          tr
+            th Loại hàng hoá
+            td
+              = quote.cargo_type
+          tr
+            th Điều kiện vận chuyển
+            td
+              = quote.shipping_term
+          tr
+            th Khối lượng hàng hoá
+            td
+              = quote.cargo_quantity
+          tr
+            th Mô tả hàng hoá chi tiết về khối lượng, trọng lượng từng kiện
+            td
+              = quote.details_of_weight
+          tr
+            th Yêu cầu cụ thể*
+            td= quote.specific_comment

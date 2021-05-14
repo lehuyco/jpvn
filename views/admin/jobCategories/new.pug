@@ -2,11 +2,12 @@ extends ../layout
 include ./form
 block content
   .container
-    .page-header
-      h4.page-title Thêm chuyên mục
-    ol.breadcrumb
-      li.breadcrumb-item
-        a(href='/admin') Dashboard
-      li.breadcrumb-item
-        a(href='/admin/jobCategories') Quản lý chuyên mục
-    +form("/admin/jobCategories")
+    .panel
+      .page-header
+        h4.page-title Thêm chuyên mục
+      ol.breadcrumb
+        li.breadcrumb-item
+          a(href='/admin') Dashboard
+        li.breadcrumb-item
+          a(href='/admin/jobCategories') Quản lý chuyên mục
+      +form("/admin/jobCategories")

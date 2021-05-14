@@ -2,33 +2,34 @@ extends ../layout
 
 block content
   .container
-    if !currentUser.isAdmin && companyCount == 0
-      .row
-        .col-lg-12.mt-4.pt-2
-          .p-4
-            .text-center
-              h6 Bạn chưa có công ty nào đang hoạt động. Để trở thành nhà tuyển dụng vui lòng đăng ký công ty của bạn với hệ thống
-              a.btn.btn-primary.mt-3.mr-2(href='/admin/companies') Quản lý công ty
-    else
-      .page-header
-        h4.page-title Quản lý ứng viên
-        nav(aria-label='breadcrumb')
-          ol.breadcrumb
-            li.breadcrumb-item
-              a(href='/admin') Dashboard
-            li.breadcrumb-item.active(aria-current='page') Quản lý ứng viên
-      table.table.table-bordered
-        thead.thead-light
-          tr
-            th Ứng viên
-            th Việc làm
-            th Tác vụ
-        tbody
-          each application in applications
+    .panel
+      if !currentUser.isAdmin && companyCount == 0
+        .row
+          .col-lg-12.mt-4.pt-2
+            .p-4
+              .text-center
+                h6 Bạn chưa có công ty nào đang hoạt động. Để trở thành nhà tuyển dụng vui lòng đăng ký công ty của bạn với hệ thống
+                a.btn.btn-primary.mt-3.mr-2(href='/admin/companies') Quản lý công ty
+      else
+        .page-header
+          h4.page-title Quản lý ứng viên
+          nav(aria-label='breadcrumb')
+            ol.breadcrumb
+              li.breadcrumb-item
+                a(href='/admin') Dashboard
+              li.breadcrumb-item.active(aria-current='page') Quản lý ứng viên
+        table.table.table-bordered
+          thead.thead-light
             tr
-              td=application.user.name
-              td=application.job.title
-              td.fit.align-middle
-                a.btn.btn-primary.btn-sm(href="/admin/applications/" + application._id)
-                  i.fa.fa-pencil
-                  span  Chi tiết
+              th Ứng viên
+              th Việc làm
+              th Tác vụ
+          tbody
+            each application in applications
+              tr
+                td=application.user.name
+                td=application.job.title
+                td.fit.align-middle
+                  a.btn.btn-primary.btn-sm(href="/admin/applications/" + application._id)
+                    i.fa.fa-pencil
+                    span  Chi tiết

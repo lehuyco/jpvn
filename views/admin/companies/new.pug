@@ -4,12 +4,13 @@ include ../../mixins/flash-messages
 
 block content
   .container
-    .page-header
-      h4.page-title Thêm công ty
-      ol.breadcrumb
-        li.breadcrumb-item
-          a(href='/admin') Dashboard
-        li.breadcrumb-item
-          a(href='/admin/companies') Quản lý công ty
-    +flash-messages()
-    +form("/admin/companies")
+    .panel
+      .page-header
+        h4.page-title Thêm công ty
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href='/admin') Dashboard
+          li.breadcrumb-item
+            a(href='/admin/companies') Quản lý công ty
+      +flash-messages()
+      +form("/admin/companies")

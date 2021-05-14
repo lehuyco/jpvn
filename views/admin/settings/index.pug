@@ -4,36 +4,37 @@ include ../../mixins/flash-messages
 
 block content
   .container
-    .page-header
-      h4.page-title Cài đặt chung
-      ol.breadcrumb
-        li.breadcrumb-item
-          a(href='/admin') Dashboard
-        li.breadcrumb-item.active(aria-current='page') Cài đặt chung
-    +flash-messages()
-    table.table.table-bordered
-      thead.thead-light
-        tr
-          th Nội dung
-          th.fit Ngôn ngữ
-          th.fit Tác vụ
-      tbody
-        each doc in docs
-          if doc
-            tr
-              td.align-middle
-                strong=doc.title
-                p.mb-0.pd-0=doc.description
-              td.fit.align-middle.text-center
-                if doc.language == 'vi'
-                  span.badge.badge-success Tiếng Việt
-                else if doc.language == 'en'
-                  span.badge.badge-info Tiếng Anh
-              td.fit.align-middle
-                a.btn.btn-primary.btn-sm(href=ADMIN_PATH + doc._id)
-                  i.fa.fa-pencil
-                  span  Sửa
-                button.btn.btn-danger.btn-sm.ml-2.delete-item-btn(data-id=doc._id.toString(), data-path=ADMIN_PATH ,data-title=doc.title)
-                  i.fa.fa-close
-                  span  Xóa
-    +pagination(ADMIN_PATH, total, page)
+    .panel
+      .page-header
+        h4.page-title Cài đặt chung
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href='/admin') Dashboard
+          li.breadcrumb-item.active(aria-current='page') Cài đặt chung
+      +flash-messages()
+      table.table.table-bordered
+        thead.thead-light
+          tr
+            th Nội dung
+            th.fit Ngôn ngữ
+            th.fit Tác vụ
+        tbody
+          each doc in docs
+            if doc
+              tr
+                td.align-middle
+                  strong=doc.title
+                  p.mb-0.pd-0=doc.description
+                td.fit.align-middle.text-center
+                  if doc.language == 'vi'
+                    span.badge.badge-success Tiếng Việt
+                  else if doc.language == 'en'
+                    span.badge.badge-info Tiếng Anh
+                td.fit.align-middle
+                  a.btn.btn-primary.btn-sm(href=ADMIN_PATH + doc._id)
+                    i.fa.fa-pencil
+                    span  Sửa
+                  button.btn.btn-danger.btn-sm.ml-2.delete-item-btn(data-id=doc._id.toString(), data-path=ADMIN_PATH ,data-title=doc.title)
+                    i.fa.fa-close
+                    span  Xóa
+      +pagination(ADMIN_PATH, total, page)

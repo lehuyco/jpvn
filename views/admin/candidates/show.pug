@@ -4,43 +4,44 @@ include ../../mixins/flash-messages
 
 block content
   .container
-    .page-header
-      h4.page-title=candidate.name
-      ol.breadcrumb
-        li.breadcrumb-item
-          a(href='/admin') Dashboard
-        li.breadcrumb-item
-          a(href='/admin/candidates') Quản lý ứng viên
-    +flash-messages()
-    table.table.table-bordered
-      tr
-        th Vị trí ứng tuyển
-        td
-          if candidate.position
-            a(href='/admin/jobs/' + candidate.position._id, target="_blank")
-              =candidate.position.title
-      tr
-        th Tên ứng viên
-        td
-          =candidate ? candidate.name : ''
-      tr
-        th Địa chỉ
-        td
-          =candidate ? candidate.address : ''
-      tr
-        th Email
-        td
-          =candidate ? candidate.email : ''
-      tr
-        th Số điện thoại
-        td
-          =candidate ? candidate.phone : ''
-      tr
-        th Nguyện vọng
-        td
-          =candidate ? candidate.comment : ''
-      tr
-        th CV, bằng cấp đính kèm
-        td
-          if candidate && candidate.file 
-            a(href="/uploads/careers/" + candidate.id + "/original.pdf", target="_blank") Link
+    .panel
+      .page-header
+        h4.page-title=candidate.name
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href='/admin') Dashboard
+          li.breadcrumb-item
+            a(href='/admin/candidates') Quản lý ứng viên
+      +flash-messages()
+      table.table.table-bordered
+        tr
+          th Vị trí ứng tuyển
+          td
+            if candidate.position
+              a(href='/admin/jobs/' + candidate.position._id, target="_blank")
+                =candidate.position.title
+        tr
+          th Tên ứng viên
+          td
+            =candidate ? candidate.name : ''
+        tr
+          th Địa chỉ
+          td
+            =candidate ? candidate.address : ''
+        tr
+          th Email
+          td
+            =candidate ? candidate.email : ''
+        tr
+          th Số điện thoại
+          td
+            =candidate ? candidate.phone : ''
+        tr
+          th Nguyện vọng
+          td
+            =candidate ? candidate.comment : ''
+        tr
+          th CV, bằng cấp đính kèm
+          td
+            if candidate && candidate.file 
+              a(href="/uploads/careers/" + candidate.id + "/original.pdf", target="_blank") Link

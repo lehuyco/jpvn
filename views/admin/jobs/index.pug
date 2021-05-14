@@ -2,43 +2,44 @@ extends ../layout
 
 block content
   .container
-    if !currentUser.isAdmin && companyCount == 0
-      .row
-        .col-lg-12.mt-4.pt-2
-          .p-4
-            .text-center
-              h6 Bạn chưa có công ty nào đang hoạt động. Để trở thành nhà tuyển dụng vui lòng đăng ký công ty của bạn với hệ thống
-              a.btn.btn-primary.mt-3.mr-2(href='/admin/companies') Quản lý công ty
-    else
-      .page-header
-        h4.page-title Quản lý việc làm
-        ol.breadcrumb
-          li.breadcrumb-item
-            a(href='/admin') Dashboard
-          li.breadcrumb-item.active(aria-current='page') Việc làm
-        .page-actions
-          a.btn.btn-primary(href="/admin/jobs/new") Thêm việc làm
-      table.table.table-bordered
-        thead.thead-light
-          tr
-            th Hình ảnh
-            th Nội dung
-            th Ngày đăng
-            th Tác vụ
-        tbody
-          each job in jobs
+    .panel
+      if !currentUser.isAdmin && companyCount == 0
+        .row
+          .col-lg-12.mt-4.pt-2
+            .p-4
+              .text-center
+                h6 Bạn chưa có công ty nào đang hoạt động. Để trở thành nhà tuyển dụng vui lòng đăng ký công ty của bạn với hệ thống
+                a.btn.btn-primary.mt-3.mr-2(href='/admin/companies') Quản lý công ty
+      else
+        .page-header
+          h4.page-title Quản lý việc làm
+          ol.breadcrumb
+            li.breadcrumb-item
+              a(href='/admin') Dashboard
+            li.breadcrumb-item.active(aria-current='page') Việc làm
+          .page-actions
+            a.btn.btn-primary(href="/admin/jobs/new") Thêm việc làm
+        table.table.table-bordered
+          thead.thead-light
             tr
-              td.col-img.align-middle
-                if (job.thumb)
-                  img.w-100(src=job.thumb)
-              td.align-middle
-                strong=job.title
-                p.mb-0.pd-0=job.summary
-              td.fit.align-middle=job.createdAt && job.createdAt.toLocaleDateString('vi-VI', {})
-              td.fit.align-middle
-                a.btn.btn-primary.btn-sm(href="/admin/jobs/" + job._id)
-                  i.fa.fa-pencil
-                  span  Sửa
-                button.btn.btn-danger.btn-sm.ml-2.delete-item-btn(data-id=job._id, data-scope='jobs', data-title=job.title)
-                  i.fa.fa-close
-                  span  Xóa
+              th Hình ảnh
+              th Nội dung
+              th Ngày đăng
+              th Tác vụ
+          tbody
+            each job in jobs
+              tr
+                td.col-img.align-middle
+                  if (job.thumb)
+                    img.w-100(src=job.thumb)
+                td.align-middle
+                  strong=job.title
+                  p.mb-0.pd-0=job.summary
+                td.fit.align-middle=job.createdAt && job.createdAt.toLocaleDateString('vi-VI', {})
+                td.fit.align-middle
+                  a.btn.btn-primary.btn-sm(href="/admin/jobs/" + job._id)
+                    i.fa.fa-pencil
+                    span  Sửa
+                  button.btn.btn-danger.btn-sm.ml-2.delete-item-btn(data-id=job._id, data-scope='jobs', data-title=job.title)
+                    i.fa.fa-close
+                    span  Xóa

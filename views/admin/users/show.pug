@@ -4,12 +4,13 @@ include ../../mixins/flash-messages
 
 block content
   .container
-    .page-header
-      h4.page-title=user.name
-      ol.breadcrumb
-        li.breadcrumb-item
-          a(href='/admin') Dashboard
-        li.breadcrumb-item
-          a(href='/admin/users') Quản lý người dùng
-    +flash-messages()
-    +form("/admin/users/" +  user._id, 'POST')
+    .panel
+      .page-header
+        h4.page-title=user.name
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href='/admin') Dashboard
+          li.breadcrumb-item
+            a(href='/admin/users') Quản lý người dùng
+      +flash-messages()
+      +form("/admin/users/" +  user._id, 'POST')

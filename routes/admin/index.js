@@ -4,18 +4,14 @@ const middleware = require('../middleware')
 const Company = require('models/Company')
 const Recruiter = require('models/Recruiter')
 
-router.use('/', require('./dash'))
-router.use('/users', middleware.requireAdmin, require('./users'))
+router.use('/', middleware.requireMod, require('./dash'))
 router.use('/posts', middleware.requireMod, require('./posts'))
-router.use('/categories', middleware.requireMod, require('./categories'))
-router.use(
-    '/jobCategories',
-    middleware.requireAdmin,
-    require('./jobCategories')
-)
-router.use('/jobs', middleware.requireAdmin, require('./jobs'))
-router.use('/candidates', middleware.requireAdmin, require('./candidates'))
-
+router.use(middleware.requireAdmin)
+router.use('/users', require('./users'))
+router.use('/categories', require('./categories'))
+router.use('/jobCategories', require('./jobCategories'))
+router.use('/jobs', require('./jobs'))
+router.use('/candidates', require('./candidates'))
 router.use('/quotes', require('./quotes'))
 router.use('/enquiries', require('./enquiries'))
 router.use('/companies', require('./companies'))

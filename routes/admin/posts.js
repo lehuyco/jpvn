@@ -40,6 +40,13 @@ var findPost = async (req, res, next) => {
     if (req.params.id) {
         req.post = await Post.findOne({ _id: req.params.id })
         req.actionType = 'update'
+        if (
+            req.user.isMod &&
+            req.post.creator.toString() != req.user._id.toString()
+        ) {
+            res.redirect('/admin/posts')
+            return
+        }
     } else {
         req.post = await new Post()
         req.actionType = 'create'
@@ -72,6 +79,9 @@ var updatePost = async (req, res, next) => {
         post.keywords = keywords
         if (publishedAt) {
             post.publishedAt = moment(publishedAt, 'DD/MM/YYYY')
+        }
+        if (!post.creator) {
+            post.creator = req.user._id
         }
         if (req.file) {
             var timestamp = moment().format('YYMMDDDHHmm')
@@ -112,6 +122,9 @@ router.get('/', async (req, res, next) => {
     let { status } = req.query
     try {
         var query = {}
+        if (req.user.idMod) {
+            query.creator = req.user._id
+        }
         if (status) {
             query.status = status
         }
