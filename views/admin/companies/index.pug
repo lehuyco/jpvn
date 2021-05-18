@@ -29,11 +29,11 @@ block content
                   strong=company.title
                 td.fit.align-middle.text-center
                   if company.status == 'pending'
-                    span.badge.badge-warning Chờ duyệt
+                    span.badge.bg-warning Chờ duyệt
                   else if company.status == 'active'
-                    span.badge.badge-success Đang hoạt động
+                    span.badge.bg-success Đang hoạt động
                   else if company.status == 'archived'
-                    span.badge.badge-secondary Ngừng hoạt động
+                    span.badge.bg-secondary Ngừng hoạt động
                 td.fit.align-middle
                   a.btn.btn-primary.btn-sm(href="/admin/companies/" + company._id)
                     i.fa.fa-pencil

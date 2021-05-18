@@ -102,8 +102,15 @@ a {
     }
     .breadcrumb {
         background: transparent;
-        padding: 10px 0 0 0;
+        padding: 0;
         margin: 0;
+        .breadcrumb-item {
+            a,
+            a:hover {
+                color: #000000;
+                text-decoration: none;
+            }
+        }
     }
     .page-actions {
         padding: 10px 0 0 0;
@@ -114,6 +121,16 @@ a {
 }
 
 table {
+    thead {
+        tr {
+            border-color: #0b5f6a !important;
+        }
+        th {
+            background-color: #0b5f6a !important;
+            color: #ffffff;
+            border-color: #0b5f6a !important;
+        }
+    }
     th {
         white-space: nowrap;
         text-align: center;
@@ -140,8 +157,13 @@ a.card:hover {
 .panel {
     background: #fff;
     border-radius: 6px;
-    padding: 30px;
+    padding: 15px;
     margin-top: 30px;
+    .page-header {
+        padding-bottom: 15px;
+        margin: 0px 0 15px 0;
+        border-bottom: 1px solid #ebedf3;
+    }
 }
 
 .dash-counter,
@@ -152,7 +174,7 @@ a.card:hover {
     .card {
         border: none;
         h5 {
-            font-weight: bold;
+            font-weight: 600;
         }
     }
 }

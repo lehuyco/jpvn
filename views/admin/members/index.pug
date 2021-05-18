@@ -32,9 +32,9 @@ block content
                   strong=doc.title
                 td.fit.align-middle.text-center
                   if doc.language == 'vi'
-                    span.badge.badge-success Tiếng Việt
+                    span.badge.bg-success Tiếng Việt
                   else if doc.language == 'en'
-                    span.badge.badge-info Tiếng Anh
+                    span.badge.bg-info Tiếng Anh
                 td.fit.align-middle
                   a.btn.btn-primary.btn-sm(href=ADMIN_PATH + doc._id)
                     i.fa.fa-pencil
