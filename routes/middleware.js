@@ -19,7 +19,7 @@ exports.initLocals = async (req, res, next) => {
     if (setting) {
         res.locals.title = setting.title
         res.locals.ogDescription = setting.description
-        res.locals.ogImage = setting.image
+        res.locals.ogImage = setting.imageUrl
         res.locals.ogUrl = 'https://luathungviet.vn'
         res.locals.keywords = setting.keywords
     }
