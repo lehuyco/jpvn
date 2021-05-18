@@ -2,6 +2,7 @@ body {
     font-family: 'Open Sans', Helvetica, Arial, sans-serif !important;
     // font-size: 14px;
     background-color: #f4f4f4;
+    font-size: 14px;
 }
 
 h1,
@@ -59,23 +60,6 @@ a {
     padding: 30px 0;
 }
 
-.page-header {
-    padding: 0 0 20px 0;
-    .page-title {
-        font-weight: bold;
-        padding: 0;
-        margin: 0;
-    }
-    .breadcrumb {
-        background: transparent;
-        padding: 10px 0 0 0;
-        margin: 0;
-    }
-    .page-actions {
-        padding: 10px 0 0 0;
-    }
-}
-
 #blogpage {
     padding-bottom: 50px;
     .post {
@@ -109,9 +93,12 @@ a {
 
 .page-header {
     padding: 0 0 20px 0;
+    width: 100%;
+    position: relative;
     .page-title {
         padding: 0;
         margin: 0;
+        font-weight: bold;
     }
     .breadcrumb {
         background: transparent;
@@ -120,10 +107,16 @@ a {
     }
     .page-actions {
         padding: 10px 0 0 0;
+        position: absolute;
+        right: 0;
+        top: 0;
     }
 }
 
 table {
+    th {
+        white-space: nowrap;
+    }
     td.fit,
     th.fit {
         width: 1%;
@@ -148,4 +141,28 @@ a.card:hover {
     border-radius: 6px;
     padding: 30px;
     margin-top: 30px;
+}
+
+.dash-counter,
+.dash-counter:hover {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    .card {
+        border: none;
+        h5 {
+            font-weight: bold;
+        }
+    }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+    .page-header {
+        .page-actions {
+            position: relative;
+        }
+    }
+    .panel {
+    }
 }
