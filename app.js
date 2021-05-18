@@ -148,10 +148,8 @@ passport.use(
             passwordField: 'password',
         },
         async (username, password, done) => {
-            console.log(username)
             try {
                 let user = await User.findOne({ email: username })
-                console.log(user)
                 if (!user) {
                     return done(null, false, { message: 'Incorrect username.' })
                 }

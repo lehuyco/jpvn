@@ -34,7 +34,7 @@ block content
                   a.btn.btn-primary.btn-sm(href=ADMIN_PATH + doc._id)
                     i.fa.fa-pencil
                     span  Sửa
-                  button.btn.btn-danger.btn-sm.ml-2.delete-item-btn(data-id=doc._id.toString(), data-path=ADMIN_PATH ,data-title=doc.title)
+                  button.btn.btn-danger.btn-sm.ms-2.delete-item-btn(data-id=doc._id.toString(), data-path=ADMIN_PATH ,data-title=doc.title)
                     i.fa.fa-close
                     span  Xóa
       +pagination(ADMIN_PATH, total, page)

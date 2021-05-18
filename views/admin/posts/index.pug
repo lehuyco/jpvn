@@ -34,7 +34,7 @@ block content
                   i.fa.fa-pencil
                   span  Sửa
                 if currentUser.isAdmin
-                  button.btn.btn-danger.btn-sm.ml-2.delete-item-btn(data-id=post._id.toString(), data-scope='posts' ,data-title=post.title)
+                  button.btn.btn-danger.btn-sm.ms-2.delete-item-btn(data-id=post._id.toString(), data-scope='posts' ,data-title=post.title)
                     i.fa.fa-close
                     span  Xóa
       +pagination('/admin/posts', total, page)
