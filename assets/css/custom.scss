@@ -57,6 +57,13 @@ strong {
     }
 }
 
+.btn-white {
+    color: #ffffff;
+    &:hover {
+        color: #ffffff;
+    }
+}
+
 .btn-try {
     color: #0b5f6a;
     font-size: 16px;

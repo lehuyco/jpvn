@@ -12,6 +12,14 @@
           i.la.la-envelope
           span=COMPANY_EMAIL
       .float-end
+        if (currentUser)
+          if (currentUser.isAdmin || currentUser.isMod)
+            a.btn-white(href='/admin') 
+              i.la.la-sitemap
+              |  Admin
+          a.btn-white(href='/auth/logout') 
+            i.la.la-sign-out-alt 
+            |  Đăng xuất
         a.nav-language-link(href='/vi')
           img(src=assetPath('vi.svg'))
         a.nav-language-link(href='/en')
