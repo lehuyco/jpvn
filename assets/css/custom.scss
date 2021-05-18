@@ -45,11 +45,16 @@ strong {
     outline: none;
     border-radius: 2px;
     border: none;
+    box-shadow: none;
+    font-size: 14px;
 }
 
 .btn-lhv {
     background-color: #0b5f6a;
     color: #ffffff;
+    &:hover {
+        color: #ffffff;
+    }
 }
 
 .btn-try {
@@ -63,6 +68,10 @@ label {
 
 .form-group {
     margin-bottom: 1rem;
+}
+
+.form-control:focus {
+    box-shadow: none;
 }
 
 .bg-gray {
@@ -666,7 +675,8 @@ label {
     }
 }
 
-.news-template {
+.news-template,
+.wide-template {
     #header {
         position: relative;
         background: #ffffff;
@@ -689,9 +699,6 @@ label {
                 display: none;
             }
         }
-    }
-    .main-content {
-        padding-top: 30px;
     }
     .toppost {
         display: inline-block;
@@ -761,6 +768,12 @@ label {
                 color: rgb(153, 153, 153);
             }
         }
+    }
+}
+
+.news-template {
+    .main-content {
+        padding-top: 30px;
     }
 }
 

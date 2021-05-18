@@ -2,15 +2,13 @@ extends ../layout
 
 block content
   #login-page
-    .page-header.page-cover
-      .container
-        .page-title
-          h2 Đăng nhập
     .page-wrapper
       .container
         .row
           .col-md-4.me-auto.ms-auto
             form.login-form(action='/auth/login', method='POST')
+              h4.text-center Đăng nhập
+              br
               .form-group.position-relative
                 label.form-label
                   | Email 
@@ -18,9 +16,9 @@ block content
                 input.form-control(type='email', placeholder='Email', name='email', required='')
               .form-group.position-relative
                 label.form-label
-                  | Password 
+                  | Mật khẩu 
                   span.text-danger *
-                input.form-control(type='password', placeholder='Password', name="password", required='')
+                input.form-control(type='password', placeholder='Mật khẩu', name="password", required='')
               //- p.float-right.forgot-pass
               //-   a.text-dark.font-weight-bold(href='recovery_passward.html') Forgot password ?
-              button.btn.btn-primary.w-100.fw-bold Đăng nhập
+              button.btn.btn-lhv.w-100.fw-bold Đăng nhập

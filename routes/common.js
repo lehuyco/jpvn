@@ -67,7 +67,7 @@ router.get('/login', function (req, res, next) {
     if (req.isAuthenticated()) {
         res.redirect('/')
     } else {
-        res.render('auth/login')
+        res.render('auth/login', { customClass: 'wide-template' })
     }
 })
 
