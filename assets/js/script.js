@@ -84,30 +84,4 @@ $(function () {
         })
         return false
     })
-
-    $('#quoteForm').submit(function (event) {
-        event.preventDefault()
-        $(this).ajaxSubmit({
-            error: function (response) {
-                console.log(response)
-                if (response.responseJSON && response.responseJSON.message) {
-                    $('#status').empty().text(response.responseJSON.message)
-                    $('#status').addClass('alert alert-danger')
-                }
-            },
-            success: function (response) {
-                console.log(response)
-                swalWithBootstrapButtons
-                    .fire(
-                        'Thành công',
-                        'Cảm ơn bạn đã gửi yêu cầu, Công ty sẽ liên hệ bạn trong thời gian sớm nhất. Trân trọng!',
-                        'success'
-                    )
-                    .then(function (result) {
-                        location.reload()
-                    })
-            },
-        })
-        return false
-    })
 })

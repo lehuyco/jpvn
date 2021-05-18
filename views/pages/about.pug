@@ -15,7 +15,8 @@ block content
             .panel-content
               span.highlight-text=__("about.whoLabel")
               h2=__("home.company")
-              p!=about.content
+              if about
+                p!=about.content
       .container 
         .row 
           .col-12.col-md-8

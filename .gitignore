@@ -11,3 +11,6 @@ builtAssets
 builtAssets/*
 
 .DS_Store
+
+yarn-error.log
+**/*.log

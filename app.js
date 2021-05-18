@@ -49,7 +49,7 @@ app.use(
         paths: ['assets/css', 'assets/js', 'assets/img'],
         gzip: true,
         buildDir: 'public/assets',
-        compress: false,
+        compress: true,
     })
 )
 
