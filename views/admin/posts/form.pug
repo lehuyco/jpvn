@@ -19,7 +19,7 @@ mixin form(path, method='POST')
       label.col-sm-2(for='statusSelect') Trạng thái
       .col-sm-4
         select#statusSelect.form-control(name="status")
-          for item in [{value: 'draft', label: 'Bản nháp'}, {value: 'published', label: 'Xuất bản'}, {value: 'archived', label: 'Lưu trữ'}]
+          for item in POST_STATUSES
             if (post && post.status == item.value)
               option(value=item.value, selected="true")=item.label
             else

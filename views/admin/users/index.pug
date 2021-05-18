@@ -12,22 +12,22 @@ block content
         .page-actions
           a.btn.btn-primary(href="/admin/users/new") Thêm người dùng
       table.table.table-bordered
-        thead.thead-light
+        thead
           tr
-            th Avatar
+            //- th Avatar
             th Họ tên
             th Email
             th Tác vụ
         tbody
           each user in users
             tr
-              td.col-img
-                if (user.image)
-                  img.w-100(src=user.image)
+              //- td.col-img
+              //-   if (user.image)
+              //-     img.w-100(src=user.image)
               td.align-middle
                 strong=user.name
               td.align-middle
-                strong=user.email
+                span=user.email
               td.fit.align-middle
                 a.btn.btn-primary.btn-sm(href="/admin/users/" + user._id)
                   i.fa.fa-pencil

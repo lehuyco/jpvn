@@ -117,6 +117,23 @@ var updatePost = async (req, res, next) => {
     }
 }
 
+router.use((req, res, next) => {
+    if (req.user.isAdmin) {
+        res.locals.POST_STATUSES = [
+            { value: 'draft', label: 'Bản nháp' },
+            { value: 'published', label: 'Xuất bản' },
+            { value: 'archived', label: 'Lưu trữ' },
+        ]
+    } else {
+        res.locals.POST_STATUSES = [
+            { value: 'draft', label: 'Bản nháp' },
+            { value: 'publishRequested', label: 'Yêu cầu xuất bản' },
+            { value: 'editRequested', label: 'Yêu cầu chỉnh sửa' },
+        ]
+    }
+    next()
+})
+
 router.get('/', async (req, res, next) => {
     let page = req.query.page || 1
     let { status } = req.query
