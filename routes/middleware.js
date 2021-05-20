@@ -56,7 +56,10 @@ exports.requireAdmin = (req, res, next) => {
 }
 
 exports.requireMod = (req, res, next) => {
-    if (req.isAuthenticated() && (req.user.isAdmin || req.user.isMod)) {
+    if (
+        req.isAuthenticated() &&
+        (req.user.isAdmin || req.user.isMod || req.user.isEditor)
+    ) {
         next()
     } else {
         res.redirect('/login')

@@ -1,0 +1,16 @@
+extends ../layout
+include ./form
+include ../../mixins/flash-messages
+
+block content
+  .container
+    .panel
+      .page-header
+        h4.page-title=post.title
+        ol.breadcrumb
+          li.breadcrumb-item
+              a(href='/admin') Dashboard
+          li.breadcrumb-item
+              a(href='/admin/posts') Quản lý bài viết
+      +flash-messages()
+      +form("/admin/posts/" +  post._id, 'POST', true)

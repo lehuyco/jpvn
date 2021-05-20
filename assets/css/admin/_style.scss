@@ -99,6 +99,7 @@ a {
         padding: 0;
         margin: 0;
         font-weight: bold;
+        font-size: 20px;
     }
     .breadcrumb {
         background: transparent;
@@ -121,6 +122,10 @@ a {
 }
 
 table {
+    th,
+    td {
+        vertical-align: middle;
+    }
     thead {
         tr {
             border-color: #0b5f6a !important;
@@ -141,7 +146,7 @@ table {
         white-space: nowrap;
     }
     .col-img {
-        width: 100px;
+        width: 160px;
     }
 }
 

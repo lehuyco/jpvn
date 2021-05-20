@@ -18,23 +18,27 @@ block content
             th Hình ảnh
             th Nội dung
             th.fit Ngày đăng
+            th.fit Trạng thái
             th.fit Tác vụ
         tbody
           each post in posts
             tr
-              td.col-img.align-middle
+              td.col-img
                 if (post.thumb)
                   img.w-100(src=post.thumb)
-              td.align-middle
+              td
                 strong=post.title
-                p.mb-0.pd-0=post.summary
-              td.fit.align-middle=post.createdAt.toLocaleDateString('vi-VI', {})
-              td.fit.align-middle
-                a.btn.btn-primary.btn-sm(href="/admin/posts/" + post._id)
-                  i.fa.fa-pencil
-                  span  Sửa
-                if currentUser.isAdmin
+                p.mb-0.pd-0.pt-1=post.summary
+              td.fit.text-center=post.createdAt.toLocaleDateString('vi-VI', {})
+              td.fit.text-center
+                span.badge(class=`bg-${POST_STATUS_COLORS[post.status]}`)=POST_STATUSES[post.status]
+              td.fit
+                a.btn.btn-info.btn-sm(href="/admin/posts/" + post._id)
+                  span  Xem
+                if canEdit(currentUser, post)
+                  a.btn.btn-primary.btn-sm.ms-2(href="/admin/posts/" + post._id + "/edit")
+                    span  Sửa
+                if canDelete(currentUser, post)
                   button.btn.btn-danger.btn-sm.ms-2.delete-item-btn(data-id=post._id.toString(), data-scope='posts' ,data-title=post.title)
-                    i.fa.fa-close
                     span  Xóa
       +pagination('/admin/posts', total, page)

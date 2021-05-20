@@ -1,4 +1,4 @@
-mixin form(path, method='POST')
+mixin form(path, method='POST', show=false)
   form.post-form(method=method, action=path, enctype='multipart/form-data')
     .form-group.row
       label.col-sm-2(for='titleInput') Tiêu đề
@@ -15,15 +15,6 @@ mixin form(path, method='POST')
               input#imageTextarea.form-control-file(type="file", name="image")
         else
           input#imageTextarea.form-control-file(type="file", name="image")
-    .form-group.row
-      label.col-sm-2(for='statusSelect') Trạng thái
-      .col-sm-4
-        select#statusSelect.form-control(name="status")
-          for item in POST_STATUSES
-            if (post && post.status == item.value)
-              option(value=item.value, selected="true")=item.label
-            else
-              option(value=item.value)=item.label
     .form-group.row
       label.col-sm-2(for='summaryTextarea') Mô tả
       .col-sm-10
@@ -46,6 +37,13 @@ mixin form(path, method='POST')
                 option(value=category._id, selected="true")=category.title
               else
                 option(value=category._id)=category.title
+    if post && post.status
+      .row
+        label.col-sm-2(for='statusSelect') Trạng thái
+        .col-sm-4
+          h6
+            span.badge(class=`bg-${POST_STATUS_COLORS[post.status]}`)=POST_STATUSES[post.status]
     .row.pt-3
       .col-sm-10.offset-sm-2
-        button.btn.btn-primary(type='submit') Đăng bài
+        button.btn.btn-primary.me-2(type='submit') Đăng bài
+        a.btn.btn-danger(href=post ? `/admin/posts/${post.id}` : '/admin/posts') Hủy

@@ -18,8 +18,8 @@ $(function () {
 
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
-            confirmButton: 'btn btn-primary btn-sm mr-1 ml-1',
-            cancelButton: 'btn btn-secondary btn-sm mr-1 ml-1',
+            confirmButton: 'btn btn-primary m-1',
+            cancelButton: 'btn btn-secondary m-1',
         },
         buttonsStyling: false,
     })

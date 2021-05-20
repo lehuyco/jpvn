@@ -13,4 +13,60 @@ block content
           li.breadcrumb-item
             a(href='/admin/posts') Quản lý bài viết
       +flash-messages()
-      +form("/admin/posts/" +  post._id, 'POST')
+      .content 
+        .form-group.row
+          label.col-sm-2 Tiêu đề
+          .col-sm-10
+            strong=post.title
+        .form-group.row
+          label.col-sm-2 Ảnh đại diện
+          .col-sm-2
+            if (post && post.image)
+              img.w-100(src=post.image)
+        .form-group.row
+          label.col-sm-2 Mô tả
+          .col-sm-10
+            p=post.summary
+        .form-group.row
+          label.col-sm-2(for='contentTextarea') Nội dung
+          .col-sm-10
+            p!=post.content
+        .form-group.row
+          label.col-sm-2 Từ khóa
+          .col-sm-10
+            p=post.keywords
+        if categories
+          .form-group.row
+            label.col-sm-2 Chuyên mục
+            .col-sm-10
+              each category in categories
+                if (post && post.categories.includes(category._id))
+                  span=category.title
+        .row.mt-3
+          label.col-sm-2(for='statusSelect') Trạng thái
+          .col-sm-4
+            h6
+              span.badge(class=`bg-${POST_STATUS_COLORS[post.status]}`)=POST_STATUSES[post.status]
+        .row.mt-3
+          .col-sm-10.offset-sm-2
+            if canEdit
+              a.btn.btn-primary.me-2(href=`/admin/posts/${post.id}/edit`) Sửa bài
+            if (currentUser.isEditor || currentUser.isMod)
+              if post.status == 'draft'
+                a.btn.me-2(class=`btn-${POST_STATUS_COLORS['request']}`, href=`/admin/posts/${post.id}/status?status=request`) Yêu cầu duyệt
+              if post.status == 'request'
+                a.btn.me-2(class=`btn-${POST_STATUS_COLORS['draft']}`, href=`/admin/posts/${post.id}/status?status=draft`) Hủy yêu cầu duyệt
+              if post.status == 'published'
+                a.btn.me-2(class=`btn-${POST_STATUS_COLORS['needEdit']}`, href=`/admin/posts/${post.id}/status?status=needEdit`) Yêu cầu chỉnh sửa
+            if currentUser.isAdmin
+              if post.status != 'published'
+                a.btn.me-2(class=`btn-${POST_STATUS_COLORS['published']}`, href=`/admin/posts/${post.id}/status?status=published`) Duyệt bài
+              if post.status == 'request'
+                a.btn.me-2(class=`btn-${POST_STATUS_COLORS['draft']}`, href=`/admin/posts/${post.id}/status?status=draft`) Không duyệt bài
+              if (post.status != 'request' && post.status != 'draft')
+                a.btn.me-2(class=`btn-${POST_STATUS_COLORS['draft']}`, href=`/admin/posts/${post.id}/status?status=draft`) Cho phép sửa bài
+            if post.slug
+              a.btn.btn-primary.me-2(href=`/post/${post.slug}`, target='_blank') Xem trước
+            if canDelete
+              button.btn.btn-danger.me-2.delete-item-btn(data-id=post._id.toString(), data-scope='posts' ,data-title=post.title)
+                span  Xóa bài

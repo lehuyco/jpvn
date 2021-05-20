@@ -8,3 +8,13 @@ mixin sidebar()
           each category in categories
             li.list-group-item
               a(href='/cat/' + category.slug, title=category.title)=category.title
+      if relatedPosts
+        .sidebar-widget-content.mt-30
+          h4 Bài viết liên quan
+          for post in relatedPosts
+            .row.blog-item.mb-10
+              .col-3.blog-img.pe-0
+                a(href=post.path)
+                  img.w-100(src=post.thumb, alt=post.title)
+              .col-9.blog-content
+                a(href=post.path)=post.title

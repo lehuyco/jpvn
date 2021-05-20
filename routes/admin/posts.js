@@ -36,17 +36,40 @@ var storage = multer.diskStorage({
 })
 var upload = multer({ storage: storage })
 
+const canDelete = (user, post) => {
+    var canDelete = false
+    if (user.isAdmin) {
+        canDelete = true
+    }
+    if (
+        (user.isMod || post.creator.toString() == user._id.toString()) &&
+        post.status == 'draft'
+    ) {
+        canDelete = true
+    }
+    return canDelete
+}
+
+const canEdit = (user, post) => {
+    var canEdit = false
+    if (user.isAdmin) {
+        canEdit = true
+    }
+    if (
+        (user.isMod || post.creator.toString() == user._id.toString()) &&
+        post.status == 'draft'
+    ) {
+        canEdit = true
+    }
+    return canEdit
+}
+
 var findPost = async (req, res, next) => {
     if (req.params.id) {
         req.post = await Post.findOne({ _id: req.params.id })
         req.actionType = 'update'
-        if (
-            req.user.isMod &&
-            req.post.creator.toString() != req.user._id.toString()
-        ) {
-            res.redirect('/admin/posts')
-            return
-        }
+        res.locals.canDelete = canDelete(req.user, req.post)
+        res.locals.canEdit = canEdit(req.user, req.post)
     } else {
         req.post = await new Post()
         req.actionType = 'create'
@@ -55,6 +78,12 @@ var findPost = async (req, res, next) => {
 }
 
 var updatePost = async (req, res, next) => {
+    var post = req.post
+    let postId = post._id.toString()
+    if (req.actionType == 'update' && !res.locals.canEdit) {
+        req.flash('success', 'Bạn không có quyền sửa bài này')
+        return res.redirect('/admin/posts/' + postId)
+    }
     let {
         title,
         content,
@@ -62,15 +91,12 @@ var updatePost = async (req, res, next) => {
         category,
         publishedAt,
         wpslug,
-        status,
         categories,
         keywords,
     } = req.body
-    var post = req.post
-    let postId = post._id.toString()
     try {
         post.title = title
-        post.status = status
+        post.status = 'draft'
         post.summary = summary
         post.content = content
         post.category = category
@@ -117,29 +143,12 @@ var updatePost = async (req, res, next) => {
     }
 }
 
-router.use((req, res, next) => {
-    if (req.user.isAdmin) {
-        res.locals.POST_STATUSES = [
-            { value: 'draft', label: 'Bản nháp' },
-            { value: 'published', label: 'Xuất bản' },
-            { value: 'archived', label: 'Lưu trữ' },
-        ]
-    } else {
-        res.locals.POST_STATUSES = [
-            { value: 'draft', label: 'Bản nháp' },
-            { value: 'publishRequested', label: 'Yêu cầu xuất bản' },
-            { value: 'editRequested', label: 'Yêu cầu chỉnh sửa' },
-        ]
-    }
-    next()
-})
-
 router.get('/', async (req, res, next) => {
     let page = req.query.page || 1
     let { status } = req.query
     try {
         var query = {}
-        if (req.user.idMod) {
+        if (req.user.isEditor) {
             query.creator = req.user._id
         }
         if (status) {
@@ -148,12 +157,14 @@ router.get('/', async (req, res, next) => {
         var data = await Post.paginate(query, {
             page: page,
             limit: 20,
-            sort: { createdAt: -1 },
+            sort: { updatedAt: -1 },
         })
         res.render('admin/posts/index', {
             posts: data.docs,
             page,
             total: data.totalPages,
+            canDelete,
+            canEdit,
         })
     } catch (err) {
         next(err)
@@ -171,11 +182,65 @@ router.get('/new', async (req, res, next) => {
     }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id/status', findPost, async (req, res, next) => {
+    try {
+        let status = req.query.status
+        console.log(status)
+        console.log(req.user.isAdmin)
+        let post = await Post.findOne({ _id: req.params.id })
+        if (req.user.isAdmin) {
+            if (status == 'published') {
+                post.status = status
+                await post.save()
+                req.flash('success', 'Duyệt bài thành công')
+            }
+            if (status == 'draft') {
+                post.status = status
+                await post.save()
+                req.flash('success', 'Đã cho phép sửa bài')
+            }
+        } else {
+            if (status == 'request' && post.status == 'draft') {
+                post.status = status
+                await post.save()
+                req.flash('success', 'Yêu cầu duyệt bài thành công')
+            }
+            if (status == 'draft' && post.status == 'request') {
+                post.status = status
+                await post.save()
+                req.flash('success', 'Đã hủy yêu cầu duyệt bài')
+            }
+            if (status == 'needEdit' && post.status == 'published') {
+                post.status = status
+                await post.save()
+                req.flash('success', 'Yêu cầu sửa bài thành công')
+            }
+        }
+        res.redirect('/admin/posts/' + post.id)
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.get('/:id/edit', findPost, async (req, res, next) => {
     try {
         let categories = await Category.find({})
-        let post = await Post.findOne({ _id: req.params.id })
-        res.render('admin/posts/show', { post: post, categories: categories })
+        res.render('admin/posts/edit', {
+            post: req.post,
+            categories: categories,
+        })
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.get('/:id', findPost, async (req, res, next) => {
+    try {
+        let categories = await Category.find({})
+        res.render('admin/posts/show', {
+            post: req.post,
+            categories: categories,
+        })
     } catch (err) {
         next(err)
     }
@@ -184,6 +249,10 @@ router.get('/:id', async (req, res, next) => {
 router.post('/:id', findPost, upload.single('image'), updatePost)
 
 router.get('/:id/delete', async (req, res, next) => {
+    if (!res.locals.canDelete) {
+        req.flash('success', 'Bạn không có quyền xóa bài này')
+        return res.redirect('/admin/posts/' + postId)
+    }
     try {
         var result = await Post.remove({ _id: req.params.id })
         res.redirect('/admin/posts')

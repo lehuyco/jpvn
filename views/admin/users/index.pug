@@ -17,6 +17,7 @@ block content
             //- th Avatar
             th Họ tên
             th Email
+            th Vị trí
             th Tác vụ
         tbody
           each user in users
@@ -28,6 +29,8 @@ block content
                 strong=user.name
               td.align-middle
                 span=user.email
+              td.fit.text-center
+                span.badge(class=`bg-${USER_ROLE_COLORS[user.role]}`)=USER_ROLES[user.role]
               td.fit.align-middle
                 a.btn.btn-primary.btn-sm(href="/admin/users/" + user._id)
                   i.fa.fa-pencil

@@ -597,10 +597,13 @@ label {
     .sidebar-widget {
     }
     .list-group-item {
+        border-radius: 0;
+        background: #0b5f6a;
         a {
             font-weight: bold;
             text-decoration: none;
-            color: #000000;
+            color: #ffffff;
+            font-size: 14px;
         }
     }
 }
