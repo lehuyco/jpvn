@@ -36,15 +36,21 @@ router.get('/news', async (req, res, next) => {
             .limit(5)
         var topIds = topPosts.map((p) => p._id)
         query._id = { $nin: topIds }
-        var relatedPosts = await Post.find({ status: 'published' })
-            .sort({ createdAt: -1 })
-            .limit(5)
         var data = await Post.paginate(query, {
             sort: { createdAt: -1 },
             populate: 'categories',
             page: page,
             limit: 10,
         })
+        var relatedPosts = await Post.find({
+            status: 'published',
+            $and: [
+                { _id: { $nin: topIds } },
+                { _id: { $nin: data.docs.map((p) => p._id) } },
+            ],
+        })
+            .sort({ createdAt: -1 })
+            .limit(5)
 
         res.locals.title = __('menu.blog')
         res.locals.ogUrl = __host + '/blog'
@@ -66,12 +72,6 @@ router.get('/cat/:slug', async (req, res, next) => {
     let page = req.query.page || 1
     try {
         let category = await Category.findOne({ slug: req.params.slug })
-        var relatedPosts = await Post.find({
-            status: 'published',
-            categories: { $in: [category._id] },
-        })
-            .sort({ createdAt: -1 })
-            .limit(5)
         let title = category.title
         let data = await Post.paginate(
             { status: 'published', categories: { $in: [category._id] } },
@@ -82,6 +82,13 @@ router.get('/cat/:slug', async (req, res, next) => {
                 limit: 10,
             }
         )
+        var relatedPosts = await Post.find({
+            status: 'published',
+            _id: { $nin: data.docs.map((p) => p._id) },
+            categories: { $in: [category._id] },
+        })
+            .sort({ createdAt: -1 })
+            .limit(5)
 
         res.locals.title = category.title
         res.locals.ogUrl = __host + '/' + category.slug
