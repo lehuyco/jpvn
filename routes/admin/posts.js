@@ -42,7 +42,8 @@ const canDelete = (user, post) => {
         canDelete = true
     }
     if (
-        (user.isMod || post.creator.toString() == user._id.toString()) &&
+        (user.isMod ||
+            (post.creator && post.creator.toString() == user._id.toString())) &&
         post.status == 'draft'
     ) {
         canDelete = true
@@ -56,7 +57,8 @@ const canEdit = (user, post) => {
         canEdit = true
     }
     if (
-        (user.isMod || post.creator.toString() == user._id.toString()) &&
+        (user.isMod ||
+            (post.creator && post.creator.toString() == user._id.toString())) &&
         post.status == 'draft'
     ) {
         canEdit = true
