@@ -1,5 +1,16 @@
+const nodemailer = require('nodemailer');
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(SENDGRID_API_KEY)
+
+var mail = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: SENDER_MAIL,
+      pass: SENDER_PASSWORD
+    }
+});
 
 const hr = async (candidate, position) => {
     try {
@@ -37,16 +48,16 @@ const hr = async (candidate, position) => {
             "/original.pdf', target='_blank'>Link</a></p><p>Chi tiết: <a href='https://luathungviet.vn/admin/candidates/" +
             candidate._id +
             "', target='_blank'>Link</a></p>"
-        const msg = {
-            to: COMPANY_EMAIL,
-            from: COMPANY_EMAIL,
-            cc: COMPANY_EMAIL,
-            bcc: ['vuonganh91@gmail.com'],
-            subject: 'Ứng viên mới',
+
+        var mailOptions = {
+            from: SENDER_MAIL,
+            to: RECEIVER_MAIL,
+            subject:'Ứng viên mới',
             text,
-            html,
-        }
-        sgMail.send(msg)
+            html
+          };
+          
+        return await mail.sendMail(mailOptions);
     } catch (err) {
         console.log(err)
     }
@@ -77,16 +88,16 @@ const quote = async (quote) => {
             "</p><p>Chi tiết: <a href='https://luathungviet.vn/admin/quotes/" +
             quote._id +
             "', target='_blank'>Link</a></p>"
-        const msg = {
-            to: COMPANY_EMAIL,
-            from: COMPANY_EMAIL,
-            cc: COMPANY_EMAIL,
-            bcc: ['vuonganh91@gmail.com'],
-            subject: 'Yêu cầu báo giá',
+
+        var mailOptions = {
+            from: SENDER_MAIL,
+            to: RECEIVER_MAIL,
+            subject:'Yêu cầu báo giá',
             text,
-            html,
-        }
-        sgMail.send(msg)
+            html
+          };
+          
+        return await mail.sendMail(mailOptions);
     } catch (err) {
         console.log(err)
     }
@@ -119,16 +130,16 @@ const contact = async (enquiry) => {
             "</p><p>Chi tiết: <a href='https://luathungviet.vn/admin/enquiries/" +
             enquiry._id +
             "', target='_blank'>Link</a></p>"
-        const msg = {
-            to: COMPANY_EMAIL,
-            from: COMPANY_EMAIL,
-            cc: COMPANY_EMAIL,
-            bcc: ['vuonganh91@gmail.com'],
-            subject: 'Yêu cầu mới',
+
+        var mailOptions = {
+            from: SENDER_MAIL,
+            to: RECEIVER_MAIL,
+            subject: 'Luathungviet.vn: Liên hệ mới',
             text,
-            html,
-        }
-        await sgMail.send(msg)
+            html
+          };
+          
+        return await mail.sendMail(mailOptions);
     } catch (err) {
         console.log(err)
     }

@@ -8,9 +8,9 @@ mixin sidebar()
           each category in categories
             li.list-group-item
               a(href='/cat/' + category.slug, title=category.title)=category.title
-      if relatedPosts
+      if relatedPosts && relatedPosts.length > 0
         .sidebar-widget-content.mt-30
-          h4 Bài viết liên quan
+          h4 Tin xem nhiều
           for post in relatedPosts
             .row.blog-item.mb-10
               .col-3.blog-img.pe-0

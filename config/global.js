@@ -34,3 +34,6 @@ global.POST_STATUS_COLORS = {
     needEdit: 'info',
     archived: 'dark',
 }
+global.SENDER_MAIL = "hi@lehuy.co"
+global.SENDER_PASSWORD = "cnfpdsfasolrsdrc"
+global.RECEIVER_MAIL = "lienhe@luathungviet.vn"

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 mongoose.Promise = require('bluebird')
 const mongoosePaginate = require('mongoose-paginate-v2')
 const slugify = require('slugify')
-
+const Moment = require('moment')
 const Schema = mongoose.Schema
 
 // create a schema
@@ -57,6 +57,10 @@ const schema = new Schema(
         updatedAt: {
             type: Date,
         },
+        viewCount: {
+            type: Number,
+            default: 0
+        },
         tags: [
             {
                 type: String,
@@ -75,6 +79,11 @@ const schema = new Schema(
 schema.virtual('path').get(function () {
     return '/post/' + this.slug
 })
+
+schema.virtual('time').get(function () {
+    return Moment().format('DD/MM/YYYY')
+})
+
 
 schema.pre('save', function (next) {
     this.slug = slugify(this.title, {

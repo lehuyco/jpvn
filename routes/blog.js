@@ -28,9 +28,9 @@ router.use(init, findCategories, findRecentPosts)
 router.get('/news', async (req, res, next) => {
     let page = req.query.page || 1
     var query = { status: 'published' }
-    if (res.locals.categorieIds.length > 0) {
-        query.categories = { $in: res.locals.categorieIds }
-    }
+    // if (res.locals.categorieIds.length > 0) {
+    //     query.categories = { $in: res.locals.categorieIds }
+    // }
     try {
         var topPosts = await Post.find({ status: 'published' })
             .sort({ createdAt: -1 })

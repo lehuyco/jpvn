@@ -11,15 +11,24 @@ block content
           .page-header
             .page-title
               h2=post.title
-            ol.breadcrumb
-              li.breadcrumb-item
-                a(href='/')
-                  i.la.la-home
-              li.breadcrumb-item
-                a(href='/news')=__("menu.blog")
-              if category
-                li.breadcrumb-item
-                  a(href='/news/' + category.slug)=category.title
+            .page-toolbar.clearfix
+              .float-start
+                ol.breadcrumb
+                  li.breadcrumb-item
+                    a(href='/')
+                      i.la.la-home
+                  li.breadcrumb-item
+                    a(href='/news')=__("menu.blog")
+                  if category
+                    li.breadcrumb-item
+                      a(href='/news/' + category.slug)=category.title
+              .float-end
+                span.text-muted
+                  i.las.la-newspaper.pe-1
+                  span=post.time
+                span.text-muted.ps-3
+                  i.las.la-eye.pe-1
+                  span=post.viewCount
           .blog-item
             //- .blog__img
             //-   img(src=post.image, alt=post.title)
