@@ -6,6 +6,7 @@ const Category = require('models/Category')
 
 let init = (req, res, next) => {
     res.locals.headerType = 'classic'
+    res.locals.customClass = 'news-template'
     next()
 }
 
