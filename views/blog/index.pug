@@ -8,16 +8,17 @@ include ./categories
 block content
   #blog
     .container
-      .row 
-        .col-md-6 
-          if topPosts[0]
-            +toppost(topPosts[0])
-        .col-md-6
-          .row 
-            for index in [1, 2, 3, 4]
-              if topPosts[index]
-                .col-6 
-                  +toppost(topPosts[index], "small")
+      if topPosts.length > 1
+        .row 
+          .col-md-6 
+            if topPosts[0]
+              +toppost(topPosts[0])
+          .col-md-6
+            .row 
+              for index in [1, 2, 3, 4]
+                if topPosts[index]
+                  .col-6 
+                    +toppost(topPosts[index], "small")
       .row.pt-30
         .col-md-8
           .row
