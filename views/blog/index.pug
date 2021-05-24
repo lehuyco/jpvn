@@ -8,7 +8,7 @@ include ./categories
 block content
   #blog
     .container
-      if topPosts.length > 1
+      if topPosts && topPosts.length > 1
         .row 
           .col-md-6 
             if topPosts[0]
