@@ -80,10 +80,17 @@ schema.virtual('path').get(function () {
     return '/post/' + this.slug
 })
 
+schema.virtual('imageUrl').get(function () {
+    return __host + this.image
+})
+
 schema.virtual('time').get(function () {
     return Moment().format('DD/MM/YYYY')
 })
 
+schema.virtual('publicationDate').get(function () {
+    return Moment().format('YYYY-MM-DD')
+})
 
 schema.pre('save', function (next) {
     this.slug = slugify(this.title, {

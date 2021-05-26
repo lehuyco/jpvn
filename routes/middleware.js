@@ -10,6 +10,14 @@ exports.initLocals = async (req, res, next) => {
     res.locals.currentUser = req.user
     res.locals.title = 'Luật Hưng Việt'
 
+    if (req.query.lang == 'en') {
+        i18n.setLocale('en')
+    }
+
+    if (req.query.lang == 'vi') {
+        i18n.setLocale(req, 'vi')
+    }
+
     let locale = i18n.getLocale()
     res.locals.locale = locale
     res.locals.flash = req.flash()

@@ -15,6 +15,13 @@ const Enquiry = require('models/Enquiry')
 const Member = require('models/Member')
 const i18n = require('i18n')
 
+// Sitemap
+const { SitemapStream, streamToPromise } = require('sitemap')
+const { createGzip } = require('zlib')
+const { Readable } = require('stream')
+const { post } = require('./blog')
+var sitemap
+
 const validateContact = (req, res, next) => {
     let { name, phone, email, address, request } = req.body
     if (!name || !email || !phone || !address || !request) {
@@ -154,9 +161,7 @@ router.get('/recruitment', async (req, res, next) => {
 })
 
 router.get('/vi', function (req, res, next) {
-    let result = i18n.setLocale('vi')
-    i18n.setLocale(req, 'de')
-    console.log(result)
+    i18n.setLocale(req, 'vi')
     res.redirect('/')
 })
 
@@ -164,5 +169,81 @@ router.get('/en', function (req, res, next) {
     i18n.setLocale('en')
     res.redirect('/')
 })
+
+router.get('/sitemap.xml', async (req, res) => {
+    res.header('Content-Type', 'application/xml');
+    res.header('Content-Encoding', 'gzip');
+    // if we have a cached entry send it
+    if (sitemap) {
+      res.send(sitemap)
+      return
+    }
+  
+    try {
+      const smStream = new SitemapStream({ hostname: 'https://luathungviet.vn/' })
+      const pipeline = smStream.pipe(createGzip())
+  
+      // links: [
+      //   { lang: 'en', url: '/?lang=en' },
+      //   { lang: 'vi', url: '/?lang=vi' }
+      // ],
+      // pipe your entries or directly write them.
+      smStream.write({ url: '/', priority: 0.3 })
+      smStream.write({url: '/vi', priority: 0.3 })
+      smStream.write({ url: '/en', priority: 0.3 })
+      smStream.write({ url: '/about', priority: 0.3 })
+      smStream.write({ url: '/career',  changefreq: 'daily',  priority: 0.7 })
+      smStream.write({ url: '/news',  changefreq: 'daily',  priority: 0.7 })
+      smStream.write({ url: '/contact' })
+
+      let categories = await Category.find({})
+      for (var category of categories) {
+        smStream.write({ url: `/cat/${category.slug}`, lang: category.locale })
+      }
+
+      let posts = await Post.find({})
+      for (var post of posts) {
+        var meta = {
+          url: post.path,
+          news: {
+            publication: {
+              name: 'Luật Hưng Việt',
+              language: 'vi'
+            },
+            genres: 'PressRelease, Blog',
+            publication_date: post.publicationDate,
+            title: post.title,
+            keywords: post.keywords
+          }
+        }
+        if (post.thumb) {
+          meta.img = [
+            {
+              url: post.thumb,
+              title: post.title,
+              license: 'https://creativecommons.org/licenses/by/4.0/'
+            },
+          ]
+        }
+        smStream.write(meta)
+      }
+
+      /* or use
+      Readable.from([{url: '/page-1'}...]).pipe(smStream)
+      if you are looking to avoid writing your own loop.
+      */
+  
+      // cache the response
+      streamToPromise(pipeline).then(sm => sitemap = sm)
+      // make sure to attach a write stream such as streamToPromise before ending
+      smStream.end()
+      // stream write the response
+      pipeline.pipe(res).on('error', (e) => {throw e})
+    } catch (e) {
+      console.log(e)
+      res.status(500).end()
+    }
+  })
+  
 
 module.exports = router
