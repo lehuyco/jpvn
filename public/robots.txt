@@ -1,2 +1,6 @@
 User-agent: * 
 Disallow: /docs/
+Disallow: /login
+Disallow: /services/
+Disallow: /admin/
+Disallow: /quote
