@@ -188,13 +188,17 @@ router.get('/sitemap.xml', async (req, res) => {
       //   { lang: 'vi', url: '/?lang=vi' }
       // ],
       // pipe your entries or directly write them.
-      smStream.write({ url: '/', priority: 0.3 })
+      smStream.write({ url: '/?lang=vi', priority: 0.3 })
+      smStream.write({ url: '/?lang=en', priority: 0.3 })
       smStream.write({url: '/vi', priority: 0.3 })
       smStream.write({ url: '/en', priority: 0.3 })
-      smStream.write({ url: '/about', priority: 0.3 })
-      smStream.write({ url: '/career',  changefreq: 'daily',  priority: 0.7 })
+      smStream.write({ url: '/about?lang=vi', priority: 0.3 })
+      smStream.write({ url: '/about?lang=en', priority: 0.3 })
+      smStream.write({ url: '/career?lang=vi',  changefreq: 'daily',  priority: 0.7 })
+      smStream.write({ url: '/career?lang=en',  changefreq: 'daily',  priority: 0.7 })
       smStream.write({ url: '/news',  changefreq: 'daily',  priority: 0.7 })
-      smStream.write({ url: '/contact' })
+      smStream.write({ url: '/contact?lang=vi' })
+      smStream.write({ url: '/contact?lang=en' })
 
       let categories = await Category.find({})
       for (var category of categories) {
