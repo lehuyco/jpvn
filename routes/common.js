@@ -161,7 +161,7 @@ router.get('/recruitment', async (req, res, next) => {
 })
 
 router.get('/vi', function (req, res, next) {
-    i18n.setLocale(req, 'vi')
+    i18n.setLocale('vi')
     res.redirect('/')
 })
 
